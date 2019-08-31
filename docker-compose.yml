@@ -1,0 +1,21 @@
+version: '3'
+services:
+    php:
+        image: jakubboucek/lamp-devstack-php
+        volumes:
+            - ".:/var/www/html/www"
+        ports:
+            - "8080:80"
+        restart: always
+        depends_on:
+            - mysqldb
+    mysqldb:
+        image: jakubboucek/lamp-devstack-mysql
+        restart: always
+        environment:
+            - MYSQL_DATABASE=default
+            - MYSQL_ROOT_PASSWORD=devstack
+        ports:
+            - "33060:3306"
+        volumes:
+            - "./docker/mysql/data:/var/lib/mysql"
