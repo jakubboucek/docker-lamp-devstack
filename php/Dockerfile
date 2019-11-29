@@ -1,4 +1,4 @@
-FROM php:7.3-apache-stretch
+FROM php:7.4-apache
 
 WORKDIR /tmp
 
@@ -19,20 +19,21 @@ RUN DEBIAN_FRONTEND=noninteractive \
 	    gd \
 	    pdo_mysql \
 	&& docker-php-ext-configure \
-	    gd --with-jpeg-dir=/usr/include/ \
+	    gd --with-jpeg \
     && apt-get autoremove -y \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /var/tmp/* /tmp/*
 
-# Configura Apache & PHP
-ENV APACHE_DOCUMENT_ROOT /var/www/html/www
+# Configure Apache & PHP
 COPY php.ini /usr/local/etc/php/conf.d/dev-memory-increase.ini
+
+# Move Apache Document root to sub-directory `www` (PHP frameworks convention)
+ENV APACHE_DOCUMENT_ROOT /var/www/html/www
 
 RUN DEBIAN_FRONTEND=noninteractive \
 	&& curl -sS https://getcomposer.org/installer | php \
   	&& mv ./composer.phar /usr/local/bin/composer \
     && sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf \
-	&& a2enmod rewrite expires \
-	&& service apache2 restart
+	&& a2enmod rewrite expires
 
 WORKDIR /var/www/html
