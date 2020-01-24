@@ -1,0 +1,25 @@
+version: '3'
+services:
+    web:
+        image: jakubboucek/lamp-devstack-php:debug
+        container_name: web
+        volumes:
+            - ".:/var/www/html"
+        ports:
+            - "8080:80"
+        restart: always
+        environment:
+            XDEBUG_CONFIG: "remote_host=host.docker.internal"
+        depends_on:
+            - mysqldb
+    mysqldb:
+        image: jakubboucek/lamp-devstack-mysql
+        container_name: mysql
+        restart: always
+        environment:
+            - MYSQL_DATABASE=default
+            - MYSQL_ROOT_PASSWORD=devstack
+        ports:
+            - "33060:3306"
+        volumes:
+            - "./docker/mysql/data:/var/lib/mysql"
