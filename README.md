@@ -15,8 +15,11 @@ It starts Apache which looks into `/www` directory in project as
 [`DocumentRoot`](https://httpd.apache.org/docs/2.4/mod/core.html#documentroot), but for PHP is accesible whole project
 directory.
 
+When you want to use Xdebug, use [`docker-compose-debug.yml`](docker-compose-debug.yml), 
+
 At the same time starts MySQL database server, ready to use. 
 
 ## Building notes
-- `docker build -f php/Dockerfile -t jakubboucek/lamp-devstack-php php/`
-- `docker build -f mysql/Dockerfile -t jakubboucek/lamp-devstack-mysql mysql/`
+- `docker build -f php/Dockerfile -t jakubboucek/lamp-devstack-php:latest php/`
+- `docker build -f php/Dockerfile-debug -t jakubboucek/lamp-devstack-php:debug php/`
+- `docker build -f mysql/Dockerfile -t jakubboucek/lamp-devstack-mysql:latest mysql/`
