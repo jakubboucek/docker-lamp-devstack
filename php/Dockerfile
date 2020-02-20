@@ -8,18 +8,19 @@ RUN DEBIAN_FRONTEND=noninteractive \
 	&& apt-get install --no-install-recommends -y \
         ca-certificates \
         curl \
+        libjpeg-dev \
         libjpeg62-turbo-dev \
         libpng-dev \
         openssl \
 	    zip \
 	    unzip \
+    && docker-php-ext-configure \
+        gd --with-jpeg \
 	&& docker-php-ext-install \
 	    mysqli \
 	    bcmath \
 	    gd \
 	    pdo_mysql \
-	&& docker-php-ext-configure \
-	    gd --with-jpeg \
     && apt-get autoremove -y \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /var/tmp/* /tmp/*
