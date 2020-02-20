@@ -11,11 +11,12 @@ RUN DEBIAN_FRONTEND=noninteractive \
         libjpeg-dev \
         libjpeg62-turbo-dev \
         libpng-dev \
+        libwebp-dev \
         openssl \
         zip \
         unzip \
     && docker-php-ext-configure \
-        gd --with-jpeg \
+        gd --with-jpeg --with-webp \
     && docker-php-ext-install \
         mysqli \
         bcmath \
