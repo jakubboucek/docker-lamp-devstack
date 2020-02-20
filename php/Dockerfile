@@ -5,22 +5,22 @@ WORKDIR /tmp
 # OS binaries install && update critical binaries
 RUN DEBIAN_FRONTEND=noninteractive \
     && apt-get update \
-	&& apt-get install --no-install-recommends -y \
+    && apt-get install --no-install-recommends -y \
         ca-certificates \
         curl \
         libjpeg-dev \
         libjpeg62-turbo-dev \
         libpng-dev \
         openssl \
-	    zip \
-	    unzip \
+        zip \
+        unzip \
     && docker-php-ext-configure \
         gd --with-jpeg \
-	&& docker-php-ext-install \
-	    mysqli \
-	    bcmath \
-	    gd \
-	    pdo_mysql \
+    && docker-php-ext-install \
+        mysqli \
+        bcmath \
+        gd \
+        pdo_mysql \
     && apt-get autoremove -y \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /var/tmp/* /tmp/*
@@ -32,9 +32,9 @@ COPY php.ini /usr/local/etc/php/conf.d/dev-memory-increase.ini
 ENV APACHE_DOCUMENT_ROOT /var/www/html/www
 
 RUN DEBIAN_FRONTEND=noninteractive \
-	&& curl -sS https://getcomposer.org/installer | php \
-  	&& mv ./composer.phar /usr/local/bin/composer \
+    && curl -sS https://getcomposer.org/installer | php \
+    && mv ./composer.phar /usr/local/bin/composer \
     && sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf \
-	&& a2enmod rewrite expires
+    && a2enmod rewrite expires
 
 WORKDIR /var/www/html
