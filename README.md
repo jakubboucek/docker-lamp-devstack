@@ -1,8 +1,8 @@
 # LAMP devstack as Docker 
-Prepared images for local development in [LAMP devstack](https://en.wikipedia.org/wiki/LAMP_(software_bundle)
+Prepared images for local development in [LAMP devstack](https://en.wikipedia.org/wiki/LAMP_(software_bundle))
 
 ## Main features
-- current version of PHP 7.4
+- current version of PHP 7.4 and 7.3
 - current version of Apache (with added [`mod_expires`](https://httpd.apache.org/docs/current/mod/mod_expires.html)
     and [`mod_rewrite`](https://httpd.apache.org/docs/current/mod/mod_rewrite.html) modules)
 - current version of Maria 10  (with properly configured `utf8mb4` charset)
