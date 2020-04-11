@@ -7,7 +7,6 @@ RUN DEBIAN_FRONTEND=noninteractive \
     && apt-get update \
     && apt-get install --no-install-recommends -y \
         ca-certificates \
-        curl \
         libjpeg-dev \
         libjpeg62-turbo-dev \
         libpng-dev \
