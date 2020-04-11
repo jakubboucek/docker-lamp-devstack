@@ -25,6 +25,8 @@ At the same time starts MySQL database server, ready to use.
 - `docker run --rm php:7.4-apache php --version`
 - `docker build -f php/Dockerfile -t jakubboucek/lamp-devstack-php:latest php/`
 - `docker build -f php/Dockerfile-debug -t jakubboucek/lamp-devstack-php:debug php/`
+- `docker run --rm jakubboucek/lamp-devstack-php:latest php --version`
+- `docker run --rm jakubboucek/lamp-devstack-php:debug php --version`
 - `docker tag jakubboucek/lamp-devstack-php:latest jakubboucek/lamp-devstack-php:7`
 - `docker tag jakubboucek/lamp-devstack-php:latest jakubboucek/lamp-devstack-php:7.4`
 - `docker tag jakubboucek/lamp-devstack-php:latest jakubboucek/lamp-devstack-php:7.4.x`
@@ -45,6 +47,8 @@ At the same time starts MySQL database server, ready to use.
 - `docker run --rm php:7.3-apache-stretch php --version`
 - `docker build -f php/Dockerfile-7.3 -t jakubboucek/lamp-devstack-php:7.3 php/`
 - `docker build -f php/Dockerfile-7.3-debug -t jakubboucek/lamp-devstack-php:7.3-debug php/`
+- `docker run --rm jakubboucek/lamp-devstack-php:7.3 php --version`
+- `docker run --rm jakubboucek/lamp-devstack-php:7.3-debug php --version`
 - `docker tag jakubboucek/lamp-devstack-php:7.3 jakubboucek/lamp-devstack-php:7.3.x`
 - `docker tag jakubboucek/lamp-devstack-php:7.3-debug jakubboucek/lamp-devstack-php:7.4.x-debug`
 - `docker push jakubboucek/lamp-devstack-php:7.3`
