@@ -50,7 +50,7 @@ At the same time starts MySQL database server, ready to use.
 - `docker run --rm jakubboucek/lamp-devstack-php:7.3 php --version`
 - `docker run --rm jakubboucek/lamp-devstack-php:7.3-debug php --version`
 - `docker tag jakubboucek/lamp-devstack-php:7.3 jakubboucek/lamp-devstack-php:7.3.x`
-- `docker tag jakubboucek/lamp-devstack-php:7.3-debug jakubboucek/lamp-devstack-php:7.4.x-debug`
+- `docker tag jakubboucek/lamp-devstack-php:7.3-debug jakubboucek/lamp-devstack-php:7.3.x-debug`
 - `docker push jakubboucek/lamp-devstack-php:7.3`
 - `docker push jakubboucek/lamp-devstack-php:7.3.x`
 - `docker push jakubboucek/lamp-devstack-php:7.3-debug`
