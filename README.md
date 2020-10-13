@@ -68,10 +68,14 @@ docker build -f php/Dockerfile-8.0 -t jakubboucek/lamp-devstack-php:8.0 php/
 docker build -f php/Dockerfile-8.0-debug -t jakubboucek/lamp-devstack-php:8.0-debug php/
 docker run --rm jakubboucek/lamp-devstack-php:8.0 php --version
 docker run --rm jakubboucek/lamp-devstack-php:8.0-debug php --version
+docker tag jakubboucek/lamp-devstack-php:8.0 jakubboucek/lamp-devstack-php:8
 docker tag jakubboucek/lamp-devstack-php:8.0 jakubboucek/lamp-devstack-php:8.0.x
+docker tag jakubboucek/lamp-devstack-php:8.0-debug jakubboucek/lamp-devstack-php:8-debug
 docker tag jakubboucek/lamp-devstack-php:8.0-debug jakubboucek/lamp-devstack-php:8.0.x-debug
+docker push jakubboucek/lamp-devstack-php:8
 docker push jakubboucek/lamp-devstack-php:8.0
 docker push jakubboucek/lamp-devstack-php:8.0.x
+docker push jakubboucek/lamp-devstack-php:8-debug
 docker push jakubboucek/lamp-devstack-php:8.0-debug
 docker push jakubboucek/lamp-devstack-php:8.0.x-debug
 ```
