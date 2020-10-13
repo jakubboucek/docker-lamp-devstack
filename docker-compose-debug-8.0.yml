@@ -2,7 +2,7 @@ version: '3'
 services:
     web:
         image: jakubboucek/lamp-devstack-php:8.0-debug
-        container_name: web
+        # container_name: web
         volumes:
             - ".:/var/www/html"
         ports:
@@ -14,7 +14,7 @@ services:
             - mysqldb
     mysqldb:
         image: jakubboucek/lamp-devstack-mysql
-        container_name: mysql
+        # container_name: mysql
         restart: always
         environment:
             - MYSQL_DATABASE=default
