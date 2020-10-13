@@ -60,6 +60,22 @@ docker push jakubboucek/lamp-devstack-php:7.3-debug
 docker push jakubboucek/lamp-devstack-php:7.3.x-debug
 ```
 
+### PHP 8.0 (RC)
+```shell
+docker pull php:8.0-rc-apache
+docker run --rm php:8.0-rc-apache php --version
+docker build -f php/Dockerfile-8.0 -t jakubboucek/lamp-devstack-php:8.0 php/
+docker build -f php/Dockerfile-8.0-debug -t jakubboucek/lamp-devstack-php:8.0-debug php/
+docker run --rm jakubboucek/lamp-devstack-php:8.0 php --version
+docker run --rm jakubboucek/lamp-devstack-php:8.0-debug php --version
+docker tag jakubboucek/lamp-devstack-php:8.0 jakubboucek/lamp-devstack-php:8.0.x
+docker tag jakubboucek/lamp-devstack-php:8.0-debug jakubboucek/lamp-devstack-php:8.0.x-debug
+docker push jakubboucek/lamp-devstack-php:8.0
+docker push jakubboucek/lamp-devstack-php:8.0.x
+docker push jakubboucek/lamp-devstack-php:8.0-debug
+docker push jakubboucek/lamp-devstack-php:8.0.x-debug
+```
+
 ### MariaDB
 ```shell
 docker pull mariadb:10.4

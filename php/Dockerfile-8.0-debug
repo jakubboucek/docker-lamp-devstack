@@ -1,0 +1,21 @@
+FROM jakubboucek/lamp-devstack-php:8.0
+
+# Workdir during installation
+WORKDIR /tmp
+
+## Install XDebug - remove this section for non-debug image
+RUN curl https://github.com/xdebug/xdebug/archive/master.tar.gz -L -o xdebug-3.0.0-dev.tar.gz \
+    && tar -xzf xdebug-3.0.0-dev.tar.gz \
+    && cd xdebug-master/ \
+    && phpize \
+    && ./configure --enable-xdebug \
+    && make -j$(nproc) \
+    && make install \
+    && docker-php-ext-enable xdebug \
+    && echo "xdebug.mode=debug" > /usr/local/etc/php/conf.d/xdebug.ini \
+    && echo "xdebug.xdebug.output_dir = \"/var/www/html/temp\"" >> /usr/local/etc/php/conf.d/xdebug.ini \
+    && rm -rf /var/tmp/* /tmp/* /tmp/pear/temp/* \
+    && php -v
+
+# Workdir after installation
+WORKDIR /var/www/html
