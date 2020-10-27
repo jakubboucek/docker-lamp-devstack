@@ -2,7 +2,6 @@ version: '3'
 services:
     web:
         image: jakubboucek/lamp-devstack-php:debug
-        # container_name: web
         volumes:
             - ".:/var/www/html"
         ports:
@@ -12,9 +11,9 @@ services:
             XDEBUG_CONFIG: "remote_host=host.docker.internal"
         depends_on:
             - mysqldb
+
     mysqldb:
         image: jakubboucek/lamp-devstack-mysql
-        # container_name: mysql
         restart: always
         environment:
             - MYSQL_DATABASE=default
