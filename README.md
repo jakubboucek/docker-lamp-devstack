@@ -2,94 +2,75 @@
 Prepared images for local development in [LAMP devstack](https://en.wikipedia.org/wiki/LAMP_(software_bundle))
 
 ## Main features
-- current version of PHP 7.4 and 7.3
-- current version of Apache (with added [`mod_expires`](https://httpd.apache.org/docs/current/mod/mod_expires.html)
-    and [`mod_rewrite`](https://httpd.apache.org/docs/current/mod/mod_rewrite.html) modules)
-- current version of Maria 10  (with properly configured `utf8mb4` charset)
+- the current version of PHP 7.3, 7.4 and 8.0 (RC)
+- the current version of Apache
+- added [`mod_expires`](https://httpd.apache.org/docs/current/mod/mod_expires.html)
+    and [`mod_rewrite`](https://httpd.apache.org/docs/current/mod/mod_rewrite.html) modules 
+- the current version of Maria 10  (with properly configured `utf8mb4` charset)
 - optimized for small image size a fast load
 
-## Usage
-Just copy the [`docker-compose.yml`](docker-compose.yml) file to Your project's root and call `docker-compose up`.
+## Basic usage
+Copy the [`docker-compose.yml`](docker-compose.yml) file to Your project's root (you needn't clone/download whole repo,
+just copy the one file).
 
-It starts Apache which looks into `/www` directory in project as
-[`DocumentRoot`](https://httpd.apache.org/docs/2.4/mod/core.html#documentroot), but for PHP is accesible whole project
-directory.
+Call `docker-compose up`. After docker containers runs, your project will be served at http://localhost:8080/.
 
-When you want to use Xdebug, use [`docker-compose-debug.yml`](docker-compose-debug.yml), 
+Served is the only directory `/www` from your project, but PHP scripts has access to whole project's root.  
+That's mean, your application is no public accessible from the web, only `/www` directory.
 
-At the same time starts MySQL database server, ready to use. 
+Example:
+```
+my_project/                 <-- project's root
+    docker-compose.yml      <-- docker config from this repository
+    www/                    <-- accessible at http://localhost:8080/
+        index.php           <-- your PHP app
+        logo.png            <-- accessible at http://localhost:8080/logo.png
+        gallery/
+            photo1.jpg      <-- accessible at http://localhost:8080/gallery/photo1.jpg
+    vendor/
+        autoload.php        <-- not accessible from web, but PHP can: require(__DIR__ . '/../vendor/autoload.php')
+```
 
+### Using MySQL
+MySQL starts at the same time as web server.
+
+Default credentials:
+- user: `root`
+- password: `devstack`
+- database name: `default`
+
+From Host is MySQL accessible on: 
+- host: `127.0.0.1`
+- port: `33060`
+
+From docker guest is MySQL accessible on: 
+- host: `mysqldb`
+- port: `3306`
+
+That's mean, when you are connecting to MySQL from PHP application inside Docker, use the guest access, but when you
+connect from outside (from Your computer, for example the [HeidiSQL](https://www.heidisql.com/)
+or [Sequel](https://sequel-ace.com/)), use host access.
+
+PHP example:
+```php
+$pdo = new PDO('mysql:host=mysqldb;dbname=default', 'root', 'devstack');
+// or
+$mysqli = new mysqli('mysqldb', 'root', 'devstack', 'default');
+```
+
+## Advanced usage
+### Xdebug
+Prepared is PHP with Xdebug variant too. Use [`docker-compose-debug.yml`](docker-compose-debug.yml) instead
+(copy and rename it to `docker-compose.yml`).
+
+Xdebug is not started by default, you must call requests with relevant trigger
+([more info](https://xdebug.org/docs/remote)).
+
+### PHP 8
+Prepared is configuration to use PHP 8 (currently at Release Candidate stage).
+Use [`docker-compose-debug-8.0`](docker-compose-debug-8.0) instead (copy and rename it to `docker-compose.yml`).
+
+PHP 8 variant contains Xdebug too.
+ 
 ## Building notes
-### PHP 7.4
-```shell
-docker pull php:7.4-apache
-docker run --rm php:7.4-apache php --version
-docker build -f php/Dockerfile -t jakubboucek/lamp-devstack-php:latest php/
-docker build -f php/Dockerfile-debug -t jakubboucek/lamp-devstack-php:debug php/
-docker run --rm jakubboucek/lamp-devstack-php:latest php --version
-docker run --rm jakubboucek/lamp-devstack-php:debug php --version
-docker tag jakubboucek/lamp-devstack-php:latest jakubboucek/lamp-devstack-php:7
-docker tag jakubboucek/lamp-devstack-php:latest jakubboucek/lamp-devstack-php:7.4
-docker tag jakubboucek/lamp-devstack-php:latest jakubboucek/lamp-devstack-php:7.4.x
-docker tag jakubboucek/lamp-devstack-php:debug jakubboucek/lamp-devstack-php:7-debug
-docker tag jakubboucek/lamp-devstack-php:debug jakubboucek/lamp-devstack-php:7.4-debug
-docker tag jakubboucek/lamp-devstack-php:debug jakubboucek/lamp-devstack-php:7.4.x-debug
-docker push jakubboucek/lamp-devstack-php:latest
-docker push jakubboucek/lamp-devstack-php:7
-docker push jakubboucek/lamp-devstack-php:7.4
-docker push jakubboucek/lamp-devstack-php:7.4.x
-docker push jakubboucek/lamp-devstack-php:debug
-docker push jakubboucek/lamp-devstack-php:7-debug
-docker push jakubboucek/lamp-devstack-php:7.4-debug
-docker push jakubboucek/lamp-devstack-php:7.4.x-debug
-```
-
-### PHP 7.3
-```shell
-docker pull php:7.3-apache-stretch
-docker run --rm php:7.3-apache-stretch php --version
-docker build -f php/Dockerfile-7.3 -t jakubboucek/lamp-devstack-php:7.3 php/
-docker build -f php/Dockerfile-7.3-debug -t jakubboucek/lamp-devstack-php:7.3-debug php/
-docker run --rm jakubboucek/lamp-devstack-php:7.3 php --version
-docker run --rm jakubboucek/lamp-devstack-php:7.3-debug php --version
-docker tag jakubboucek/lamp-devstack-php:7.3 jakubboucek/lamp-devstack-php:7.3.x
-docker tag jakubboucek/lamp-devstack-php:7.3-debug jakubboucek/lamp-devstack-php:7.3.x-debug
-docker push jakubboucek/lamp-devstack-php:7.3
-docker push jakubboucek/lamp-devstack-php:7.3.x
-docker push jakubboucek/lamp-devstack-php:7.3-debug
-docker push jakubboucek/lamp-devstack-php:7.3.x-debug
-```
-
-### PHP 8.0 (RC)
-```shell
-docker pull php:8.0-rc-apache
-docker run --rm php:8.0-rc-apache php --version
-docker build -f php/Dockerfile-8.0 -t jakubboucek/lamp-devstack-php:8.0 php/
-docker build -f php/Dockerfile-8.0-debug -t jakubboucek/lamp-devstack-php:8.0-debug php/
-docker run --rm jakubboucek/lamp-devstack-php:8.0 php --version
-docker run --rm jakubboucek/lamp-devstack-php:8.0-debug php --version
-docker tag jakubboucek/lamp-devstack-php:8.0 jakubboucek/lamp-devstack-php:8
-docker tag jakubboucek/lamp-devstack-php:8.0 jakubboucek/lamp-devstack-php:8.0.x
-docker tag jakubboucek/lamp-devstack-php:8.0-debug jakubboucek/lamp-devstack-php:8-debug
-docker tag jakubboucek/lamp-devstack-php:8.0-debug jakubboucek/lamp-devstack-php:8.0.x-debug
-docker push jakubboucek/lamp-devstack-php:8
-docker push jakubboucek/lamp-devstack-php:8.0
-docker push jakubboucek/lamp-devstack-php:8.0.x
-docker push jakubboucek/lamp-devstack-php:8-debug
-docker push jakubboucek/lamp-devstack-php:8.0-debug
-docker push jakubboucek/lamp-devstack-php:8.0.x-debug
-```
-
-### MariaDB
-```shell
-docker pull mariadb:10.4
-docker run --rm mariadb:10.4 mysql --version
-docker build -f mysql/Dockerfile -t jakubboucek/lamp-devstack-mysql:latest mysql/
-docker tag jakubboucek/lamp-devstack-mysql:latest jakubboucek/lamp-devstack-mysql:10
-docker tag jakubboucek/lamp-devstack-mysql:latest jakubboucek/lamp-devstack-mysql:10.4
-docker tag jakubboucek/lamp-devstack-mysql:latest jakubboucek/lamp-devstack-mysql:10.4.x
-docker push jakubboucek/lamp-devstack-mysql:latest
-docker push jakubboucek/lamp-devstack-mysql:10
-docker push jakubboucek/lamp-devstack-mysql:10.4
-docker push jakubboucek/lamp-devstack-mysql:10.4.x
-```
+If you need build custom images based on this repo, see [Build notes](build-notes.md)
