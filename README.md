@@ -10,7 +10,9 @@ Prepared images for local development in [LAMP devstack](https://en.wikipedia.or
 - optimized for small image size a fast load
 
 ## Basic usage
-Copy the [`docker-compose.yml`](docker-compose.yml) file to Your project's root (you needn't clone/download whole repo,
+Copy the [`docker-compose.yml`](docker-compose.yml) file
+([download](https://downfile.github.io/download?url=https%3A//raw.githubusercontent.com/jakubboucek/docker-lamp-devstack/master/docker-compose.yml&file=docker-compose.yml))
+to Your project's root (you needn't clone/download whole repo,
 just copy the one file).
 
 Call `docker-compose up`. After docker containers runs, your project will be served at http://localhost:8080/.
@@ -60,15 +62,18 @@ $mysqli = new mysqli('mysqldb', 'root', 'devstack', 'default');
 
 ## Advanced usage
 ### Xdebug
-Prepared is PHP with Xdebug variant too. Use [`docker-compose-debug.yml`](docker-compose-debug.yml) instead
-(copy and rename it to `docker-compose.yml`).
+Prepared is PHP with Xdebug variant too. Use [`docker-compose-debug.yml`](docker-compose-debug.yml) 
+([download](https://downfile.github.io/download?url=https%3A//raw.githubusercontent.com/jakubboucek/docker-lamp-devstack/master/docker-compose-debug.yml&file=docker-compose.yml))
+instead (copy and rename it to `docker-compose.yml`).
 
 Xdebug is not started by default, you must call requests with relevant trigger
 ([more info](https://xdebug.org/docs/remote)).
 
 ### PHP 8
 Prepared is configuration to use PHP 8 (currently at Release Candidate stage).
-Use [`docker-compose-debug-8.0`](docker-compose-debug-8.0) instead (copy and rename it to `docker-compose.yml`).
+Use [`docker-compose-debug-8.0.yml`](docker-compose-debug-8.0.yml) 
+([download](https://downfile.github.io/download?url=https%3A//raw.githubusercontent.com/jakubboucek/docker-lamp-devstack/master/docker-compose-debug-8.0.yml&file=docker-compose.yml))
+instead (copy and rename it to `docker-compose.yml`).
 
 PHP 8 variant contains Xdebug too.
  
