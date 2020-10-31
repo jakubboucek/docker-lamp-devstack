@@ -29,8 +29,8 @@ docker push jakubboucek/lamp-devstack-php:7.4.x-debug
 
 ### PHP 7.3
 ```shell
-docker pull php:7.3-apache-stretch
-docker run --rm php:7.3-apache-stretch php --version
+docker pull php:7.3-apache
+docker run --rm php:7.3-apache php --version
 docker build -f php/Dockerfile-7.3 -t jakubboucek/lamp-devstack-php:7.3 php/
 docker build -f php/Dockerfile-7.3-debug -t jakubboucek/lamp-devstack-php:7.3-debug php/
 docker run --rm jakubboucek/lamp-devstack-php:7.3 php --version
