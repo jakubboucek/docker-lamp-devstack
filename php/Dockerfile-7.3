@@ -33,10 +33,12 @@ ENV APACHE_DOCUMENT_ROOT /var/www/html/www
 
 # Setup Devstack (install Composer, setup DocumentRoot)
 RUN DEBIAN_FRONTEND=noninteractive \
-    && curl -sS https://getcomposer.org/installer | php \
-    && mv ./composer.phar /usr/local/bin/composer \
+    && curl -sS https://getcomposer.org/installer -o /tmp/composer-setup.php \
+    && php /tmp/composer-setup.php --install-dir=/usr/local/bin --filename=composer \
+    && COMPOSER_BIN_DIR=`composer global config bin-dir --absolute` 2>/dev/null \
+    && echo "export PATH=${COMPOSER_BIN_DIR}:\${PATH}" >> ~/.bashrc \
     && sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf \
-    && a2enmod rewrite expires
+    && rm -rf /tmp/*
 
 # Workdir after installation
 WORKDIR /var/www/html
