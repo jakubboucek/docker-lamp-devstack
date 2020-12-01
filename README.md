@@ -2,7 +2,7 @@
 Prepared images for local development in [LAMP devstack](https://en.wikipedia.org/wiki/LAMP_(software_bundle))
 
 ## Main features
-- the current version of PHP 7.3, 7.4 and 8.0 (RC)
+- the current version of PHP 7.3, 7.4 and 8.0
 - the current version of Apache
 - added [`mod_expires`](https://httpd.apache.org/docs/current/mod/mod_expires.html)
     and [`mod_rewrite`](https://httpd.apache.org/docs/current/mod/mod_rewrite.html) modules 
@@ -70,7 +70,7 @@ Xdebug is not started by default, you must call requests with relevant trigger
 ([more info](https://xdebug.org/docs/remote)).
 
 ### PHP 8
-Prepared is configuration to use PHP 8 (currently at Release Candidate stage).
+Prepared is configuration to use PHP 8.
 Use [`docker-compose-debug-8.0.yml`](docker-compose-debug-8.0.yml) 
 ([download](https://downfile.github.io/download?url=https%3A//raw.githubusercontent.com/jakubboucek/docker-lamp-devstack/master/docker-compose-debug-8.0.yml&file=docker-compose.yml))
 instead (copy and rename it to `docker-compose.yml`).
