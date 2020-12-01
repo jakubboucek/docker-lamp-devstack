@@ -4,9 +4,9 @@ FROM jakubboucek/lamp-devstack-php:8.0
 WORKDIR /tmp
 
 ## Install XDebug - remove this section for non-debug image
-RUN curl https://github.com/xdebug/xdebug/archive/master.tar.gz -L -o xdebug-3.0.0-dev.tar.gz \
-    && tar -xzf xdebug-3.0.0-dev.tar.gz \
-    && cd xdebug-master/ \
+RUN curl https://github.com/xdebug/xdebug/archive/3.0.0.tar.gz -L -o xdebug-3.0.0.tar.gz \
+    && tar -xzf xdebug-3.0.0.tar.gz \
+    && cd xdebug-3.0/ \
     && phpize \
     && ./configure --enable-xdebug \
     && make -j$(nproc) \
