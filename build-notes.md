@@ -43,10 +43,10 @@ docker push jakubboucek/lamp-devstack-php:7.3-debug
 docker push jakubboucek/lamp-devstack-php:7.3.x-debug
 ```
 
-### PHP 8.0 (RC)
+### PHP 8.0
 ```shell
-docker pull php:8.0-rc-apache
-docker run --rm php:8.0-rc-apache php --version
+docker pull php:8.0-apache
+docker run --rm php:8.0-apache php --version
 docker build -f php/Dockerfile-8.0 -t jakubboucek/lamp-devstack-php:8.0 php/
 docker build -f php/Dockerfile-8.0-debug -t jakubboucek/lamp-devstack-php:8.0-debug php/
 docker run --rm jakubboucek/lamp-devstack-php:8.0 php --version

@@ -1,4 +1,4 @@
-FROM php:8.0-rc-apache
+FROM php:8.0-apache
 
 # Workdir during installation
 WORKDIR /tmp
