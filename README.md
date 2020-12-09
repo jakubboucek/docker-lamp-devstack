@@ -1,11 +1,16 @@
-# LAMP devstack as Docker 
+# LAMP devstack as Docker
 Prepared images for local development in [LAMP devstack](https://en.wikipedia.org/wiki/LAMP_(software_bundle))
 
 ## Main features
-- the current version of PHP 7.3, 7.4 and 8.0
+- architecture: `linux/amd64`
+- the current version of PHP 8.0, 7.4 and 7.3
 - the current version of Apache
-- added [`mod_expires`](https://httpd.apache.org/docs/current/mod/mod_expires.html)
-    and [`mod_rewrite`](https://httpd.apache.org/docs/current/mod/mod_rewrite.html) modules 
+- PHP added extensions: [`gd`](https://www.php.net/manual/en/book.image.php),
+	[`bmath`](https://www.php.net/manual/en/book.bc.php),
+	[`mysqli`](https://www.php.net/manual/en/book.mysqli.php)
+	and [`pdo_mysql`](https://www.php.net/manual/en/book.pdo.php)
+- Apache added modules: [`expires`](https://httpd.apache.org/docs/current/mod/mod_expires.html)
+    and [`rewrite`](https://httpd.apache.org/docs/current/mod/mod_rewrite.html) modules 
 - the current version of Maria 10  (with properly configured `utf8mb4` charset)
 - optimized for small image size a fast load
 
@@ -32,6 +37,20 @@ my_project/                 <-- project's root
     vendor/
         autoload.php        <-- not accessible from web, but PHP can: require(__DIR__ . '/../vendor/autoload.php')
 ```
+
+### Version tags
+Images are tagged by the cascaded SemVer:
+
+- `jakubboucek/lamp-devstack-php:latest` – always means `latest` available PHP image,
+- `jakubboucek/lamp-devstack-php:7` – represents the highest PHP image of `7.x.x` version, but always lower than `8.0.0`,
+- `jakubboucek/lamp-devstack-php:7.3` – represents the highest PHP image of `7.3.x` version, but always lower than `7.4.0`,
+- `jakubboucek/lamp-devstack-php:7.3.24` – represents most specific PHP image, directly version `7.3.24`.
+
+All PHP images has parallel XDebug variants with `-debug` tag suffix, example:
+- `jakubboucek/lamp-devstack-php:debug`
+- `jakubboucek/lamp-devstack-php:7-debug`
+- `jakubboucek/lamp-devstack-php:7.3-debug`
+- `jakubboucek/lamp-devstack-php:7.3.24-debug`
 
 ### Using MySQL
 MySQL starts at the same time as web server.
@@ -67,15 +86,7 @@ Prepared is PHP with Xdebug variant too. Use [`docker-compose-debug.yml`](docker
 instead (copy and rename it to `docker-compose.yml`).
 
 Xdebug is not started by default, you must call requests with relevant trigger
-([more info](https://xdebug.org/docs/remote)).
+([more info](https://xdebug.org/docs/step_debug#activate_debugger)).
 
-### PHP 8
-Prepared is configuration to use PHP 8.
-Use [`docker-compose-debug-8.0.yml`](docker-compose-debug-8.0.yml) 
-([download](https://downfile.github.io/download?url=https%3A//raw.githubusercontent.com/jakubboucek/docker-lamp-devstack/master/docker-compose-debug-8.0.yml&file=docker-compose.yml))
-instead (copy and rename it to `docker-compose.yml`).
-
-PHP 8 variant contains Xdebug too.
- 
 ## Building notes
 If you need build custom images based on this repo, see [Build notes](build-notes.md)

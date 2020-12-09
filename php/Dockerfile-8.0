@@ -22,6 +22,9 @@ RUN DEBIAN_FRONTEND=noninteractive \
         bcmath \
         gd \
         pdo_mysql \
+    && a2enmod \
+        expires \
+        rewrite \
     && apt-get autoremove -y \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /var/tmp/* /tmp/*

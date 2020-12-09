@@ -1,4 +1,4 @@
-FROM jakubboucek/lamp-devstack-php:8.0
+FROM jakubboucek/lamp-devstack-php:7.4
 
 RUN pecl install xdebug \
     && docker-php-ext-enable xdebug \

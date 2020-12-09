@@ -2,6 +2,6 @@ FROM jakubboucek/lamp-devstack-php:7.3
 
 RUN pecl install xdebug \
     && docker-php-ext-enable xdebug \
-    && echo "xdebug.remote_enable=on" > /usr/local/etc/php/conf.d/xdebug.ini \
-    && echo "xdebug.remote_autostart=off" >> /usr/local/etc/php/conf.d/xdebug.ini \
-    && rm -rf /tmp/*
+    && echo "xdebug.mode=debug" > /usr/local/etc/php/conf.d/xdebug.ini \
+    && echo "xdebug.output_dir = \"/var/www/html/temp\"" >> /usr/local/etc/php/conf.d/xdebug.ini \
+    && rm -rf /var/tmp/* /tmp/*
