@@ -24,7 +24,7 @@ RUN DEBIAN_FRONTEND=noninteractive \
         pdo_mysql \
     && apt-get autoremove -y \
     && apt-get clean \
-    && rm -rf /var/lib/apt/lists/* /var/tmp/* /tmp/* /tmp/pear/temp/*
+    && rm -rf /var/lib/apt/lists/* /var/tmp/* /tmp/*
 
 # Configure Apache & PHP
 COPY php.ini /usr/local/etc/php/conf.d/dev-memory-increase.ini

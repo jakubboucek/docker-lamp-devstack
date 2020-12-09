@@ -7,8 +7,7 @@ RUN pecl install xdebug \
     && docker-php-ext-enable xdebug \
     && echo "xdebug.mode=debug" > /usr/local/etc/php/conf.d/xdebug.ini \
     && echo "xdebug.xdebug.output_dir = \"/var/www/html/temp\"" >> /usr/local/etc/php/conf.d/xdebug.ini \
-    && rm -rf /var/tmp/* /tmp/* /tmp/pear/temp/* \
-    && php -v
+    && rm -rf /var/tmp/* /tmp/*
 
 # Workdir after installation
 WORKDIR /var/www/html
