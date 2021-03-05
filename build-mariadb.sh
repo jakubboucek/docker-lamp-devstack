@@ -1,3 +1,5 @@
+set -e
+
 ### MariaDB
 docker pull mariadb:10.4
 docker run --rm mariadb:10.4 mysql --version
