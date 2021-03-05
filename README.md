@@ -4,7 +4,8 @@ Prepared images for local development in [LAMP devstack](https://en.wikipedia.or
 ## Main features
 - architecture: `linux/amd64`
 - the current version of PHP 8.0, 7.4 and 7.3
-- the current version of Apache
+- the current version of Apache (in non-CLI images)
+- the current version of Xdebug
 - PHP added extensions: [`gd`](https://www.php.net/manual/en/book.image.php),
 	[`bmath`](https://www.php.net/manual/en/book.bc.php),
 	[`mysqli`](https://www.php.net/manual/en/book.mysqli.php)
@@ -51,6 +52,12 @@ All PHP images has parallel XDebug variants with `-debug` tag suffix, example:
 - `jakubboucek/lamp-devstack-php:7-debug`
 - `jakubboucek/lamp-devstack-php:7.3-debug`
 - `jakubboucek/lamp-devstack-php:7.3.24-debug`
+
+All PHP images has parallel CLI variants with `-cli` tag suffix, example:
+- `jakubboucek/lamp-devstack-php:cli`
+- `jakubboucek/lamp-devstack-php:7-cli`
+- `jakubboucek/lamp-devstack-php:7.3-cli`
+- `jakubboucek/lamp-devstack-php:7.3.24-cli`
 
 ### Using MySQL
 MySQL starts at the same time as web server.
