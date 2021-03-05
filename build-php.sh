@@ -1,5 +1,5 @@
 # shellcheck disable=SC2086
-set -e
+set -eux;
 
 ### PHP 8.0
 docker pull php:8.0-apache
