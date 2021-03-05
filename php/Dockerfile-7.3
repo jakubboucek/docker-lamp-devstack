@@ -11,9 +11,10 @@ RUN DEBIAN_FRONTEND=noninteractive \
         libjpeg62-turbo-dev \
         libpng-dev \
         libwebp-dev \
+        libzip-dev \
         openssl \
-        zip \
         unzip \
+        zip \
     && docker-php-ext-configure \
         gd --with-jpeg-dir=/usr/include/ --with-webp-dir=/usr/include/ \
     && docker-php-ext-install -j$(nproc) \
@@ -21,6 +22,8 @@ RUN DEBIAN_FRONTEND=noninteractive \
         bcmath \
         gd \
         pdo_mysql \
+        sockets \
+        zip \
     && a2enmod \
         expires \
         rewrite \

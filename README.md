@@ -8,10 +8,12 @@ Prepared images for local development in [LAMP devstack](https://en.wikipedia.or
 - the current version of Xdebug
 - PHP added extensions: [`gd`](https://www.php.net/manual/en/book.image.php),
 	[`bmath`](https://www.php.net/manual/en/book.bc.php),
-	[`mysqli`](https://www.php.net/manual/en/book.mysqli.php)
-	and [`pdo_mysql`](https://www.php.net/manual/en/book.pdo.php)
-- Apache added modules: [`expires`](https://httpd.apache.org/docs/current/mod/mod_expires.html)
-    and [`rewrite`](https://httpd.apache.org/docs/current/mod/mod_rewrite.html) modules 
+	[`mysqli`](https://www.php.net/manual/en/book.mysqli.php),
+	[`pdo_mysql`](https://www.php.net/manual/en/book.pdo.php),
+	[`sockets`](https://www.php.net/manual/en/book.sockets.php) and
+	[`zip`](https://www.php.net/manual/en/book.zip.php)
+- Apache added modules: [`expires`](https://httpd.apache.org/docs/current/mod/mod_expires.html) and
+	[`rewrite`](https://httpd.apache.org/docs/current/mod/mod_rewrite.html) 
 - the current version of Maria 10  (with properly configured `utf8mb4` charset)
 - optimized for small image size a fast load
 
