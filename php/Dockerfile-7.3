@@ -27,6 +27,7 @@ RUN set -eux; \
         zip; \
     a2enmod \
         expires \
+        headers \
         rewrite; \
     apt-get autoremove -y; \
     apt-get clean; \
