@@ -1,5 +1,7 @@
 FROM php:8.0-cli
 
+LABEL maintainer="Jakub Bouček <pan@jakubboucek.cz>"
+
 # Workdir during installation
 WORKDIR /tmp
 
