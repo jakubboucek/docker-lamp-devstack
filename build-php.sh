@@ -6,9 +6,9 @@ docker pull php:8.0-apache
 docker pull php:8.0-cli
 docker run --rm php:8.0-apache php --version
 docker run --rm php:8.0-cli php --version
-docker build --progress plain --no-cache -f php/Dockerfile-8.0 -t jakubboucek/lamp-devstack-php:8.0 php/
-docker build --progress plain --no-cache -f php/Dockerfile-8.0-debug -t jakubboucek/lamp-devstack-php:8.0-debug php/
-docker build --progress plain --no-cache -f php/Dockerfile-8.0-cli -t jakubboucek/lamp-devstack-php:8.0-cli php/
+docker build --progress plain -f php/Dockerfile-8.0 -t jakubboucek/lamp-devstack-php:8.0 php/
+docker build --progress plain -f php/Dockerfile-8.0-debug -t jakubboucek/lamp-devstack-php:8.0-debug php/
+docker build --progress plain -f php/Dockerfile-8.0-cli -t jakubboucek/lamp-devstack-php:8.0-cli php/
 docker run --rm jakubboucek/lamp-devstack-php:8.0 php --version
 docker run --rm jakubboucek/lamp-devstack-php:8.0-debug php --version
 docker run --rm jakubboucek/lamp-devstack-php:8.0-cli php --version
@@ -41,9 +41,9 @@ docker pull php:7.4-apache
 docker pull php:7.4-cli
 docker run --rm php:7.4-apache php --version
 docker run --rm php:7.4-cli php --version
-docker build --progress plain --no-cache -f php/Dockerfile-7.4 -t jakubboucek/lamp-devstack-php:7.4 php/
-docker build --progress plain --no-cache -f php/Dockerfile-7.4-debug -t jakubboucek/lamp-devstack-php:7.4-debug php/
-docker build --progress plain --no-cache -f php/Dockerfile-7.4-cli -t jakubboucek/lamp-devstack-php:7.4-cli php/
+docker build --progress plain -f php/Dockerfile-7.4 -t jakubboucek/lamp-devstack-php:7.4 php/
+docker build --progress plain -f php/Dockerfile-7.4-debug -t jakubboucek/lamp-devstack-php:7.4-debug php/
+docker build --progress plain -f php/Dockerfile-7.4-cli -t jakubboucek/lamp-devstack-php:7.4-cli php/
 docker run --rm jakubboucek/lamp-devstack-php:7.4 php --version
 docker run --rm jakubboucek/lamp-devstack-php:7.4-debug php --version
 docker run --rm jakubboucek/lamp-devstack-php:7.4-cli php --version
@@ -70,9 +70,9 @@ docker pull php:7.3-apache
 docker pull php:7.3-cli
 docker run --rm php:7.3-apache php --version
 docker run --rm php:7.3-cli php --version
-docker build --progress plain --no-cache -f php/Dockerfile-7.3 -t jakubboucek/lamp-devstack-php:7.3 php/
-docker build --progress plain --no-cache -f php/Dockerfile-7.3-debug -t jakubboucek/lamp-devstack-php:7.3-debug php/
-docker build --progress plain --no-cache -f php/Dockerfile-7.3-cli -t jakubboucek/lamp-devstack-php:7.3-cli php/
+docker build --progress plain -f php/Dockerfile-7.3 -t jakubboucek/lamp-devstack-php:7.3 php/
+docker build --progress plain -f php/Dockerfile-7.3-debug -t jakubboucek/lamp-devstack-php:7.3-debug php/
+docker build --progress plain -f php/Dockerfile-7.3-cli -t jakubboucek/lamp-devstack-php:7.3-cli php/
 docker run --rm jakubboucek/lamp-devstack-php:7.3 php --version
 docker run --rm jakubboucek/lamp-devstack-php:7.3-debug php --version
 docker run --rm jakubboucek/lamp-devstack-php:7.3-cli php --version
