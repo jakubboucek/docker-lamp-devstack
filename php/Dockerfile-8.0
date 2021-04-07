@@ -15,6 +15,7 @@ RUN set -eux; \
         libjpeg62-turbo-dev \
         libpng-dev \
         libwebp-dev \
+        libxslt-dev \
         libzip-dev \
         openssl \
         unzip \
@@ -28,6 +29,7 @@ RUN set -eux; \
         intl \
         pdo_mysql \
         sockets \
+        xsl \
         zip; \
     a2enmod \
         expires \

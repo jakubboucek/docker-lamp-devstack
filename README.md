@@ -12,7 +12,8 @@ Prepared images for local development in [LAMP devstack](https://en.wikipedia.or
 	[`intl`](https://www.php.net/manual/en/book.intl.php),
 	[`mysqli`](https://www.php.net/manual/en/book.mysqli.php),
 	[`pdo_mysql`](https://www.php.net/manual/en/book.pdo.php),
-	[`sockets`](https://www.php.net/manual/en/book.sockets.php) and
+	[`sockets`](https://www.php.net/manual/en/book.sockets.php),
+	[`xsl`](https://www.php.net/manual/en/book.xsl.php) and
 	[`zip`](https://www.php.net/manual/en/book.zip.php)
 - Apache actived modules: [`expires`](https://httpd.apache.org/docs/current/mod/mod_expires.html),
 	[`headers`](https://httpd.apache.org/docs/current/mod/mod_headers.html) and
