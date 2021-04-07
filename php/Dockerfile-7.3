@@ -11,6 +11,7 @@ RUN set -eux; \
     apt-get update; \
     apt-get install --no-install-recommends -y \
         ca-certificates \
+        libicu-dev \
         libjpeg62-turbo-dev \
         libpng-dev \
         libwebp-dev \
@@ -24,6 +25,7 @@ RUN set -eux; \
         mysqli \
         bcmath \
         gd \
+        intl \
         pdo_mysql \
         sockets \
         zip; \

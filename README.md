@@ -6,8 +6,10 @@ Prepared images for local development in [LAMP devstack](https://en.wikipedia.or
 - the current version of PHP 8.0, 7.4 and 7.3
 - the current version of Apache (in non-CLI images)
 - the current version of Xdebug (in non-CLI images)
-- PHP added extensions: [`gd`](https://www.php.net/manual/en/book.image.php),
+- PHP added extensions: 
 	[`bmath`](https://www.php.net/manual/en/book.bc.php),
+	[`gd`](https://www.php.net/manual/en/book.image.php),
+	[`intl`](https://www.php.net/manual/en/book.intl.php),
 	[`mysqli`](https://www.php.net/manual/en/book.mysqli.php),
 	[`pdo_mysql`](https://www.php.net/manual/en/book.pdo.php),
 	[`sockets`](https://www.php.net/manual/en/book.sockets.php) and
