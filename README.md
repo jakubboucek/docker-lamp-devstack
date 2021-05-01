@@ -5,7 +5,7 @@ Prepared images for local development in [LAMP devstack](https://en.wikipedia.or
 - architecture: `linux/amd64`
 - the current version of PHP 8.0, 7.4 and 7.3
 - the current version of Apache (in non-CLI images)
-- the current version of Xdebug (in non-CLI images)
+- the current version of Xdebug (in debug images)
 - PHP added extensions: 
 	[`bmath`](https://www.php.net/manual/en/book.bc.php),
 	[`gd`](https://www.php.net/manual/en/book.image.php),
@@ -16,7 +16,7 @@ Prepared images for local development in [LAMP devstack](https://en.wikipedia.or
 	[`sockets`](https://www.php.net/manual/en/book.sockets.php),
 	[`xsl`](https://www.php.net/manual/en/book.xsl.php) and
 	[`zip`](https://www.php.net/manual/en/book.zip.php)
-- Apache actived modules: [`expires`](https://httpd.apache.org/docs/current/mod/mod_expires.html),
+- Apache activated modules: [`expires`](https://httpd.apache.org/docs/current/mod/mod_expires.html),
 	[`headers`](https://httpd.apache.org/docs/current/mod/mod_headers.html) and
 	[`rewrite`](https://httpd.apache.org/docs/current/mod/mod_rewrite.html) 
 - the current version of Maria 10  (with properly configured `utf8mb4` charset)
