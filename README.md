@@ -19,7 +19,7 @@ Prepared images for local development in [LAMP devstack](https://en.wikipedia.or
 - Apache activated modules: [`expires`](https://httpd.apache.org/docs/current/mod/mod_expires.html),
 	[`headers`](https://httpd.apache.org/docs/current/mod/mod_headers.html) and
 	[`rewrite`](https://httpd.apache.org/docs/current/mod/mod_rewrite.html) 
-- the current version of Maria 10  (with properly configured `utf8mb4` charset)
+- the current version of MariaDB 10  (with properly configured `utf8mb4` charset)
 - optimized for small image size a fast load
 
 ## Basic usage
