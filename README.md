@@ -28,7 +28,7 @@ Copy the [`docker-compose.yml`](docker-compose.yml) file
 to Your project's root (you needn't clone/download whole repo,
 just copy the one file).
 
-Call `docker-compose up`. After docker containers runs, your project will be served at http://localhost:8080/.
+Call `docker compose up`. After docker containers runs, your project will be served at http://localhost:8080/.
 
 Served is the only directory `/www` from your project, but PHP scripts has access to whole project's root.  
 That's mean, your application is no public accessible from the web, only `/www` directory.
