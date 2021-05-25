@@ -6,19 +6,19 @@ Prepared images for local development in [LAMP devstack](https://en.wikipedia.or
 - the current version of PHP 8.0, 7.4 and 7.3
 - the current version of Apache (in non-CLI images)
 - the current version of Xdebug (in debug images)
-- PHP added extensions: 
-	[`bmath`](https://www.php.net/manual/en/book.bc.php),
-	[`gd`](https://www.php.net/manual/en/book.image.php),
-	[`intl`](https://www.php.net/manual/en/book.intl.php),
-	[`mysqli`](https://www.php.net/manual/en/book.mysqli.php),
-	[`pdo_mysql`](https://www.php.net/manual/en/book.pdo.php),
-	[`pcntl`](https://www.php.net/manual/en/book.pcntl.php),
-	[`sockets`](https://www.php.net/manual/en/book.sockets.php),
-	[`xsl`](https://www.php.net/manual/en/book.xsl.php) and
-	[`zip`](https://www.php.net/manual/en/book.zip.php)
+- PHP added extensions:
+    [`bmath`](https://www.php.net/manual/en/book.bc.php),
+    [`gd`](https://www.php.net/manual/en/book.image.php),
+    [`intl`](https://www.php.net/manual/en/book.intl.php),
+    [`mysqli`](https://www.php.net/manual/en/book.mysqli.php),
+    [`pdo_mysql`](https://www.php.net/manual/en/book.pdo.php),
+    [`pcntl`](https://www.php.net/manual/en/book.pcntl.php),
+    [`sockets`](https://www.php.net/manual/en/book.sockets.php),
+    [`xsl`](https://www.php.net/manual/en/book.xsl.php) and
+    [`zip`](https://www.php.net/manual/en/book.zip.php)
 - Apache activated modules: [`expires`](https://httpd.apache.org/docs/current/mod/mod_expires.html),
-	[`headers`](https://httpd.apache.org/docs/current/mod/mod_headers.html) and
-	[`rewrite`](https://httpd.apache.org/docs/current/mod/mod_rewrite.html) 
+    [`headers`](https://httpd.apache.org/docs/current/mod/mod_headers.html) and
+    [`rewrite`](https://httpd.apache.org/docs/current/mod/mod_rewrite.html)
 - the current version of MariaDB 10  (with properly configured `utf8mb4` charset)
 - optimized for small image size a fast load
 
@@ -36,7 +36,7 @@ Example:
 ```
 my_project/                 <-- project's root
     docker-compose.yml      <-- docker config from this repository
-    www/                    <-- accessible at http://localhost:8080/
+    www/                    <-- Document Root, accessible at http://localhost:8080/
         index.php           <-- your PHP app
         logo.png            <-- accessible at http://localhost:8080/logo.png
         gallery/
@@ -73,11 +73,11 @@ Default credentials:
 - password: `devstack`
 - database name: `default`
 
-From Host is MySQL accessible on: 
+From Host is MySQL accessible on:
 - host: `127.0.0.1`
 - port: `33060`
 
-From docker guest is MySQL accessible on: 
+From docker guest is MySQL accessible on:
 - host: `mysqldb`
 - port: `3306`
 
@@ -94,7 +94,7 @@ $mysqli = new mysqli('mysqldb', 'root', 'devstack', 'default');
 
 ## Advanced usage
 ### Xdebug
-Prepared is PHP with Xdebug variant too. Use [`docker-compose-debug.yml`](docker-compose-debug.yml) 
+Prepared is PHP with Xdebug variant too. Use [`docker-compose-debug.yml`](docker-compose-debug.yml)
 ([download](https://downfile.github.io/download?url=https%3A//raw.githubusercontent.com/jakubboucek/docker-lamp-devstack/master/docker-compose-debug.yml&file=docker-compose.yml))
 instead (copy and rename it to `docker-compose.yml`).
 
@@ -106,7 +106,7 @@ Xdebug has enabled features:
 - [Step Debugger](https://xdebug.org/docs/step_debug)
 - [Tracing](https://xdebug.org/docs/trace)
 
-Profiler a Tracing outputs are saved to `/var/www/html/log` directry inside Container (the directory must be created first), thats 
+Profiler a Tracing outputs are saved to `/var/www/html/log` directry inside Container (the directory must be created first), thats
 means the output files are stored to the shared Volume and files are transferred to host system to `log/` directory.
 
 You can change output directory through Environment variable `XDEBUG_CONFIG` with `output_dir` parameter.
@@ -115,8 +115,8 @@ In [`docker-compose.yml`](docker-compose-debug.yml) file just modify `environmen
 
 ```yaml
 environment:
-	XDEBUG_CONFIG: "client_host=host.docker.internal output_dir=/another/dir"
-	#                                                ^^^^^^^^^^^^^^^^^^^^^^^
+    XDEBUG_CONFIG: "client_host=host.docker.internal output_dir=/another/dir"
+    #                                                ^^^^^^^^^^^^^^^^^^^^^^^
 ```
 
 ### Debugging CLI with PhpStorm
@@ -128,7 +128,7 @@ In [`docker-compose.yml`](docker-compose-debug.yml) file just add Environment va
 
 ```yaml
 environment:
-	PHP_IDE_CONFIG: "serverName=docker-cli"
+    PHP_IDE_CONFIG: "serverName=docker-cli"
 ```
 
 ## Building notes
