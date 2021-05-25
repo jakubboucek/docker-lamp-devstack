@@ -1,0 +1,24 @@
+FROM mariadb:beta
+
+LABEL maintainer="Jakub Bouček <pan@jakubboucek.cz>"
+
+# Workdir during installation
+WORKDIR /tmp
+
+# OS binaries install && update critical binaries
+RUN set -eux; \
+    DEBIAN_FRONTEND=noninteractive; \
+    apt-get update; \
+    apt-get install --no-install-recommends -y \
+        ca-certificates \
+        nano \
+        openssl; \
+    apt-get autoremove -y; \
+    apt-get clean; \
+    rm -rf /var/lib/apt/lists/* /var/tmp/* /tmp/*;
+
+# Workdir after installation
+WORKDIR /
+
+COPY mysql-unicode.cnf /etc/mysql/conf.d/mysql-unicode.cnf
+COPY mysql-max-packet.cnf /etc/mysql/conf.d/mysql-max-packet.cnf
