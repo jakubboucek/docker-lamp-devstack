@@ -109,13 +109,26 @@ Xdebug has enabled features:
 Profiler a Tracing outputs are saved to `/var/www/html/log` directry inside Container (the directory must be created first), thats 
 means the output files are stored to the shared Volume and files are transferred to host system to `log/` directory.
 
-You can change output directory through Environment variable `XDEBUG_CONFIG` with parameter `output_dir`.
-In [`docker-compose.yml`](docker-compose-debug.yml) file just modify `environment` secation:
+You can change output directory through Environment variable `XDEBUG_CONFIG` with `output_dir` parameter.
+
+In [`docker-compose.yml`](docker-compose-debug.yml) file just modify `environment` section:
 
 ```yaml
 environment:
 	XDEBUG_CONFIG: "client_host=host.docker.internal output_dir=/another/dir"
 	#                                                ^^^^^^^^^^^^^^^^^^^^^^^
+```
+
+### Debugging CLI with PhpStorm
+
+With PhpStorm you can ando debug the CLI scripts. But you need set the Server name,
+[PhpStorm requires it to mapping paths](https://blog.jetbrains.com/phpstorm/2012/03/new-in-4-0-easier-debugging-of-remote-php-command-line-scripts/).
+
+In [`docker-compose.yml`](docker-compose-debug.yml) file just add Environment variable `PHP_IDE_CONFIG` with `serverName` parameter:
+
+```yaml
+environment:
+	PHP_IDE_CONFIG: "serverName=docker-cli"
 ```
 
 ## Building notes
