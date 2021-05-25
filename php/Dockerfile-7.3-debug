@@ -3,6 +3,7 @@ FROM jakubboucek/lamp-devstack-php:7.3
 RUN set -eux; \
     pecl install xdebug; \
     docker-php-ext-enable xdebug; \
-    echo "xdebug.mode=debug" > /usr/local/etc/php/conf.d/xdebug.ini; \
-    echo "xdebug.output_dir = \"/var/www/html/temp\"" >> /usr/local/etc/php/conf.d/xdebug.ini; \
+    echo 'xdebug.mode=debug,profile,trace' > /usr/local/etc/php/conf.d/xdebug.ini; \
+    echo 'xdebug.start_with_request=trigger' >> /usr/local/etc/php/conf.d/xdebug.ini; \
+    echo 'xdebug.output_dir=/var/www/html/log' >> /usr/local/etc/php/conf.d/xdebug.ini; \
     rm -rf /var/tmp/* /tmp/*;

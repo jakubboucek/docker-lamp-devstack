@@ -25,8 +25,7 @@ Prepared images for local development in [LAMP devstack](https://en.wikipedia.or
 ## Basic usage
 Copy the [`docker-compose.yml`](docker-compose.yml) file
 ([download](https://downfile.github.io/download?url=https%3A//raw.githubusercontent.com/jakubboucek/docker-lamp-devstack/master/docker-compose.yml&file=docker-compose.yml))
-to Your project's root (you needn't clone/download whole repo,
-just copy the one file).
+to Your project's root (you needn't clone/download whole repo, just copy the one file).
 
 Call `docker compose up`. After docker containers runs, your project will be served at http://localhost:8080/.
 
@@ -99,8 +98,25 @@ Prepared is PHP with Xdebug variant too. Use [`docker-compose-debug.yml`](docker
 ([download](https://downfile.github.io/download?url=https%3A//raw.githubusercontent.com/jakubboucek/docker-lamp-devstack/master/docker-compose-debug.yml&file=docker-compose.yml))
 instead (copy and rename it to `docker-compose.yml`).
 
-Xdebug is not started by default, you must call requests with relevant trigger
-([more info](https://xdebug.org/docs/step_debug#activate_debugger)).
+Xdebug is not started by default, you must call requests with [relevant trigger](https://xdebug.org/docs/all_settings#start_with_request#trigger).
+
+Xdebug has enabled features:
+
+- [Profiler](https://xdebug.org/docs/profiler)
+- [Step Debugger](https://xdebug.org/docs/step_debug)
+- [Tracing](https://xdebug.org/docs/trace)
+
+Profiler a Tracing outputs are saved to `/var/www/html/log` directry inside Container (the directory must be created first), thats 
+means the output files are stored to the shared Volume and files are transferred to host system to `log/` directory.
+
+You can change output directory through Environment variable `XDEBUG_CONFIG` with parameter `output_dir`.
+In [`docker-compose.yml`](docker-compose-debug.yml) file just modify `environment` secation:
+
+```yaml
+environment:
+	XDEBUG_CONFIG: "client_host=host.docker.internal output_dir=/another/dir"
+	#                                                ^^^^^^^^^^^^^^^^^^^^^^^
+```
 
 ## Building notes
 If you need build custom images based on this repo, see [Build notes](build-notes.md)
