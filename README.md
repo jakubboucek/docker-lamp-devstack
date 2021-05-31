@@ -103,9 +103,15 @@ $pdo = new PDO('mysql:host=mysqldb;dbname=default', 'root', 'devstack');
 $mysqli = new mysqli('mysqldb', 'root', 'devstack', 'default');
 ```
 
-### Windows Host support
+### Windows issue
 
-MySQL maybe crash when Host is Windows platform. You can try to fix it with [`mysql-windows.cnf`](mysql/mysql-windows.cnf)
+MySQL maybe crash when Host is Windows platform: 
+
+```
+The Auto-extending innodb_system data file './ibdata1' is of a different size 0 pages than specified in the .cnf file
+```
+
+You can try to fix it with [`mysql-windows.cnf`](mysql/mysql-windows.cnf)
 ([download](https://downfile.github.io/download?url=https%3A//raw.githubusercontent.com/jakubboucek/docker-lamp-devstack/master/mysql/mysql-windows.cnf))
 and add it to path `/etc/mysql/conf.d/` inside Docker container.
 
