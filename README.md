@@ -8,7 +8,7 @@ Prepared images for local development in [LAMP devstack](https://en.wikipedia.or
 
 ## Main features
 - architecture: `linux/amd64`
-- the current versions of **PHP** 8.0, 7.4 and 7.3
+- the current versions of **PHP** 8.0, 7.4, 7.3 and PHP 8.1 (RC)
 - the current versions of **MariaDB** 10.5 and 10.6-beta
 - the current version of **Apache** 2.4 (in non-CLI images)
 - the current version of **Xdebug** 3 (in debug images)
@@ -70,6 +70,11 @@ All PHP images has parallel CLI variants with `-cli` tag suffix, example:
 - `jakubboucek/lamp-devstack-php:7-cli`
 - `jakubboucek/lamp-devstack-php:7.3-cli`
 - `jakubboucek/lamp-devstack-php:7.3.24-cli`
+
+All unstable release candidate (RC) version of PHP 8.1 are available at image:
+- `jakubboucek/lamp-devstack-php:8.1.0-rc`
+- `jakubboucek/lamp-devstack-php:8.1.0-rc-cli`
+
 
 ### Using MySQL
 MySQL starts at the same time as web server.
