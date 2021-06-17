@@ -103,9 +103,10 @@ or [Sequel](https://sequel-ace.com/)), use host access.
 
 PHP example:
 ```php
-$pdo = new PDO('mysql:host=mysqldb;dbname=default', 'root', 'devstack');
+$pdo = new PDO('mysql:host=mysqldb;dbname=default;charset=utf8', 'root', 'devstack');
 // or
 $mysqli = new mysqli('mysqldb', 'root', 'devstack', 'default');
+$mysqli->set_charset('utf8mb4');
 ```
 
 ### Windows issue
