@@ -25,6 +25,7 @@ Prepared images for local development in [LAMP devstack](https://en.wikipedia.or
 - Apache activated modules: [`expires`](https://httpd.apache.org/docs/current/mod/mod_expires.html),
     [`headers`](https://httpd.apache.org/docs/current/mod/mod_headers.html) and
     [`rewrite`](https://httpd.apache.org/docs/current/mod/mod_rewrite.html)
+- Apache `DocumentRoot` changed to: `/var/www/html/www`
 - MySQL properly configured to `utf8mb4` as default charset and optional support of Windows Host
 - optimized for small image size a fast load
 
@@ -81,8 +82,8 @@ MySQL starts at the same time as web server.
 
 Available MySQL images:
 
-- Stable (10.5): `jakubboucek/lamp-devstack-mysql:laster`
-- Beta (10.6): `jakubboucek/lamp-devstack-mysql:beta`
+- Stable (10.5): `jakubboucek/lamp-devstack-mysql:latest`
+- Pre-release (10.6): `jakubboucek/lamp-devstack-mysql:rc`
 
 Default credentials:
 - user: `root`
@@ -103,7 +104,7 @@ or [Sequel](https://sequel-ace.com/)), use host access.
 
 PHP example:
 ```php
-$pdo = new PDO('mysql:host=mysqldb;dbname=default;charset=utf8', 'root', 'devstack');
+$pdo = new PDO('mysql:host=mysqldb;dbname=default;charset=utf8mb4', 'root', 'devstack');
 // or
 $mysqli = new mysqli('mysqldb', 'root', 'devstack', 'default');
 $mysqli->set_charset('utf8mb4');
@@ -144,7 +145,7 @@ Xdebug has enabled features:
 - [`Step Debugger`](https://xdebug.org/docs/step_debug)
 - [`Tracing`](https://xdebug.org/docs/trace)
 
-Profiler a Tracing outputs are saved to `/var/www/html/log` directry inside Container. Thats means the output files are
+Profiler a Tracing outputs are saved to `/var/www/html/log` directory inside Container. Thats means the output files are
 propagated to the Host to `log/` directory (this directory must be manually created first).
 
 You can change output directory through Environment variable `XDEBUG_CONFIG` with `output_dir` parameter.
