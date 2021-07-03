@@ -4,6 +4,9 @@ default-character-set=utf8mb4
 [mysql]
 default-character-set=utf8mb4
 
+[mysqldump]
+default-character-set=utf8mb4
+
 [mysqld]
 collation-server=utf8mb4_unicode_ci
 init-connect='SET NAMES utf8mb4'
