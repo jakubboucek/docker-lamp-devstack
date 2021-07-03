@@ -3,16 +3,16 @@
 set -eux
 
 ### MariaDB - beta 10.6
-docker pull mariadb:beta
-docker run --rm mariadb:beta mysql --version
-docker build --progress plain -f mysql/Dockerfile-10.6 -t jakubboucek/lamp-devstack-mysql:beta mysql/
-docker tag jakubboucek/lamp-devstack-mysql:beta jakubboucek/lamp-devstack-mysql:10-beta
-docker tag jakubboucek/lamp-devstack-mysql:beta jakubboucek/lamp-devstack-mysql:10.6-beta
-docker tag jakubboucek/lamp-devstack-mysql:beta jakubboucek/lamp-devstack-mysql:10.6.1-beta
-docker push jakubboucek/lamp-devstack-mysql:10.6.1-beta
-docker push jakubboucek/lamp-devstack-mysql:10.6-beta
-docker push jakubboucek/lamp-devstack-mysql:10-beta
-docker push jakubboucek/lamp-devstack-mysql:beta
+docker pull mariadb:rc
+docker run --rm mariadb:rc mysql --version
+docker build --progress plain -f mysql/Dockerfile-10.6 -t jakubboucek/lamp-devstack-mysql:rc mysql/
+docker tag jakubboucek/lamp-devstack-mysql:rc jakubboucek/lamp-devstack-mysql:10-rc
+docker tag jakubboucek/lamp-devstack-mysql:rc jakubboucek/lamp-devstack-mysql:10.6-rc
+docker tag jakubboucek/lamp-devstack-mysql:rc jakubboucek/lamp-devstack-mysql:10.6.2-rc
+docker push jakubboucek/lamp-devstack-mysql:10.6.2-rc
+docker push jakubboucek/lamp-devstack-mysql:10.6-rc
+docker push jakubboucek/lamp-devstack-mysql:10-rc
+docker push jakubboucek/lamp-devstack-mysql:rc
 
 ### MariaDB
 docker pull mariadb:10.5
