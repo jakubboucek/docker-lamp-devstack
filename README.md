@@ -170,5 +170,22 @@ environment:
     PHP_IDE_CONFIG: "serverName=docker-cli"
 ```
 
+### Change Document Root
+
+Put custom `APACHE_DOCUMENT_ROOT` environment variable with path to Document Root as the value.
+
+You can put it directly with `document run`:
+
+```shell
+docker run -it --rm -e APACHE_DOCUMENT_ROOT=/my-web jakubboucek/lamp-devstack-php
+```
+
+You can also put it do `docker-compose.yml` file:
+
+```yaml
+environment:
+    APACHE_DOCUMENT_ROOT: "/my-web"
+```
+
 ## Building notes
 If you need build custom images based on this repo, see [Build notes](build-notes.md)
