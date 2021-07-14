@@ -88,7 +88,7 @@ All PHP images has parallel CLI variants with `-cli` tag suffix, example:
 All unstable release candidate (RC) version of PHP 8.1 are available at image:
 - `jakubboucek/lamp-devstack-php:8.1.0-rc`
 - `jakubboucek/lamp-devstack-php:8.1.0-rc-cli`
-
+- PHP 8.1 RC have not yet available debug image with Xdebug
 
 ### Using MySQL
 MySQL starts at the same time as web server.
