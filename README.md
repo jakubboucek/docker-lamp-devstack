@@ -22,7 +22,7 @@ Prepared images for local development in [LAMP devstack](https://en.wikipedia.or
 ## Main features
 - architecture: `linux/amd64`
 - the current versions of **PHP** 8.0, 7.4, 7.3 and PHP 8.1 (RC)
-- the current versions of **MariaDB** 10.5 and 10.6-beta
+- the current versions of **MariaDB** 10.3, 10.4, 10.5 and 10.6
 - the current version of **Apache** 2.4 (in non-CLI images)
 - the current version of **Xdebug** 3 (in debug images)
 - PHP has added extensions:
@@ -95,8 +95,10 @@ MySQL starts at the same time as web server.
 
 Available MySQL images:
 
-- Stable (10.5): `jakubboucek/lamp-devstack-mysql:latest`
-- Pre-release (10.6): `jakubboucek/lamp-devstack-mysql:rc`
+- 10.3: `jakubboucek/lamp-devstack-mysql:10.3`
+- 10.4: `jakubboucek/lamp-devstack-mysql:10.4`
+- 10.5: `jakubboucek/lamp-devstack-mysql:10.5`
+- 10.6: `jakubboucek/lamp-devstack-mysql:latest`
 
 Default credentials:
 - user: `root`
