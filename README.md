@@ -189,7 +189,7 @@ environment:
 
 Put custom `APACHE_DOCUMENT_ROOT` environment variable with path to Document Root as the value.
 
-You can put it directly with `document run`:
+You can put it directly with `docker run`:
 
 ```shell
 docker run -it --rm -e APACHE_DOCUMENT_ROOT=/my-web jakubboucek/lamp-devstack-php
