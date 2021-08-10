@@ -28,6 +28,7 @@ Prepared images for local development in [LAMP devstack](https://en.wikipedia.or
 - PHP has added extensions:
     [`bmath`](https://www.php.net/manual/en/book.bc.php),
     [`gd`](https://www.php.net/manual/en/book.image.php),
+    [`imap`](https://www.php.net/manual/en/book.imap.php),
     [`intl`](https://www.php.net/manual/en/book.intl.php),
     [`mysqli`](https://www.php.net/manual/en/book.mysqli.php),
     [`pdo_mysql`](https://www.php.net/manual/en/book.pdo.php),
@@ -38,7 +39,7 @@ Prepared images for local development in [LAMP devstack](https://en.wikipedia.or
 - Apache activated modules: [`expires`](https://httpd.apache.org/docs/current/mod/mod_expires.html),
     [`headers`](https://httpd.apache.org/docs/current/mod/mod_headers.html) and
     [`rewrite`](https://httpd.apache.org/docs/current/mod/mod_rewrite.html)
-- Apache `DocumentRoot` changed to: `/var/www/html/www`
+- Apache `DocumentRoot` changed to: `/var/www/html/www` (configurable by ENV)
 - MySQL properly configured to `utf8mb4` as default charset and optional support of Windows Host
 - optimized for small image size a fast load
 

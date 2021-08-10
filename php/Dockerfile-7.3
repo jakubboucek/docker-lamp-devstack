@@ -14,9 +14,11 @@ RUN set -eux; \
     apt-get update; \
     apt-get install --no-install-recommends -y \
         ca-certificates \
+        libc-client-dev \
         libfreetype6-dev \
         libicu-dev \
         libjpeg62-turbo-dev \
+        libkrb5-dev \
         libpng-dev \
         libwebp-dev \
         libxslt-dev \
@@ -27,10 +29,13 @@ RUN set -eux; \
         zip; \
     docker-php-ext-configure \
         gd --with-freetype-dir --with-jpeg-dir=/usr/include/ --with-webp-dir=/usr/include/; \
+    docker-php-ext-configure \
+        imap --with-kerberos --with-imap-ssl; \
     docker-php-ext-install -j$(nproc) \
         mysqli \
         bcmath \
         gd \
+        imap \
         intl \
         pcntl \
         pdo_mysql \
