@@ -1,4 +1,4 @@
-FROM php:8.0-cli
+FROM php:8.0-cli-buster
 
 LABEL maintainer="Jakub Bouček <pan@jakubboucek.cz>"
 

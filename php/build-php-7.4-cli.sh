@@ -4,8 +4,8 @@
 set -eux;
 
 ### PHP 7.4
-docker pull php:7.4-cli
-docker run --rm php:7.4-cli php --version
+docker pull php:7.4-cli-buster
+docker run --rm php:7.4-cli-buster php --version
 docker build --progress plain -f php/Dockerfile-7.4-cli -t jakubboucek/lamp-devstack-php:7.4-cli php/
 docker run --rm jakubboucek/lamp-devstack-php:7.4-cli php --version
 docker run --rm jakubboucek/lamp-devstack-php:7.4-cli php -r "echo implode(', ', get_loaded_extensions()) . PHP_EOL;"

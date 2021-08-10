@@ -4,8 +4,8 @@
 set -eux;
 
 ### PHP 8.1-rc
-docker pull php:8.1-rc-cli
-docker run --rm php:8.1-rc-cli php --version
+docker pull php:8.1-rc-cli-buster
+docker run --rm php:8.1-rc-cli-buster php --version
 docker build --progress plain -f php/Dockerfile-8.1-rc-cli -t jakubboucek/lamp-devstack-php:8.1-rc-cli php/
 docker run --rm jakubboucek/lamp-devstack-php:8.1-rc-cli php --version
 docker run --rm jakubboucek/lamp-devstack-php:8.1-rc-cli php -r "echo implode(', ', get_loaded_extensions()) . PHP_EOL;"

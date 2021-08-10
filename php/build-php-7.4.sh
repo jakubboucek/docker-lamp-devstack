@@ -4,8 +4,8 @@
 set -eux;
 
 ### PHP 7.4
-docker pull php:7.4-apache
-docker run --rm php:7.4-apache php --version
+docker pull php:7.4-apache-buster
+docker run --rm php:7.4-apache-buster php --version
 docker build --progress plain -f php/Dockerfile-7.4 -t jakubboucek/lamp-devstack-php:7.4 php/
 docker build --progress plain -f php/Dockerfile-7.4-debug -t jakubboucek/lamp-devstack-php:7.4-debug php/
 docker run --rm jakubboucek/lamp-devstack-php:7.4 php --version
