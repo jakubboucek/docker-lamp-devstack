@@ -27,6 +27,7 @@ Prepared images for local development in [LAMP devstack](https://en.wikipedia.or
 - the current version of **Xdebug** 3 (in debug images)
 - PHP has added extensions:
     [`bmath`](https://www.php.net/manual/en/book.bc.php),
+    [`exif`](https://www.php.net/manual/en/book.exif.php),
     [`gd`](https://www.php.net/manual/en/book.image.php),
     [`imap`](https://www.php.net/manual/en/book.imap.php),
     [`intl`](https://www.php.net/manual/en/book.intl.php),
