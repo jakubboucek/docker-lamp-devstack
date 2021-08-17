@@ -17,8 +17,8 @@ services:
         image: jakubboucek/lamp-devstack-mysql
         restart: always
         environment:
-            - MYSQL_DATABASE=default
-            - MYSQL_ROOT_PASSWORD=devstack
+            MYSQL_DATABASE: default
+            MYSQL_ROOT_PASSWORD: devstack
         ports:
             - "127.0.0.1:33060:3306"
         volumes:
