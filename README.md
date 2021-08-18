@@ -33,6 +33,7 @@ Prepared images for local development in [LAMP devstack](https://en.wikipedia.or
     [`intl`](https://www.php.net/manual/en/book.intl.php),
     [`mysqli`](https://www.php.net/manual/en/book.mysqli.php),
     [`pdo_mysql`](https://www.php.net/manual/en/book.pdo.php),
+    [`opcache`](https://www.php.net/manual/en/book.opcache.php),
     [`pcntl`](https://www.php.net/manual/en/book.pcntl.php),
     [`sockets`](https://www.php.net/manual/en/book.sockets.php),
     [`xsl`](https://www.php.net/manual/en/book.xsl.php) and
