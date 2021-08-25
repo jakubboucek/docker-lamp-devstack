@@ -5,6 +5,9 @@ LABEL maintainer="Jakub Bouček <pan@jakubboucek.cz>"
 # Workdir during installation
 WORKDIR /tmp
 
+# Use local mirrors to install Debian updates
+COPY sources.list-buster /etc/apt/sources.list
+
 # OS binaries install && update critical binaries
 RUN set -eux; \
     DEBIAN_FRONTEND=noninteractive; \
