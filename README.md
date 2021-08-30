@@ -71,22 +71,22 @@ my_project/                 <-- project's root
 ### Version tags
 Images are tagged by the cascaded SemVer:
 
-- `jakubboucek/lamp-devstack-php:latest` – means `latest` available PHP image,
-- `jakubboucek/lamp-devstack-php:7` – represents the highest PHP image of `7.x.x` version, but lower than `8.0.0`,
-- `jakubboucek/lamp-devstack-php:7.3` – represents the highest PHP image of `7.3.x` version, but lower than `7.4.0`,
-- `jakubboucek/lamp-devstack-php:7.3.24` – represents most specific PHP image, directly version `7.3.24`.
+- `jakubboucek/lamp-devstack-php:latest` – means `latest` available stable PHP image,
+- `jakubboucek/lamp-devstack-php:8` – represents the highest PHP image of `8` version, but lower than `9.0.0`,
+- `jakubboucek/lamp-devstack-php:8.0` – represents the highest PHP image of `8.0` version, but lower than `8.1.0`,
+- `jakubboucek/lamp-devstack-php:8.0.10` – represents most specific PHP image, directly version `8.0.10`.
 
 All PHP images has parallel XDebug variants with `-debug` tag suffix, example:
 - `jakubboucek/lamp-devstack-php:debug`
-- `jakubboucek/lamp-devstack-php:7-debug`
-- `jakubboucek/lamp-devstack-php:7.3-debug`
-- `jakubboucek/lamp-devstack-php:7.3.24-debug`
+- `jakubboucek/lamp-devstack-php:8-debug`
+- `jakubboucek/lamp-devstack-php:8.0-debug`
+- `jakubboucek/lamp-devstack-php:8.0.10-debug`
 
 All PHP images has parallel CLI variants with `-cli` tag suffix, example:
 - `jakubboucek/lamp-devstack-php:cli`
-- `jakubboucek/lamp-devstack-php:7-cli`
-- `jakubboucek/lamp-devstack-php:7.3-cli`
-- `jakubboucek/lamp-devstack-php:7.3.24-cli`
+- `jakubboucek/lamp-devstack-php:8-cli`
+- `jakubboucek/lamp-devstack-php:8.0-cli`
+- `jakubboucek/lamp-devstack-php:8.0.10-cli`
 
 All unstable release candidate (RC) version of PHP 8.1 are available at image:
 - `jakubboucek/lamp-devstack-php:8.1.0-rc`
@@ -148,8 +148,58 @@ volumes:
     - "./mysql-windows.cnf:/etc/mysql/conf.d/mysql-windows.cnf"
 ```
 
+## Extended configuration
+
+### PHP configuration 
+
+Certain [`php.ini` directives](https://www.php.net/manual/en/ini.list.php) can be modified without manipulating with
+image content, these feature using the environment variables. It can be defined in `ducker run` command or in
+`docker-compose.yml` file.
+
+Adjustable directives:
+ 
+– `PHP_MAX_EXECUTION_TIME` – change the [`max_execution_time` directive](https://www.php.net/manual/en/info.configuration.php#ini.max-execution-time) (default value: `30`)
+- `PHP_MEMORY_LIMIT` – change the [`memory_limit` directive](https://www.php.net/manual/en/ini.core.php#ini.memory-limit) (default value: `2048M`)
+- `PHP_OPCACHE_ENABLE` – change the [`opcache.enable` directive](https://www.php.net/manual/en/opcache.configuration.php#ini.opcache.enable) (default value: `1`)
+- `PHP_OPCACHE_ENABLE_CLI` – change the [`opcache.enable_cli` directive](https://www.php.net/manual/en/opcache.configuration.php#ini.opcache.enable-cli) (default value: `0`)
+- `PHP_OPCACHE_MEMORY_CONSUPTION` – change the [`opcache.memory_consumption` directive](https://www.php.net/manual/en/opcache.configuration.php#ini.opcache.memory-consumption) (default value: `128`)
+- `PHP_OPCACHE_VALIDATE_TIMESTAMPS` – change the [`opcache.validate_timestamps` directive](https://www.php.net/manual/en/opcache.configuration.php#ini.opcache.validate-timestamps) (default value: `1`)
+- `PHP_OPCACHE_REVALIDATE_FREQ` – change the [`opcache.revalidate_freq` directive](https://www.php.net/manual/en/opcache.configuration.php#ini.opcache.revalidate-freq) (default value: `2`)
+
+Example for `docker run` command:
+
+```shell
+docker run --rm -e PHP_MEMORY_LIMIT=1G jakubboucek/lamp-devstack-php php -i
+```
+
+Example `docker-compose.yml` file:
+
+```yaml
+environment:
+    PHP_MEMORY_LIMIT: 1G
+```
+
+### Document Root
+
+Put custom `APACHE_DOCUMENT_ROOT` environment variable with path to Document Root as the value.
+
+You can put it directly with `docker run`:
+
+```shell
+docker run -it --rm -e APACHE_DOCUMENT_ROOT=/my-web jakubboucek/lamp-devstack-php
+```
+
+You can also put it do `docker-compose.yml` file:
+
+```yaml
+environment:
+    APACHE_DOCUMENT_ROOT: "/my-web"
+```
+
 ## Advanced usage
+
 ### Xdebug
+
 Prepared is PHP with Xdebug variant too. Use [`docker-compose-debug.yml`](docker-compose-debug.yml)
 ([download](https://downfile.github.io/download?url=https%3A//raw.githubusercontent.com/jakubboucek/docker-lamp-devstack/master/docker-compose-debug.yml&file=docker-compose.yml))
 instead (copy and rename it to `docker-compose.yml`).
@@ -186,23 +236,6 @@ In [`docker-compose.yml`](docker-compose-debug.yml) file just add Environment va
 ```yaml
 environment:
     PHP_IDE_CONFIG: "serverName=docker-cli"
-```
-
-### Change Document Root
-
-Put custom `APACHE_DOCUMENT_ROOT` environment variable with path to Document Root as the value.
-
-You can put it directly with `docker run`:
-
-```shell
-docker run -it --rm -e APACHE_DOCUMENT_ROOT=/my-web jakubboucek/lamp-devstack-php
-```
-
-You can also put it do `docker-compose.yml` file:
-
-```yaml
-environment:
-    APACHE_DOCUMENT_ROOT: "/my-web"
 ```
 
 ## Building notes

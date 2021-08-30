@@ -2,21 +2,23 @@ version: '3'
 services:
     web:
         image: jakubboucek/lamp-devstack-php
-        volumes:
-            - ".:/var/www/html"
+        depends_on:
+            - mysqldb
+        environment:
+            APP_DEBUG: 1
         ports:
             - "127.0.0.1:8080:80"
         restart: always
-        depends_on:
-            - mysqldb
+        volumes:
+            - ".:/var/www/html"
 
     mysqldb:
         image: jakubboucek/lamp-devstack-mysql
-        restart: always
         environment:
-            MYSQL_DATABASE: default
-            MYSQL_ROOT_PASSWORD: devstack
+            MARIADB_DATABASE: default
+            MARIADB_ROOT_PASSWORD: devstack
         ports:
             - "127.0.0.1:33060:3306"
+        restart: always
         volumes:
             - "./docker/mysql/data:/var/lib/mysql"

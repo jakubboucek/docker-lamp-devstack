@@ -32,15 +32,15 @@ RUN set -eux; \
     docker-php-ext-configure \
         imap --with-kerberos --with-imap-ssl; \
     docker-php-ext-install -j$(nproc) \
-        mysqli \
         bcmath \
         exif \
         gd \
         imap \
         intl \
+        mysqli \
+        opcache \
         pcntl \
         pdo_mysql \
-        opcache \
         sockets \
         xsl \
         zip; \
@@ -53,7 +53,17 @@ RUN set -eux; \
     rm -rf /var/lib/apt/lists/* /var/tmp/* /tmp/*;
 
 # Configure Apache & PHP
-COPY php.ini /usr/local/etc/php/conf.d/dev-memory-increase.ini
+ENV PHP_MAX_EXECUTION_TIME 30
+ENV PHP_MEMORY_LIMIT 2G
+COPY core.ini /usr/local/etc/php/conf.d/core.ini
+
+# Configure OPcache
+ENV PHP_OPCACHE_ENABLE 1
+ENV PHP_OPCACHE_ENABLE_CLI 0
+ENV PHP_OPCACHE_MEMORY_CONSUPTION 128
+ENV PHP_OPCACHE_REVALIDATE_FREQ 2
+ENV PHP_OPCACHE_VALIDATE_TIMESTAMPS 1
+COPY opcache.ini /usr/local/etc/php/conf.d/opcache.ini
 
 # Move Apache Document root to sub-directory `www` (PHP frameworks convention)
 ENV APACHE_DOCUMENT_ROOT /var/www/html/www
