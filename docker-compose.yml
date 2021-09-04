@@ -2,8 +2,6 @@ version: '3'
 services:
     web:
         image: jakubboucek/lamp-devstack-php
-        depends_on:
-            - mysqldb
         environment:
             APP_DEBUG: 1
         ports:
