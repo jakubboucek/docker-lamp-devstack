@@ -226,6 +226,17 @@ environment:
     #                                                ^^^^^^^^^^^^^^^^^^^^^^^
 ```
 
+Form Xdebug 3.1 Profiler a Tracing outputs are compressed by GZip. You can turn off GZip compression through Environment
+variable `XDEBUG_CONFIG` with `use_compression` parameter and `false` value.
+
+In [`docker-compose.yml`](docker-compose-debug.yml) file just modify `environment` section:
+
+```yaml
+environment:
+    XDEBUG_CONFIG: "client_host=host.docker.internal use_compression=false"
+    #                                                ^^^^^^^^^^^^^^^^^^^^^
+```
+
 ### Debugging CLI with PhpStorm
 
 With PhpStorm you can ando debug the CLI scripts. But you need set the Server name,
