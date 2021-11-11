@@ -3,7 +3,7 @@
 set -eux
 
 ### MariaDB - 10.3
-MARIADB_RELEASE=31
+MARIADB_RELEASE=32
 docker pull mariadb:10.3.${MARIADB_RELEASE}
 docker tag mariadb:10.3.${MARIADB_RELEASE} mariadb:10.3
 docker run --rm mariadb:10.3 mysql --version
@@ -15,7 +15,7 @@ docker push jakubboucek/lamp-devstack-mysql:10.3.${MARIADB_RELEASE}
 docker push jakubboucek/lamp-devstack-mysql:10.3
 
 ### MariaDB - 10.4
-MARIADB_RELEASE=21
+MARIADB_RELEASE=22
 docker pull mariadb:10.4.${MARIADB_RELEASE}
 docker tag mariadb:10.4.${MARIADB_RELEASE} mariadb:10.4
 docker run --rm mariadb:10.4 mysql --version
@@ -27,7 +27,7 @@ docker push jakubboucek/lamp-devstack-mysql:10.4.${MARIADB_RELEASE}
 docker push jakubboucek/lamp-devstack-mysql:10.4
 
 ### MariaDB - 10.5
-MARIADB_RELEASE=12
+MARIADB_RELEASE=13
 docker pull mariadb:10.5.${MARIADB_RELEASE}
 docker tag mariadb:10.5.${MARIADB_RELEASE} mariadb:10.5
 docker run --rm mariadb:10.5 mysql --version
@@ -39,7 +39,7 @@ docker push jakubboucek/lamp-devstack-mysql:10.5.${MARIADB_RELEASE}
 docker push jakubboucek/lamp-devstack-mysql:10.5
 
 ### MariaDB - 10.6
-MARIADB_RELEASE=4
+MARIADB_RELEASE=5
 docker pull mariadb:10.6.${MARIADB_RELEASE}
 docker tag mariadb:10.6.${MARIADB_RELEASE} mariadb:10.6
 docker run --rm mariadb:10.6 mysql --version
