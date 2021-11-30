@@ -21,7 +21,7 @@ Prepared images for local development in [LAMP devstack](https://en.wikipedia.or
 
 ## Main features
 - architecture: `linux/amd64`
-- the current versions of **PHP** 8.0, 7.4, 7.3 and PHP 8.1 (RC)
+- the current versions of **PHP** 8.1, 8.0, 7.4 and PHP 7.3
 - the current versions of **MariaDB** 10.3, 10.4, 10.5 and 10.6
 - the current version of **Apache** 2.4 (in non-CLI images)
 - the current version of **Xdebug** 3 (in debug images)
@@ -73,25 +73,20 @@ Images are tagged by the cascaded SemVer:
 
 - `jakubboucek/lamp-devstack-php:latest` – means `latest` available stable PHP image,
 - `jakubboucek/lamp-devstack-php:8` – represents the highest PHP image of `8` version, but lower than `9.0.0`,
-- `jakubboucek/lamp-devstack-php:8.0` – represents the highest PHP image of `8.0` version, but lower than `8.1.0`,
-- `jakubboucek/lamp-devstack-php:8.0.10` – represents most specific PHP image, directly version `8.0.10`.
+- `jakubboucek/lamp-devstack-php:8.1` – represents the highest PHP image of `8.1` version, but lower than `8.2.0`,
+- `jakubboucek/lamp-devstack-php:8.1.10` – represents most specific PHP image, directly version `8.1.10`.
 
 All PHP images has parallel XDebug variants with `-debug` tag suffix, example:
 - `jakubboucek/lamp-devstack-php:debug`
 - `jakubboucek/lamp-devstack-php:8-debug`
-- `jakubboucek/lamp-devstack-php:8.0-debug`
-- `jakubboucek/lamp-devstack-php:8.0.10-debug`
+- `jakubboucek/lamp-devstack-php:8.1-debug`
+- `jakubboucek/lamp-devstack-php:8.1.10-debug`
 
 All PHP images has parallel CLI variants with `-cli` tag suffix, example:
 - `jakubboucek/lamp-devstack-php:cli`
 - `jakubboucek/lamp-devstack-php:8-cli`
-- `jakubboucek/lamp-devstack-php:8.0-cli`
-- `jakubboucek/lamp-devstack-php:8.0.10-cli`
-
-All unstable release candidate (RC) version of PHP 8.1 are available at image:
-- `jakubboucek/lamp-devstack-php:8.1.0-rc`
-- `jakubboucek/lamp-devstack-php:8.1.0-rc-cli`
-- PHP 8.1 RC have not yet available debug image with Xdebug
+- `jakubboucek/lamp-devstack-php:8.1-cli`
+- `jakubboucek/lamp-devstack-php:8.1.10-cli`
 
 ### Using MySQL
 MySQL starts at the same time as web server.
