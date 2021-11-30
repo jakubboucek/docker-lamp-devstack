@@ -1,4 +1,4 @@
-FROM php:8.0-cli-buster
+FROM php:8.0-cli-bullseye
 
 LABEL maintainer="Jakub Bouček <pan@jakubboucek.cz>"
 
@@ -6,7 +6,7 @@ LABEL maintainer="Jakub Bouček <pan@jakubboucek.cz>"
 WORKDIR /tmp
 
 # Use local mirrors to install Debian updates
-COPY sources.list-buster /etc/apt/sources.list
+COPY sources.list-bullseye /etc/apt/sources.list
 
 # OS binaries install && update critical binaries
 RUN set -eux; \

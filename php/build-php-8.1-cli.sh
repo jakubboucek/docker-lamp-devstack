@@ -6,8 +6,8 @@ set -eux;
 cd "$(dirname $0)";
 
 ### PHP 8.1
-docker pull php:8.1-cli-buster
-docker run --rm php:8.1-cli-buster php --version
+docker pull php:8.1-cli-bullseye
+docker run --rm php:8.1-cli-bullseye php --version
 docker build --progress plain -f ./Dockerfile-8.1-cli -t jakubboucek/lamp-devstack-php:8.1-cli ./
 docker run --rm jakubboucek/lamp-devstack-php:8.1-cli php --version
 docker run --rm jakubboucek/lamp-devstack-php:8.1-cli php -r "echo implode(', ', get_loaded_extensions()) . PHP_EOL;"

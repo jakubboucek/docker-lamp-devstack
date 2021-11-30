@@ -6,8 +6,8 @@ set -eux;
 cd "$(dirname $0)";
 
 ### PHP 8.1
-docker pull php:8.1-apache-buster
-docker run --rm php:8.1-apache-buster php --version
+docker pull php:8.1-apache-bullseye
+docker run --rm php:8.1-apache-bullseye php --version
 docker build --progress plain -f ./Dockerfile-8.1 -t jakubboucek/lamp-devstack-php:8.1 ./
 docker build --progress plain -f ./Dockerfile-8.1-debug -t jakubboucek/lamp-devstack-php:8.1-debug ./
 docker run --rm jakubboucek/lamp-devstack-php:8.1 php --version
