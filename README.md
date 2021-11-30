@@ -24,7 +24,7 @@ Prepared images for local development in [LAMP devstack](https://en.wikipedia.or
 - the current versions of **PHP** 8.1, 8.0, 7.4 and PHP 7.3
 - the current versions of **MariaDB** 10.3, 10.4, 10.5 and 10.6
 - the current version of **Apache** 2.4 (in non-CLI images)
-- the current version of **Xdebug** 3 (in debug images)
+- the current version of **Xdebug** 3.1 (in debug images)
 - PHP has added extensions:
     [`bmath`](https://www.php.net/manual/en/book.bc.php),
     [`exif`](https://www.php.net/manual/en/book.exif.php),
