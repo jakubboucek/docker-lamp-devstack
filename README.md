@@ -28,7 +28,7 @@ Prepared images for local development in [LAMP devstack](https://en.wikipedia.or
 - PHP has added extensions:
     [`bmath`](https://www.php.net/manual/en/book.bc.php),
     [`exif`](https://www.php.net/manual/en/book.exif.php),
-    [`gd`](https://www.php.net/manual/en/book.image.php),
+    [`gd`](https://www.php.net/manual/en/book.image.php) with support PNG, WebP, AVIF (for PHP 8.1) and FreeType fonts,
     [`imap`](https://www.php.net/manual/en/book.imap.php),
     [`intl`](https://www.php.net/manual/en/book.intl.php),
     [`mysqli`](https://www.php.net/manual/en/book.mysqli.php),

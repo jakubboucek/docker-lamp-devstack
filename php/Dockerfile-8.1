@@ -14,6 +14,7 @@ RUN set -eux; \
     apt-get update; \
     apt-get install --no-install-recommends -y \
         ca-certificates \
+        libavif-dev \
         libc-client-dev \
         libfreetype6-dev \
         libicu-dev \
@@ -28,7 +29,7 @@ RUN set -eux; \
         unzip \
         zip; \
     docker-php-ext-configure \
-        gd --with-freetype --with-jpeg --with-webp; \
+        gd --with-avif --with-freetype --with-jpeg --with-webp; \
     docker-php-ext-configure \
         imap --with-kerberos --with-imap-ssl; \
     docker-php-ext-install -j$(nproc) \
