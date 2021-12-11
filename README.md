@@ -7,10 +7,12 @@ Prepared images for local development in [LAMP devstack](https://en.wikipedia.or
     + [Version tags](#version-tags)
     + [Using MySQL](#using-mysql)
     + [Windows issue](#windows-issue)
+* [Extended configuration](#extended-configuration)
+    + [PHP configuration](#php-configuration) 
+    + [Document Root](#document-root)
 * [Advanced usage](#advanced-usage)
     + [Xdebug](#xdebug)
     + [Debugging CLI with PhpStorm](#debugging-cli-with-phpstorm)
-    + [Change Document Root](#change-document-root)
 * [Building notes](#building-notes)
 
 
