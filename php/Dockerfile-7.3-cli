@@ -44,9 +44,10 @@ RUN set -eux; \
         sockets \
         xsl \
         zip; \
-    apt-get autoremove -y; \
-    apt-get clean; \
-    rm -rf /var/lib/apt/lists/* /var/tmp/* /tmp/*;
+    apt-get clean -y && \
+    apt-get autoclean -y && \
+    apt-get autoremove -y && \
+    rm -rf /var/lib/apt/lists/* /var/lib/log/* /tmp/* /var/tmp/*;
 
 # Configure Apache & PHP
 ENV PHP_MAX_EXECUTION_TIME 30
