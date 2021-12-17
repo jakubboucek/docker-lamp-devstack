@@ -25,6 +25,7 @@ RUN set -eux; \
         libzip-dev \
         nano \
         openssl \
+        tzdata \
         unzip \
         zip; \
     docker-php-ext-configure \

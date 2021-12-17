@@ -4,6 +4,7 @@ services:
         image: jakubboucek/lamp-devstack-php
         environment:
             APP_DEBUG: 1
+            TZ: Europe/Prague
         ports:
             - "127.0.0.1:8080:80"
         restart: always
@@ -15,6 +16,7 @@ services:
         environment:
             MARIADB_DATABASE: default
             MARIADB_ROOT_PASSWORD: devstack
+            TZ: Europe/Prague
         ports:
             - "127.0.0.1:33060:3306"
         restart: always

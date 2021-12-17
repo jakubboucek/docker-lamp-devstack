@@ -12,7 +12,8 @@ RUN set -eux; \
     apt-get install --no-install-recommends -y \
         ca-certificates \
         nano \
-        openssl; \
+        openssl \
+        tzdata; \
     apt-get clean -y && \
     apt-get autoclean -y && \
     apt-get autoremove -y && \

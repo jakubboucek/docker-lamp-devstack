@@ -10,6 +10,7 @@ Prepared images for local development in [LAMP devstack](https://en.wikipedia.or
 * [Extended configuration](#extended-configuration)
     + [PHP configuration](#php-configuration) 
     + [Document Root](#document-root)
+    + [Timezone](#timezone)
 * [Advanced usage](#advanced-usage)
     + [Xdebug](#xdebug)
     + [Debugging CLI with PhpStorm](#debugging-cli-with-phpstorm)
@@ -45,6 +46,7 @@ Prepared images for local development in [LAMP devstack](https://en.wikipedia.or
     [`rewrite`](https://httpd.apache.org/docs/current/mod/mod_rewrite.html)
 - Apache `DocumentRoot` changed to: `/var/www/html/www` (configurable by ENV)
 - MySQL properly configured to `utf8mb4` as default charset and optional support of Windows Host
+- optimized for correct support timezones
 - optimized for small image size a fast load
 
 ## Basic usage
@@ -186,12 +188,33 @@ You can put it directly with `docker run`:
 docker run -it --rm -e APACHE_DOCUMENT_ROOT=/my-web jakubboucek/lamp-devstack-php
 ```
 
-You can also put it do `docker-compose.yml` file:
+You can also put it to `docker-compose.yml` file:
 
 ```yaml
 environment:
     APACHE_DOCUMENT_ROOT: "/my-web"
 ```
+
+### Timezone
+
+The default timezone is not defined (aka `UTC`). You can modify the default timezone by the `TZ` environment variable
+with timezone name as value (e.g.: `Europe/Prague`).
+
+You can put it directly with `docker run`:
+
+```shell
+docker run -it --rm -e TZ=Europe/Prague jakubboucek/lamp-devstack-php
+```
+
+You can also put it to `docker-compose.yml` file:
+
+```yaml
+environment:
+    TZ: Europe/Prague
+```
+
+The `TZ` environment variable is recognized by Linux, by that variable you modify the default timezone for the whole Linux
+operating system, PHP, and also MySQL.
 
 ## Advanced usage
 
@@ -236,7 +259,7 @@ environment:
 
 ### Debugging CLI with PhpStorm
 
-With PhpStorm you can ando debug the CLI scripts. But you need set the Server name,
+With PhpStorm you can also debug the CLI scripts. But you need set the Server name,
 [PhpStorm requires it to mapping paths](https://blog.jetbrains.com/phpstorm/2012/03/new-in-4-0-easier-debugging-of-remote-php-command-line-scripts/).
 
 In [`docker-compose.yml`](docker-compose-debug.yml) file just add Environment variable `PHP_IDE_CONFIG` with `serverName` parameter:
