@@ -8,9 +8,11 @@ WORKDIR /tmp
 # Use local mirrors to install Debian updates
 COPY sources.list-bullseye /etc/apt/sources.list
 
+# Prevent interactive block
+ARG DEBIAN_FRONTEND=noninteractive
+
 # OS binaries install && update critical binaries
 RUN set -eux; \
-    DEBIAN_FRONTEND=noninteractive; \
     apt-get update; \
     apt-get install --no-install-recommends -y \
         ca-certificates \
@@ -65,7 +67,6 @@ COPY opcache.ini /usr/local/etc/php/conf.d/opcache.ini
 
 # Setup Devstack (install Composer)
 RUN set -eux; \
-    DEBIAN_FRONTEND=noninteractive; \
     curl -sS https://getcomposer.org/installer -o /tmp/composer-setup.php; \
     php /tmp/composer-setup.php --install-dir=/usr/local/bin --filename=composer; \
     COMPOSER_BIN_DIR=$(composer global config bin-dir --absolute) 2>/dev/null; \
