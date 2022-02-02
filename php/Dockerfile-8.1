@@ -47,10 +47,13 @@ RUN set -eux; \
         pcntl \
         pdo_mysql \
         soap \
-        sockets \
         sodium \
         xsl \
-        zip; \
+        zip;
+RUN CFLAGS="$CFLAGS -D_GNU_SOURCE" \
+    docker-php-ext-install -j$(nproc) \
+        sockets;
+RUN set -eux; \
     a2enmod \
         expires \
         headers \
