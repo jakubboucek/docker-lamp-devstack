@@ -23,6 +23,7 @@ RUN set -eux; \
         libjpeg62-turbo-dev \
         libkrb5-dev \
         libpng-dev \
+        libsodium-dev \
         libwebp-dev \
         libxslt-dev \
         libzip-dev \
@@ -46,6 +47,7 @@ RUN set -eux; \
         pcntl \
         pdo_mysql \
         sockets \
+        sodium \
         xsl \
         zip; \
     apt-get clean -y && \
