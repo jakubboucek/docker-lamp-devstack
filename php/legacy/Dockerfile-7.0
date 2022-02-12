@@ -47,6 +47,7 @@ RUN set -eux; \
         opcache \
         pcntl \
         pdo_mysql \
+        soap \
         sockets \
         xsl \
         zip; \
