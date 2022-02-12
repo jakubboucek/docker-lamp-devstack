@@ -1,8 +1,8 @@
-FROM php:7.2-apache
+FROM php:5.6-apache
 
 LABEL maintainer="Jakub Bouček <pan@jakubboucek.cz>"
 LABEL desc="NOTE: Unmaintained version, don't use it with serious deployment!"
-LABEL org.label-schema.name="PHP 7.2 (Apache module)"
+LABEL org.label-schema.name="PHP 5.6 (Apache module)"
 LABEL org.label-schema.description="NOTE: Unmaintained version, don't use it with serious deployment!"
 LABEL org.label-schema.vcs-url="https://github.com/jakubboucek/docker-lamp-devstack"
 
@@ -23,7 +23,6 @@ RUN set -eux; \
         libjpeg62-turbo-dev \
         libkrb5-dev \
         libpng-dev \
-        libsodium-dev \
         libwebp-dev \
         libxslt-dev \
         libzip-dev \
@@ -47,7 +46,6 @@ RUN set -eux; \
         pcntl \
         pdo_mysql \
         sockets \
-        sodium \
         xsl \
         zip; \
     a2enmod \
