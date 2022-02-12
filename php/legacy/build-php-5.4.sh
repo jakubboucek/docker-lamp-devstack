@@ -14,6 +14,7 @@ DOCKER_BUILDKIT=0 docker build --progress plain -f ./Dockerfile-5.4-debug -t jak
 docker run --rm jakubboucek/lamp-devstack-php:5.4-legacy php --version
 docker run --rm jakubboucek/lamp-devstack-php:5.4-legacy-debug php --version
 docker run --rm jakubboucek/lamp-devstack-php:5.4-legacy php -r "echo implode(', ', get_loaded_extensions()) . PHP_EOL;"
+docker run --rm jakubboucek/lamp-devstack-php:5.4-legacy-debug php -r "echo implode(', ', get_loaded_extensions()) . PHP_EOL;"
 docker run --rm jakubboucek/lamp-devstack-php:5.4-legacy php -r "var_export(gd_info()) . PHP_EOL;"
 docker push jakubboucek/lamp-devstack-php:5.4-legacy-debug
 docker push jakubboucek/lamp-devstack-php:5.4-legacy
