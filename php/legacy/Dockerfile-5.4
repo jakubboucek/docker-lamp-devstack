@@ -1,8 +1,8 @@
-FROM php:5.5-apache
+FROM php:5.4-apache
 
 LABEL maintainer="Jakub Bouček <pan@jakubboucek.cz>"
 LABEL desc="NOTE: Unmaintained version, don't use it with serious deployment!"
-LABEL org.label-schema.name="PHP 5.5 (Apache module)"
+LABEL org.label-schema.name="PHP 5.4 (Apache module)"
 LABEL org.label-schema.description="NOTE: Unmaintained version, don't use it with serious deployment!"
 LABEL org.label-schema.vcs-url="https://github.com/jakubboucek/docker-lamp-devstack"
 
@@ -34,14 +34,13 @@ RUN set -eux; \
         gd --with-freetype-dir --with-jpeg-dir=/usr/include/; \
     docker-php-ext-configure \
         imap --with-kerberos --with-imap-ssl; \
-    docker-php-ext-install -j$(nproc) \
+    docker-php-ext-install \
         bcmath \
         exif \
         gd \
         imap \
         intl \
         mysqli \
-        opcache \
         pcntl \
         pdo_mysql \
         sockets \
@@ -60,14 +59,6 @@ RUN set -eux; \
 ENV PHP_MAX_EXECUTION_TIME 30
 ENV PHP_MEMORY_LIMIT 2G
 COPY core.ini /usr/local/etc/php/conf.d/core.ini
-
-# Configure OPcache
-ENV PHP_OPCACHE_ENABLE 1
-ENV PHP_OPCACHE_ENABLE_CLI 0
-ENV PHP_OPCACHE_MEMORY_CONSUPTION 128
-ENV PHP_OPCACHE_REVALIDATE_FREQ 2
-ENV PHP_OPCACHE_VALIDATE_TIMESTAMPS 1
-COPY opcache.ini /usr/local/etc/php/conf.d/opcache.ini
 
 # Move Apache Document root to sub-directory `www` (PHP frameworks convention)
 ENV APACHE_DOCUMENT_ROOT /var/www/html/www
