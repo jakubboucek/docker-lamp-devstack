@@ -51,6 +51,8 @@ Prepared images for local development in [LAMP devstack](https://en.wikipedia.or
 - MySQL properly configured to `utf8mb4` as default charset and optional support of Windows Host
 - optimized for correct support timezones
 - optimized for small image size a fast load
+- the **Legacy versions of PHP** 7.2, 7.1, 7.0, 5.6, 5.5 and 5.4 (with limited stability, unoptimized, unmaintained)
+
 
 ## Basic usage
 Copy the [`docker-compose.yml`](docker-compose.yml) file
@@ -76,24 +78,37 @@ my_project/                 <-- project's root
 ```
 
 ### Version tags
-Images are tagged by the cascaded SemVer:
 
+Images are tagged by the cascaded SemVer:
 - `jakubboucek/lamp-devstack-php:latest` – means `latest` available stable PHP image,
 - `jakubboucek/lamp-devstack-php:8` – represents the highest PHP image of `8` version, but lower than `9.0.0`,
 - `jakubboucek/lamp-devstack-php:8.1` – represents the highest PHP image of `8.1` version, but lower than `8.2.0`,
 - `jakubboucek/lamp-devstack-php:8.1.10` – represents most specific PHP image, directly version `8.1.10`.
 
-All PHP images has parallel XDebug variants with `-debug` tag suffix, example:
+**Legacy PHP** images are tagged by defferent strategy, only last one revision for each minor version, use `-legacy`
+tag suffix:
+
+- `jakubboucek/lamp-devstack-php:7.2-legacy`
+- `jakubboucek/lamp-devstack-php:7.1-legacy`
+- `jakubboucek/lamp-devstack-php:7.0-legacy`
+- `jakubboucek/lamp-devstack-php:5.6-legacy`
+- `jakubboucek/lamp-devstack-php:5.5-legacy`
+- `jakubboucek/lamp-devstack-php:5.4-legacy`
+
+All PHP images has XDebug variants, use `-debug` tag suffix, example:
 - `jakubboucek/lamp-devstack-php:debug`
 - `jakubboucek/lamp-devstack-php:8-debug`
 - `jakubboucek/lamp-devstack-php:8.1-debug`
 - `jakubboucek/lamp-devstack-php:8.1.10-debug`
+- `jakubboucek/lamp-devstack-php:7.2-legacy-debug`
 
-All PHP images has parallel CLI variants with `-cli` tag suffix, example:
+All PHP images has CLI variants, use `-cli` tag suffix, example:
 - `jakubboucek/lamp-devstack-php:cli`
 - `jakubboucek/lamp-devstack-php:8-cli`
 - `jakubboucek/lamp-devstack-php:8.1-cli`
 - `jakubboucek/lamp-devstack-php:8.1.10-cli`
+- `jakubboucek/lamp-devstack-php:7.2-legacy-cli`
+
 
 ### Using MySQL
 MySQL starts at the same time as web server.
