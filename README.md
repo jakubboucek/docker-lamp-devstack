@@ -39,6 +39,7 @@ Prepared images for local development in [LAMP devstack](https://en.wikipedia.or
     [`opcache`](https://www.php.net/manual/en/book.opcache.php),
     [`pcntl`](https://www.php.net/manual/en/book.pcntl.php),
     [`sockets`](https://www.php.net/manual/en/book.sockets.php),
+    [`sodium`](https://www.php.net/manual/en/book.sodium.php),
     [`xsl`](https://www.php.net/manual/en/book.xsl.php) and
     [`zip`](https://www.php.net/manual/en/book.zip.php)
 - Apache activated modules: [`expires`](https://httpd.apache.org/docs/current/mod/mod_expires.html),
