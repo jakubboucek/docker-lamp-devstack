@@ -2,6 +2,8 @@
 
 set -eux
 
+cd "$(dirname $0)";
+
 ### MariaDB - 10.3
 MARIADB_RELEASE=32
 docker pull mariadb:10.3.${MARIADB_RELEASE}
