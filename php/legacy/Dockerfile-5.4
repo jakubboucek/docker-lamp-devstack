@@ -19,6 +19,7 @@ RUN set -eux; \
         ca-certificates \
         libc-client-dev \
         libfreetype6-dev \
+        libgmp-dev \
         libicu-dev \
         libjpeg62-turbo-dev \
         libkrb5-dev \
@@ -35,11 +36,13 @@ RUN set -eux; \
         gd --with-freetype-dir --with-jpeg-dir=/usr/include/; \
     docker-php-ext-configure \
         imap --with-kerberos --with-imap-ssl; \
+    ln -s /usr/include/x86_64-linux-gnu/gmp.h /usr/include/gmp.h; \
     docker-php-ext-install \
         bcmath \
         exif \
         ftp \
         gd \
+        gmp \
         imap \
         intl \
         mbstring \
