@@ -16,6 +16,7 @@ RUN set -eux; \
     apt-get update; \
     apt-get install --no-install-recommends -y \
         ca-certificates \
+        libbz2-dev \
         libc-client-dev \
         libfreetype6-dev \
         libgmp-dev \
@@ -38,8 +39,10 @@ RUN set -eux; \
         imap --with-kerberos --with-imap-ssl; \
     docker-php-ext-install -j$(nproc) \
         bcmath \
+        bz2 \
         exif \
         gd \
+        gettext \
         gmp \
         imap \
         intl \
