@@ -30,8 +30,10 @@ Prepared images for local development in [LAMP devstack](https://en.wikipedia.or
 - the current version of **Xdebug** 3.1 (in debug images)
 - PHP has added extensions:
     [`bmath`](https://www.php.net/manual/en/book.bc.php),
+    [`bz2`](https://www.php.net/manual/en/book.bzip2.php),
     [`exif`](https://www.php.net/manual/en/book.exif.php),
     [`gd`](https://www.php.net/manual/en/book.image.php) with support PNG, WebP, AVIF (for PHP 8.1) and FreeType fonts,
+    [`gettext`](https://www.php.net/manual/en/book.gettext.php),
     [`gmp`](https://www.php.net/manual/en/book.gmp.php),
     [`imap`](https://www.php.net/manual/en/book.imap.php),
     [`intl`](https://www.php.net/manual/en/book.intl.php),
