@@ -50,7 +50,8 @@ Prepared images for local development in [LAMP devstack](https://en.wikipedia.or
     [`headers`](https://httpd.apache.org/docs/current/mod/mod_headers.html) and
     [`rewrite`](https://httpd.apache.org/docs/current/mod/mod_rewrite.html)
 - Apache `DocumentRoot` changed to: `/var/www/html/www` (configurable by ENV)
-- PHP image has also pre-installed [Composer 2.2+](https://getcomposer.org/) to use it in guest shell 
+- PHP image has also pre-installed [Composer 2.2+](https://getcomposer.org/) and [Git 2.30+](https://git-scm.com/) to 
+    use it in guest shell  
 - MySQL properly configured to `utf8mb4` as default charset and optional support of Windows Host
 - optimized for correct support timezones
 - optimized for small image size a fast load
