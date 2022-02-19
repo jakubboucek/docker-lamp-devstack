@@ -17,3 +17,5 @@ cd "$(dirname $0)";
 ./php/legacy/build-php-7.1-cli.sh
 ./php/legacy/build-php-7.2.sh
 ./php/legacy/build-php-7.2-cli.sh
+./php/legacy/build-php-7.3.sh
+./php/legacy/build-php-7.3-cli.sh
