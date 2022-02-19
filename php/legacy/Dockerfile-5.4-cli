@@ -69,7 +69,7 @@ ENV PHP_MAX_EXECUTION_TIME 30
 ENV PHP_MEMORY_LIMIT 2G
 COPY core.ini /usr/local/etc/php/conf.d/core.ini
 
-# Setup Devstack (install Composer, setup DocumentRoot)
+# Setup Devstack (install Composer)
 RUN set -eux; \
     curl -sS https://getcomposer.org/installer -o /tmp/composer-setup.php; \
     php /tmp/composer-setup.php --1 --install-dir=/usr/local/bin --filename=composer; \
