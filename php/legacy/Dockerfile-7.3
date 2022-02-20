@@ -1,12 +1,13 @@
-FROM php:7.3-apache-bullseye
+FROM php:7.3-apache
 
 LABEL maintainer="Jakub Bouček <pan@jakubboucek.cz>"
+LABEL desc="NOTE: Unmaintained version, don't use it with serious deployment!"
+LABEL org.label-schema.name="PHP 7.3 (Apache module)"
+LABEL org.label-schema.description="NOTE: Unmaintained version, don't use it with serious deployment!"
+LABEL org.label-schema.vcs-url="https://github.com/jakubboucek/docker-lamp-devstack"
 
 # Workdir during installation
 WORKDIR /tmp
-
-# Use local mirrors to install Debian updates
-COPY sources.list-bullseye /etc/apt/sources.list
 
 # Prevent interactive block
 ARG DEBIAN_FRONTEND=noninteractive

@@ -3,8 +3,6 @@
 # shellcheck disable=SC2086
 set -eux;
 
-docker pull php:7.3-cli-bullseye
-docker pull php:7.3-apache-bullseye
 docker pull php:7.4-cli-bullseye
 docker pull php:7.4-apache-bullseye
 docker pull php:8.0-cli-bullseye

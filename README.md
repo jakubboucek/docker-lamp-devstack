@@ -24,7 +24,8 @@ Prepared images for local development in [LAMP devstack](https://en.wikipedia.or
 
 ## Main features
 - architecture: `linux/amd64`
-- the current versions of **PHP** 8.1, 8.0, 7.4 and PHP 7.3
+- the current versions of **PHP** 8.1, 8.0 and 7.4
+- the legacy versions of **PHP** 7.3, 7.2, 7.1, 7.0, 5.6, 5.5 and 5.4 (with limited stability, unoptimized, unmaintained)
 - the current versions of **MariaDB** 10.3, 10.4, 10.5 and 10.6
 - the current version of **Apache** 2.4 (in non-CLI images)
 - the current version of **Xdebug** 3.1 (in debug images)
@@ -55,7 +56,6 @@ Prepared images for local development in [LAMP devstack](https://en.wikipedia.or
 - MySQL properly configured to `utf8mb4` as default charset and optional support of Windows Host
 - optimized for correct support timezones
 - optimized for small image size a fast load
-- the **Legacy versions of PHP** 7.2, 7.1, 7.0, 5.6, 5.5 and 5.4 (with limited stability, unoptimized, unmaintained)
 
 
 ## Basic usage
@@ -92,6 +92,7 @@ Images are tagged by the cascaded SemVer:
 **Legacy PHP** images are tagged by defferent strategy, only last one revision for each minor version, use `-legacy`
 tag suffix:
 
+- `jakubboucek/lamp-devstack-php:7.3-legacy`
 - `jakubboucek/lamp-devstack-php:7.2-legacy`
 - `jakubboucek/lamp-devstack-php:7.1-legacy`
 - `jakubboucek/lamp-devstack-php:7.0-legacy`
@@ -104,14 +105,14 @@ All PHP images has XDebug variants, use `-debug` tag suffix, example:
 - `jakubboucek/lamp-devstack-php:8-debug`
 - `jakubboucek/lamp-devstack-php:8.1-debug`
 - `jakubboucek/lamp-devstack-php:8.1.10-debug`
-- `jakubboucek/lamp-devstack-php:7.2-legacy-debug`
+- `jakubboucek/lamp-devstack-php:7.3-legacy-debug`
 
 All PHP images has CLI variants, use `-cli` tag suffix, example:
 - `jakubboucek/lamp-devstack-php:cli`
 - `jakubboucek/lamp-devstack-php:8-cli`
 - `jakubboucek/lamp-devstack-php:8.1-cli`
 - `jakubboucek/lamp-devstack-php:8.1.10-cli`
-- `jakubboucek/lamp-devstack-php:7.2-legacy-cli`
+- `jakubboucek/lamp-devstack-php:7.3-legacy-cli`
 
 
 ### Using MySQL

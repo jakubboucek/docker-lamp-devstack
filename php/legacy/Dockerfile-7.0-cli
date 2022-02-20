@@ -75,7 +75,7 @@ ENV PHP_OPCACHE_REVALIDATE_FREQ 2
 ENV PHP_OPCACHE_VALIDATE_TIMESTAMPS 1
 COPY opcache.ini /usr/local/etc/php/conf.d/opcache.ini
 
-# Setup Devstack (install Composer, setup DocumentRoot)
+# Setup Devstack (install Composer)
 RUN set -eux; \
     curl -sS https://getcomposer.org/installer -o /tmp/composer-setup.php; \
     php /tmp/composer-setup.php --1 --install-dir=/usr/local/bin --filename=composer; \
