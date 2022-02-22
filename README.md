@@ -11,6 +11,8 @@ Prepared images for local development in [LAMP devstack](https://en.wikipedia.or
     + [PHP configuration](#php-configuration) 
     + [Document Root](#document-root)
     + [Timezone](#timezone)
+    + [Temporary, Upload and Session storage directory](#temporary-upload-and-session-storage-directory)
+    + [Other PHP configurations](#other-php-configurations)
 * [Advanced usage](#advanced-usage)
     + [Xdebug](#xdebug)
     + [Debugging CLI with PhpStorm](#debugging-cli-with-phpstorm)
@@ -238,6 +240,52 @@ environment:
 
 The `TZ` environment variable is recognized by Linux, by that variable you modify the default timezone for the whole Linux
 operating system, PHP, and also MySQL.
+
+### Temporary, Upload and Session storage directory
+
+PHP is using native Linux temporary directory for all own temporary files (inlcuding Session and Upload storage). This
+image does not provide custom way to modify them. You can use the `TEMPDIR` environment variable to modify all of them.
+
+You can put it directly with `docker run`:
+
+```shell
+docker run -it --rm -e TEMPDIR=/var/www/temp jakubboucek/lamp-devstack-php
+```
+
+You can also put it to `docker-compose.yml` file:
+
+```yaml
+environment:
+  TEMPDIR: /var/www/temp
+```
+
+Note: The directory MUST already exists and MUST be writable to all users (`0777`), otherwise PHP can be unstable or
+can lost data (e.g. Sessions data). Moving temporary directory to volume binded to the Host can have a big impact
+on performance.
+
+The `TEMPDIR` environment variable is recognized by Linux, by that variable you modify the default temporary directory
+for the whole Linux operating system, PHP, and also MySQL.
+
+### Other PHP configurations
+
+Settings other than those listed above can be set by INI file. You can inject it to `/usr/local/etc/php/conf.d`
+directory through [Volume mounting](https://docs.docker.com/storage/volumes/#choose-the--v-or---mount-flag)
+without building custom image.
+
+Create `custom.ini` file to Your project's root, example:
+
+```ini
+sendmail_from = any@my-domain.tld
+```
+
+Mount file to container by `volume` directive to `docker-compose.yml` file:
+
+```yaml
+volumes:
+  - "./custom.ini:/usr/local/etc/php/conf.d/custom.ini"
+```
+
+Check available [`docker-compose.yml`](docker-compose.yml) file to example of `volume` usage.
 
 ## Advanced usage
 
