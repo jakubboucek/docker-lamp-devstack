@@ -57,7 +57,7 @@ Images for local development in [LAMP devstack](https://en.wikipedia.org/wiki/LA
     use it in guest shell  
 - MySQL properly configured to `utf8mb4` as a default charset, optional support of Windows Host also available
 - timezones are correctly supported
-- optimized for small image size a short load times
+- optimized for small image size and short load times
 
 
 ## Basic usage
