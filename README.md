@@ -27,7 +27,8 @@ Images for local development in [LAMP devstack](https://en.wikipedia.org/wiki/LA
 ## Main features
 - architecture: `linux/amd64`
 - with current **PHP** versions: 8.1, 8.0 and 7.4
-- unsupported **PHP** versions also available: 7.3, 7.2, 7.1, 7.0, 5.6, 5.5 and 5.4 (with limited stability, unoptimized, unmaintained)
+- unsupported **PHP** versions also available: 7.3, 7.2, 7.1, 7.0, 5.6, 5.5 and 5.4 (with limited stability,
+unoptimized, unmaintained)
 - current versions of **MariaDB** 10.3, 10.4, 10.5 and 10.6
 - current version of **Apache** 2.4 (in non-CLI images)
 - current version of **Xdebug** 3.1 (in debug images)
@@ -140,9 +141,9 @@ From docker guest, MySQL is accessible using:
 - host: `mysqldb`
 - port: `3306`
 
-If you are connecting to the MySQL server from a PHP application running inside Docker, use the docker guest access values, but when you're
-connecting from outside (for example, from your computer, using [HeidiSQL](https://www.heidisql.com/)
-or [Sequel](https://sequel-ace.com/)), use host access.
+If you are connecting to the MySQL server from a PHP application running inside Docker, use the docker guest access
+values, but when you're connecting from outside (for example, from your computer, using
+[HeidiSQL](https://www.heidisql.com/) or [Sequel](https://sequel-ace.com/)), use host access.
 
 PHP example:
 ```php
@@ -222,8 +223,8 @@ environment:
 
 ### Timezone
 
-The default timezone is not defined (`UTC` will be used). You can modify the default timezone by setting the `TZ` environment variable
-to the desired timezone name (e.g., `Europe/Prague`).
+The default timezone is not defined (`UTC` will be used). You can modify the default timezone by setting the `TZ`
+environment variable to the desired timezone name (e.g., `Europe/Prague`).
 
 It can also be specified directly with `docker run`:
 
@@ -238,13 +239,14 @@ environment:
     TZ: Europe/Prague
 ```
 
-The `TZ` environment variable is recognized by Linux tools as well. By creating the variable you modify the default timezone for the whole Linux
-operating system, PHP, and also MySQL.
+The `TZ` environment variable is recognized by Linux tools as well. By creating the variable you modify the default
+timezone for the whole Linux operating system, PHP, and also MySQL.
 
 ### Temporary, upload and session storage directory
 
 PHP is using native Linux temporary directory for all own temporary files (including session and upload storage). This
-image does not provide any custom way to modify them. You can use the `TEMPDIR` environment variable to modify all of them.
+image does not provide any custom way to modify them. You can use the `TEMPDIR` environment variable to modify all of
+them.
 
 You can specify it directly with `docker run`:
 
@@ -260,11 +262,11 @@ environment:
 ```
 
 Note: The directory MUST already exists and MUST be writable for all users (`0777`), otherwise PHP can be unstable or
-can lose data (e.g. sessions data). Moving the temporary directory to a volume shared with the Host can have a big impact
-on performance.
+can lose data (e.g. sessions data). Moving the temporary directory to a volume shared with the Host can have a big
+impact on performance.
 
-The `TEMPDIR` environment variable is also recognized by Linux tools. By setting that variable you modify the default temporary directory
-for the whole Linux operating system, PHP, and also MySQL.
+The `TEMPDIR` environment variable is also recognized by Linux tools. By setting that variable you modify the default
+temporary directory for the whole Linux operating system, PHP, and also MySQL.
 
 ### Other PHP configurations
 
@@ -317,8 +319,8 @@ environment:
     #                                                ^^^^^^^^^^^^^^^^^^^^^^^
 ```
 
-Starting with Xdebug 3.1, Profiler a Tracing outputs are compressed with GZip. You can turn off GZip compression through the `XDEBUG_CONFIG` environment
-variable with `use_compression` parameter and value `false`.
+Starting with Xdebug 3.1, Profiler a Tracing outputs are compressed with GZip. You can turn off GZip compression through
+the `XDEBUG_CONFIG` environment variable with `use_compression` parameter and value `false`.
 
 In [`docker-compose.yml`](docker-compose-debug.yml) file modify `environment` section, for example:
 
@@ -333,7 +335,8 @@ environment:
 With PhpStorm, you can also debug CLI scripts. First, you need to set the Server name,
 [PhpStorm requires it for path mapping](https://blog.jetbrains.com/phpstorm/2012/03/new-in-4-0-easier-debugging-of-remote-php-command-line-scripts/).
 
-In [`docker-compose.yml`](docker-compose-debug.yml) file, add `PHP_IDE_CONFIG` environment variable with `serverName` parameter:
+In [`docker-compose.yml`](docker-compose-debug.yml) file, add `PHP_IDE_CONFIG` environment variable with `serverName`
+parameter:
 
 ```yaml
 environment:
