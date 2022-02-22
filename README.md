@@ -1,7 +1,7 @@
-# LAMP devstack as Docker
-Prepared images for local development in [LAMP devstack](https://en.wikipedia.org/wiki/LAMP_(software_bundle))
+# LAMP devstack Docker images
+Images for local development in [LAMP devstack](https://en.wikipedia.org/wiki/LAMP_(software_bundle))
 
-* [Builded images](#builded-images)
+* [Built images](#built-images)
 * [Main features](#main-features)
 * [Basic usage](#basic-usage)
     + [Version tags](#version-tags)
@@ -11,7 +11,7 @@ Prepared images for local development in [LAMP devstack](https://en.wikipedia.or
     + [PHP configuration](#php-configuration) 
     + [Document Root](#document-root)
     + [Timezone](#timezone)
-    + [Temporary, Upload and Session storage directory](#temporary-upload-and-session-storage-directory)
+    + [Temporary, upload and session storage directory](#temporary-upload-and-session-storage-directory)
     + [Other PHP configurations](#other-php-configurations)
 * [Advanced usage](#advanced-usage)
     + [Xdebug](#xdebug)
@@ -19,23 +19,23 @@ Prepared images for local development in [LAMP devstack](https://en.wikipedia.or
 * [Building notes](#building-notes)
 
 
-## Builded images
+## Built images
 
 - PHP: [`jakubboucek/lamp-devstack-php`](https://hub.docker.com/r/jakubboucek/lamp-devstack-php)
 - MySQL: [`jakubboucek/lamp-devstack-mysql`](https://hub.docker.com/r/jakubboucek/lamp-devstack-mysql)
 
 ## Main features
 - architecture: `linux/amd64`
-- the current versions of **PHP** 8.1, 8.0 and 7.4
-- the legacy versions of **PHP** 7.3, 7.2, 7.1, 7.0, 5.6, 5.5 and 5.4 (with limited stability, unoptimized, unmaintained)
-- the current versions of **MariaDB** 10.3, 10.4, 10.5 and 10.6
-- the current version of **Apache** 2.4 (in non-CLI images)
-- the current version of **Xdebug** 3.1 (in debug images)
-- PHP has added extensions:
+- with current **PHP** versions: 8.1, 8.0 and 7.4
+- unsupported **PHP** versions also available: 7.3, 7.2, 7.1, 7.0, 5.6, 5.5 and 5.4 (with limited stability, unoptimized, unmaintained)
+- current versions of **MariaDB** 10.3, 10.4, 10.5 and 10.6
+- current version of **Apache** 2.4 (in non-CLI images)
+- current version of **Xdebug** 3.1 (in debug images)
+- extra PHP extensions:
     [`bmath`](https://www.php.net/manual/en/book.bc.php),
     [`bz2`](https://www.php.net/manual/en/book.bzip2.php),
     [`exif`](https://www.php.net/manual/en/book.exif.php),
-    [`gd`](https://www.php.net/manual/en/book.image.php) with support PNG, WebP, AVIF (for PHP 8.1) and FreeType fonts,
+    [`gd`](https://www.php.net/manual/en/book.image.php) with PNG, WebP, AVIF (for PHP 8.1), FreeType fonts support
     [`gettext`](https://www.php.net/manual/en/book.gettext.php),
     [`gmp`](https://www.php.net/manual/en/book.gmp.php),
     [`imap`](https://www.php.net/manual/en/book.imap.php),
@@ -49,26 +49,26 @@ Prepared images for local development in [LAMP devstack](https://en.wikipedia.or
     [`sodium`](https://www.php.net/manual/en/book.sodium.php),
     [`xsl`](https://www.php.net/manual/en/book.xsl.php) and
     [`zip`](https://www.php.net/manual/en/book.zip.php)
-- Apache activated modules: [`expires`](https://httpd.apache.org/docs/current/mod/mod_expires.html),
+- Apache modules: [`expires`](https://httpd.apache.org/docs/current/mod/mod_expires.html),
     [`headers`](https://httpd.apache.org/docs/current/mod/mod_headers.html) and
     [`rewrite`](https://httpd.apache.org/docs/current/mod/mod_rewrite.html)
 - Apache `DocumentRoot` changed to: `/var/www/html/www` (configurable by ENV)
-- PHP image has also pre-installed [Composer 2.2+](https://getcomposer.org/) and [Git 2.30+](https://git-scm.com/) to 
+- PHP image comes with [Composer 2.2+](https://getcomposer.org/) and [Git 2.30+](https://git-scm.com/) to 
     use it in guest shell  
-- MySQL properly configured to `utf8mb4` as default charset and optional support of Windows Host
-- optimized for correct support timezones
-- optimized for small image size a fast load
+- MySQL properly configured to `utf8mb4` as a default charset, optional support of Windows Host also available
+- timezones are correctly supported
+- optimized for small image size a short load times
 
 
 ## Basic usage
 Copy the [`docker-compose.yml`](docker-compose.yml) file
 ([download](https://downfile.github.io/download?url=https%3A//raw.githubusercontent.com/jakubboucek/docker-lamp-devstack/master/docker-compose.yml&file=docker-compose.yml))
-to Your project's root (you needn't clone/download whole repo, just copy the one file).
+to your project's root (you don't need to clone/download the whole repo, just copy that one file).
 
-Call `docker compose up`. After docker containers runs, your project will be served at http://localhost:8080/.
+Call `docker compose up`. After docker container runs, your project will be served at http://localhost:8080/.
 
-Served is the only directory `/www` from your project, but PHP scripts has access to whole project's root.  
-That's mean, your application is no public accessible from the web, only `/www` directory.
+Only `/www` subdirectory from your project is served but PHP scripts have access to the whole project's root.  
+That means, only the `/www` subdirectory is publicly accessible from web, not your whole application.
 
 Example:
 ```
@@ -80,7 +80,7 @@ my_project/                 <-- project's root
         gallery/
             photo1.jpg      <-- accessible at http://localhost:8080/gallery/photo1.jpg
     vendor/
-        autoload.php        <-- not accessible from web, but PHP can: require(__DIR__ . '/../vendor/autoload.php')
+        autoload.php        <-- not accessible from web, but PHP can: require __DIR__ . '/../vendor/autoload.php'
 ```
 
 ### Version tags
@@ -91,7 +91,7 @@ Images are tagged by the cascaded SemVer:
 - `jakubboucek/lamp-devstack-php:8.1` – represents the highest PHP image of `8.1` version, but lower than `8.2.0`,
 - `jakubboucek/lamp-devstack-php:8.1.10` – represents most specific PHP image, directly version `8.1.10`.
 
-**Legacy PHP** images are tagged by defferent strategy, only last one revision for each minor version, use `-legacy`
+**Legacy PHP** images are tagged using different strategy, only last one revision for each minor version is available, use `-legacy`
 tag suffix:
 
 - `jakubboucek/lamp-devstack-php:7.3-legacy`
@@ -102,14 +102,14 @@ tag suffix:
 - `jakubboucek/lamp-devstack-php:5.5-legacy`
 - `jakubboucek/lamp-devstack-php:5.4-legacy`
 
-All PHP images has XDebug variants, use `-debug` tag suffix, example:
+All PHP images have alternative variants with XDebug extension preinstalled, use `-debug` tag suffix, example:
 - `jakubboucek/lamp-devstack-php:debug`
 - `jakubboucek/lamp-devstack-php:8-debug`
 - `jakubboucek/lamp-devstack-php:8.1-debug`
 - `jakubboucek/lamp-devstack-php:8.1.10-debug`
 - `jakubboucek/lamp-devstack-php:7.3-legacy-debug`
 
-All PHP images has CLI variants, use `-cli` tag suffix, example:
+All PHP images also have alternative CLI variants, use `-cli` tag suffix, example:
 - `jakubboucek/lamp-devstack-php:cli`
 - `jakubboucek/lamp-devstack-php:8-cli`
 - `jakubboucek/lamp-devstack-php:8.1-cli`
@@ -118,7 +118,7 @@ All PHP images has CLI variants, use `-cli` tag suffix, example:
 
 
 ### Using MySQL
-MySQL starts at the same time as web server.
+MySQL server starts at the same time as web server.
 
 Available MySQL images:
 
@@ -132,16 +132,16 @@ Default credentials:
 - password: `devstack`
 - database name: `default`
 
-From Host is MySQL accessible on:
+From Host, MySQL is accessible using:
 - host: `127.0.0.1`
 - port: `33060`
 
-From docker guest is MySQL accessible on:
+From docker guest, MySQL is accessible using:
 - host: `mysqldb`
 - port: `3306`
 
-That's mean, when you are connecting to MySQL from PHP application inside Docker, use the guest access, but when you
-connect from outside (from Your computer, for example the [HeidiSQL](https://www.heidisql.com/)
+When you are connecting to the MySQL server from a PHP application running inside Docker, use the docker guest access values, but when you're
+connecting from outside (for example from your computer, using [HeidiSQL](https://www.heidisql.com/)
 or [Sequel](https://sequel-ace.com/)), use host access.
 
 PHP example:
@@ -154,17 +154,17 @@ $mysqli->set_charset('utf8mb4');
 
 ### Windows issue
 
-MySQL maybe crash when Host is Windows platform: 
+MySQL may crash when Host is running Windows:
 
 ```
 The Auto-extending innodb_system data file './ibdata1' is of a different size 0 pages than specified in the .cnf file
 ```
 
-You can try to fix it with [`mysql-windows.cnf`](mysql/mysql-windows.cnf)
+You can try to fix it by adding [`mysql-windows.cnf`](mysql/mysql-windows.cnf)
 ([download](https://downfile.github.io/download?url=https%3A//raw.githubusercontent.com/jakubboucek/docker-lamp-devstack/master/mysql/mysql-windows.cnf))
-and add it to path `/etc/mysql/conf.d/` inside Docker container.
+and to your MySQL config directory `/etc/mysql/conf.d/` inside the Docker container.
 
-In `docker-compose.yml` file just link this downloaded file to `volume` section:
+In `docker-compose.yml` file, just link this downloaded file to `volume` section:
 
 ```yaml
 volumes:
@@ -176,11 +176,11 @@ volumes:
 
 ### PHP configuration 
 
-Certain [`php.ini` directives](https://www.php.net/manual/en/ini.list.php) can be modified without manipulating with
-image content, these feature using the environment variables. It can be defined in `ducker run` command or in
+Certain [`php.ini` directives](https://www.php.net/manual/en/ini.list.php) can be modified without manipulating the
+image content, using environment variables. It can be defined in `docker run` command or in
 `docker-compose.yml` file.
 
-Adjustable directives:
+Configurable directives:
  
 - `PHP_MAX_EXECUTION_TIME` – change the [`max_execution_time` directive](https://www.php.net/manual/en/info.configuration.php#ini.max-execution-time) (default value: `30`)
 - `PHP_MEMORY_LIMIT` – change the [`memory_limit` directive](https://www.php.net/manual/en/ini.core.php#ini.memory-limit) (default value: `2G`)
@@ -205,15 +205,15 @@ environment:
 
 ### Document Root
 
-Put custom `APACHE_DOCUMENT_ROOT` environment variable with path to Document Root as the value.
+Create custom `APACHE_DOCUMENT_ROOT` environment variable with path to Document Root as the value.
 
-You can put it directly with `docker run`:
+You can also specify it directly with `docker run`:
 
 ```shell
 docker run -it --rm -e APACHE_DOCUMENT_ROOT=/my-web jakubboucek/lamp-devstack-php
 ```
 
-You can also put it to `docker-compose.yml` file:
+You can also put it to your `docker-compose.yml` file:
 
 ```yaml
 environment:
@@ -222,94 +222,94 @@ environment:
 
 ### Timezone
 
-The default timezone is not defined (aka `UTC`). You can modify the default timezone by the `TZ` environment variable
-with timezone name as value (e.g.: `Europe/Prague`).
+The default timezone is not defined (`UTC` will be used). You can modify the default timezone by setting the `TZ` environment variable
+to the desired timezone name (e.g.: `Europe/Prague`).
 
-You can put it directly with `docker run`:
+It can also be specified directly with `docker run`:
 
 ```shell
 docker run -it --rm -e TZ=Europe/Prague jakubboucek/lamp-devstack-php
 ```
 
-You can also put it to `docker-compose.yml` file:
+Or in your `docker-compose.yml` file:
 
 ```yaml
 environment:
     TZ: Europe/Prague
 ```
 
-The `TZ` environment variable is recognized by Linux, by that variable you modify the default timezone for the whole Linux
+The `TZ` environment variable is recognized by Linux tools as well, by creating the variable you modify the default timezone for the whole Linux
 operating system, PHP, and also MySQL.
 
-### Temporary, Upload and Session storage directory
+### temporary, upload and session storage directory
 
-PHP is using native Linux temporary directory for all own temporary files (inlcuding Session and Upload storage). This
-image does not provide custom way to modify them. You can use the `TEMPDIR` environment variable to modify all of them.
+PHP is using native Linux temporary directory for all own temporary files (inlcuding session and upload storage). This
+image does not provide any custom way to modify them. You can use the `TEMPDIR` environment variable to modify all of them.
 
-You can put it directly with `docker run`:
+You can specify it directly with `docker run`:
 
 ```shell
 docker run -it --rm -e TEMPDIR=/var/www/temp jakubboucek/lamp-devstack-php
 ```
 
-You can also put it to `docker-compose.yml` file:
+Or in the `docker-compose.yml` file:
 
 ```yaml
 environment:
   TEMPDIR: /var/www/temp
 ```
 
-Note: The directory MUST already exists and MUST be writable to all users (`0777`), otherwise PHP can be unstable or
-can lost data (e.g. Sessions data). Moving temporary directory to volume binded to the Host can have a big impact
+Note: The directory MUST already exists and MUST be writable for all users (`0777`), otherwise PHP can be unstable or
+can lose data (e.g. sessions data). Moving temporary directory to volume shared with the Host can have a big impact
 on performance.
 
-The `TEMPDIR` environment variable is recognized by Linux, by that variable you modify the default temporary directory
+The `TEMPDIR` environment variable is also recognized by Linux tools, by setting that variable you modify the default temporary directory
 for the whole Linux operating system, PHP, and also MySQL.
 
 ### Other PHP configurations
 
-Settings other than those listed above can be set by INI file. You can inject it to `/usr/local/etc/php/conf.d`
-directory through [Volume mounting](https://docs.docker.com/storage/volumes/#choose-the--v-or---mount-flag)
-without building custom image.
+Settings other than those listed above can be set in your INI file. You can add it to `/usr/local/etc/php/conf.d`
+directory using [Volume mounting](https://docs.docker.com/storage/volumes/#choose-the--v-or---mount-flag)
+without building a custom image.
 
-Create `custom.ini` file to Your project's root, example:
+Create `custom.ini` file in your project's root, for example:
 
 ```ini
 sendmail_from = any@my-domain.tld
 ```
 
-Mount file to container by `volume` directive to `docker-compose.yml` file:
+Mount the file to the container using the `volume` directive in your `docker-compose.yml` file:
 
 ```yaml
 volumes:
   - "./custom.ini:/usr/local/etc/php/conf.d/custom.ini"
 ```
 
-Check available [`docker-compose.yml`](docker-compose.yml) file to example of `volume` usage.
+Check available [`docker-compose.yml`](docker-compose.yml) file for an example of how to use the `volume` directive.
 
 ## Advanced usage
 
 ### Xdebug
 
-Prepared is PHP with Xdebug variant too. Use [`docker-compose-debug.yml`](docker-compose-debug.yml)
+I've also prepared a PHP image with Xdebug. Use [`docker-compose-debug.yml`](docker-compose-debug.yml)
 ([download](https://downfile.github.io/download?url=https%3A//raw.githubusercontent.com/jakubboucek/docker-lamp-devstack/master/docker-compose-debug.yml&file=docker-compose.yml))
 instead (copy and rename it to `docker-compose.yml`).
 
-Xdebug is not started by default, you must call requests with [relevant Trigger](https://xdebug.org/docs/all_settings#start_with_request#trigger)
-(tip: [how to fire Triggers from your Browser](https://www.jetbrains.com/help/phpstorm/2021.1/browser-debugging-extensions.html)).
+Xdebug is not started by default, you must call requests with [relevant trigger](https://xdebug.org/docs/all_settings#start_with_request#trigger)
+(tip: [how to fire triggers from your browser](https://www.jetbrains.com/help/phpstorm/2021.1/browser-debugging-extensions.html)).
 
-Xdebug has enabled features:
+These features are enabled in Xdebug:
 
 - [`Profiler`](https://xdebug.org/docs/profiler)
 - [`Step Debugger`](https://xdebug.org/docs/step_debug)
 - [`Tracing`](https://xdebug.org/docs/trace)
 
-Profiler a Tracing outputs are saved to `/var/www/html/log` directory inside Container. Thats means the output files are
+Profiler a Tracing outputs are saved to `/var/www/html/log` directory inside Container. Output files are
 propagated to the Host to `log/` directory (this directory must be manually created first).
 
-You can change output directory through Environment variable `XDEBUG_CONFIG` with `output_dir` parameter.
+You can change output directory through `XDEBUG_CONFIG` environment variable  with `output_dir` parameter.
 
-In [`docker-compose.yml`](docker-compose-debug.yml) file just modify `environment` section:
+In [`docker-compose.yml`](docker-compose-debug.yml) file modify the `environment` section, for example:
 
 ```yaml
 environment:
@@ -317,10 +317,10 @@ environment:
     #                                                ^^^^^^^^^^^^^^^^^^^^^^^
 ```
 
-Form Xdebug 3.1 Profiler a Tracing outputs are compressed by GZip. You can turn off GZip compression through Environment
-variable `XDEBUG_CONFIG` with `use_compression` parameter and `false` value.
+Starting with Xdebug 3.1, Profiler a Tracing outputs are compressed with GZip. You can turn off GZip compression through the `XDEBUG_CONFIG` environment
+variable, with `use_compression` parameter and value `false`.
 
-In [`docker-compose.yml`](docker-compose-debug.yml) file just modify `environment` section:
+In [`docker-compose.yml`](docker-compose-debug.yml) file modify `environment` section, for example:
 
 ```yaml
 environment:
@@ -330,10 +330,10 @@ environment:
 
 ### Debugging CLI with PhpStorm
 
-With PhpStorm you can also debug the CLI scripts. But you need set the Server name,
-[PhpStorm requires it to mapping paths](https://blog.jetbrains.com/phpstorm/2012/03/new-in-4-0-easier-debugging-of-remote-php-command-line-scripts/).
+With PhpStorm, you can also debug CLI scripts. First, you need to set the Server name,
+[PhpStorm requires it for paths mapping](https://blog.jetbrains.com/phpstorm/2012/03/new-in-4-0-easier-debugging-of-remote-php-command-line-scripts/).
 
-In [`docker-compose.yml`](docker-compose-debug.yml) file just add Environment variable `PHP_IDE_CONFIG` with `serverName` parameter:
+In [`docker-compose.yml`](docker-compose-debug.yml) file, add `PHP_IDE_CONFIG` environment variable with `serverName` parameter:
 
 ```yaml
 environment:
@@ -341,4 +341,4 @@ environment:
 ```
 
 ## Building notes
-If you need build custom images based on this repo, see [Build notes](build-notes.md)
+If you need to build custom images based on this repo, see [Build notes](build-notes.md)
