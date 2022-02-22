@@ -55,7 +55,7 @@ Images for local development in [LAMP devstack](https://en.wikipedia.org/wiki/LA
 - Apache `DocumentRoot` changed to: `/var/www/html/www` (configurable by ENV)
 - PHP image comes with [Composer 2.2+](https://getcomposer.org/) and [Git 2.30+](https://git-scm.com/) to 
     use it in guest shell  
-- MySQL properly configured to `utf8mb4` as a default charset, optional support of Windows Host also available
+- MySQL properly configured to use `utf8mb4` as a default charset, an optional support of Windows Host is also available
 - timezones are correctly supported
 - optimized for small image size and short load times
 
@@ -68,7 +68,7 @@ to your project's root (you don't need to clone/download the whole repo, just co
 Call `docker compose up`. After docker container runs, your project will be served at http://localhost:8080/.
 
 Only `/www` subdirectory from your project is served but PHP scripts have access to the whole project's root.  
-That means, only the `/www` subdirectory is publicly accessible from web, not your whole application.
+That means only the `/www` subdirectory is publicly accessible from web, not your whole application.
 
 Example:
 ```
@@ -80,7 +80,7 @@ my_project/                 <-- project's root
         gallery/
             photo1.jpg      <-- accessible at http://localhost:8080/gallery/photo1.jpg
     vendor/
-        autoload.php        <-- not accessible from web, but PHP can: require __DIR__ . '/../vendor/autoload.php'
+        autoload.php        <-- not accessible but PHP can via: require(__DIR__ . '/../vendor/autoload.php')
 ```
 
 ### Version tags
@@ -91,8 +91,8 @@ Images are tagged by the cascaded SemVer:
 - `jakubboucek/lamp-devstack-php:8.1` – represents the highest PHP image of `8.1` version, but lower than `8.2.0`,
 - `jakubboucek/lamp-devstack-php:8.1.10` – represents most specific PHP image, directly version `8.1.10`.
 
-**Legacy PHP** images are tagged using different strategy, only last one revision for each minor version is available, use `-legacy`
-tag suffix:
+**Legacy PHP** images are tagged using different strategy, only latest revision for each minor version is available,
+use `-legacy` tag suffix:
 
 - `jakubboucek/lamp-devstack-php:7.3-legacy`
 - `jakubboucek/lamp-devstack-php:7.2-legacy`
@@ -118,7 +118,7 @@ All PHP images also have alternative CLI variants, use `-cli` tag suffix, exampl
 
 
 ### Using MySQL
-MySQL server starts at the same time as web server.
+MySQL server starts at the same time as the web server.
 
 Available MySQL images:
 
@@ -140,8 +140,8 @@ From docker guest, MySQL is accessible using:
 - host: `mysqldb`
 - port: `3306`
 
-When you are connecting to the MySQL server from a PHP application running inside Docker, use the docker guest access values, but when you're
-connecting from outside (for example from your computer, using [HeidiSQL](https://www.heidisql.com/)
+If you are connecting to the MySQL server from a PHP application running inside Docker, use the docker guest access values, but when you're
+connecting from outside (for example, from your computer, using [HeidiSQL](https://www.heidisql.com/)
 or [Sequel](https://sequel-ace.com/)), use host access.
 
 PHP example:
@@ -162,7 +162,7 @@ The Auto-extending innodb_system data file './ibdata1' is of a different size 0 
 
 You can try to fix it by adding [`mysql-windows.cnf`](mysql/mysql-windows.cnf)
 ([download](https://downfile.github.io/download?url=https%3A//raw.githubusercontent.com/jakubboucek/docker-lamp-devstack/master/mysql/mysql-windows.cnf))
-and to your MySQL config directory `/etc/mysql/conf.d/` inside the Docker container.
+and add it to the MySQL config directory `/etc/mysql/conf.d/` inside the Docker container.
 
 In `docker-compose.yml` file, just link this downloaded file to `volume` section:
 
@@ -205,7 +205,7 @@ environment:
 
 ### Document Root
 
-Create custom `APACHE_DOCUMENT_ROOT` environment variable with path to Document Root as the value.
+Create custom `APACHE_DOCUMENT_ROOT` environment variable with the path to Document Root as the value.
 
 You can also specify it directly with `docker run`:
 
@@ -223,7 +223,7 @@ environment:
 ### Timezone
 
 The default timezone is not defined (`UTC` will be used). You can modify the default timezone by setting the `TZ` environment variable
-to the desired timezone name (e.g.: `Europe/Prague`).
+to the desired timezone name (e.g., `Europe/Prague`).
 
 It can also be specified directly with `docker run`:
 
@@ -238,12 +238,12 @@ environment:
     TZ: Europe/Prague
 ```
 
-The `TZ` environment variable is recognized by Linux tools as well, by creating the variable you modify the default timezone for the whole Linux
+The `TZ` environment variable is recognized by Linux tools as well. By creating the variable you modify the default timezone for the whole Linux
 operating system, PHP, and also MySQL.
 
-### temporary, upload and session storage directory
+### Temporary, upload and session storage directory
 
-PHP is using native Linux temporary directory for all own temporary files (inlcuding session and upload storage). This
+PHP is using native Linux temporary directory for all own temporary files (including session and upload storage). This
 image does not provide any custom way to modify them. You can use the `TEMPDIR` environment variable to modify all of them.
 
 You can specify it directly with `docker run`:
@@ -260,10 +260,10 @@ environment:
 ```
 
 Note: The directory MUST already exists and MUST be writable for all users (`0777`), otherwise PHP can be unstable or
-can lose data (e.g. sessions data). Moving temporary directory to volume shared with the Host can have a big impact
+can lose data (e.g. sessions data). Moving the temporary directory to a volume shared with the Host can have a big impact
 on performance.
 
-The `TEMPDIR` environment variable is also recognized by Linux tools, by setting that variable you modify the default temporary directory
+The `TEMPDIR` environment variable is also recognized by Linux tools. By setting that variable you modify the default temporary directory
 for the whole Linux operating system, PHP, and also MySQL.
 
 ### Other PHP configurations
@@ -307,7 +307,7 @@ These features are enabled in Xdebug:
 Profiler a Tracing outputs are saved to `/var/www/html/log` directory inside Container. Output files are
 propagated to the Host to `log/` directory (this directory must be manually created first).
 
-You can change output directory through `XDEBUG_CONFIG` environment variable  with `output_dir` parameter.
+You can change the output directory through `XDEBUG_CONFIG` environment variable  with `output_dir` parameter.
 
 In [`docker-compose.yml`](docker-compose-debug.yml) file modify the `environment` section, for example:
 
@@ -318,7 +318,7 @@ environment:
 ```
 
 Starting with Xdebug 3.1, Profiler a Tracing outputs are compressed with GZip. You can turn off GZip compression through the `XDEBUG_CONFIG` environment
-variable, with `use_compression` parameter and value `false`.
+variable with `use_compression` parameter and value `false`.
 
 In [`docker-compose.yml`](docker-compose-debug.yml) file modify `environment` section, for example:
 
@@ -331,7 +331,7 @@ environment:
 ### Debugging CLI with PhpStorm
 
 With PhpStorm, you can also debug CLI scripts. First, you need to set the Server name,
-[PhpStorm requires it for paths mapping](https://blog.jetbrains.com/phpstorm/2012/03/new-in-4-0-easier-debugging-of-remote-php-command-line-scripts/).
+[PhpStorm requires it for path mapping](https://blog.jetbrains.com/phpstorm/2012/03/new-in-4-0-easier-debugging-of-remote-php-command-line-scripts/).
 
 In [`docker-compose.yml`](docker-compose-debug.yml) file, add `PHP_IDE_CONFIG` environment variable with `serverName` parameter:
 
