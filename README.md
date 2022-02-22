@@ -272,7 +272,7 @@ Settings other than those listed above can be set by INI file. You can inject it
 directory through [Volume mounting](https://docs.docker.com/storage/volumes/#choose-the--v-or---mount-flag)
 without building custom image.
 
-Create `custom.ini` file to Your project's root:
+Create `custom.ini` file to Your project's root, example:
 
 ```ini
 sendmail_from = any@my-domain.tld
