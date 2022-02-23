@@ -35,6 +35,7 @@ unoptimized, unmaintained)
 - extra PHP extensions:
     [`bmath`](https://www.php.net/manual/en/book.bc.php),
     [`bz2`](https://www.php.net/manual/en/book.bzip2.php),
+    [`calendar`](https://www.php.net/manual/en/book.calendar.php),
     [`exif`](https://www.php.net/manual/en/book.exif.php),
     [`gd`](https://www.php.net/manual/en/book.image.php) with PNG, WebP, AVIF (for PHP 8.1), FreeType fonts support
     [`gettext`](https://www.php.net/manual/en/book.gettext.php),
@@ -45,6 +46,7 @@ unoptimized, unmaintained)
     [`pdo_mysql`](https://www.php.net/manual/en/book.pdo.php),
     [`opcache`](https://www.php.net/manual/en/book.opcache.php),
     [`pcntl`](https://www.php.net/manual/en/book.pcntl.php),
+    [`semaphore`](https://www.php.net/manual/en/book.sem.php),
     [`sockets`](https://www.php.net/manual/en/book.sockets.php),
     [`soap`](https://www.php.net/manual/en/book.soap.php),
     [`sodium`](https://www.php.net/manual/en/book.sodium.php),
