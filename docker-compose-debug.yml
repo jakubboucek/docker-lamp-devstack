@@ -23,4 +23,4 @@ services:
             - "127.0.0.1:33060:3306"
         restart: always
         volumes:
-            - "./docker/mysql/data:/var/lib/mysql"
+            - "./.docker/mysql/data:/var/lib/mysql"
