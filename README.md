@@ -178,7 +178,7 @@ In `docker-compose.yml` file, just link this downloaded file to `volume` section
 
 ```yaml
 volumes:
-    - "./docker/mysql/data:/var/lib/mysql"
+    - "./.docker/mysql/data:/var/lib/mysql"
     - "./mysql-windows.cnf:/etc/mysql/conf.d/mysql-windows.cnf"
 ```
 
