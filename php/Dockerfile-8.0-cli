@@ -70,6 +70,7 @@ RUN set -eux; \
 # Configure Apache & PHP
 ENV PHP_MAX_EXECUTION_TIME 30
 ENV PHP_MEMORY_LIMIT 2G
+ENV PHP_SESSION_SAVE_PATH ""
 COPY core.ini /usr/local/etc/php/conf.d/core.ini
 
 # Configure OPcache
