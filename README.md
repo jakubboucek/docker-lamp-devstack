@@ -26,8 +26,8 @@ Images for local development in [LAMP devstack](https://en.wikipedia.org/wiki/LA
 
 ## Main features
 - architecture: `linux/amd64`
-- with current **PHP** versions: 8.1, 8.0 and 7.4
-- unsupported **PHP** versions also available: 7.3, 7.2, 7.1, 7.0, 5.6, 5.5 and 5.4 (with limited stability,
+- with current **PHP** versions: 8.1, 8.0, 7.4 and Alpha1 pre-release of 8.2
+- with unsupported **PHP** versions also available: 7.3, 7.2, 7.1, 7.0, 5.6, 5.5 and 5.4 (with limited stability,
 unoptimized, unmaintained)
 - current versions of **MariaDB** 10.3, 10.4, 10.5, 10.6, 10.7, 10.8 and RC pre-release of 10.9
 - current version of **Apache** 2.4 (in non-CLI images)
@@ -56,7 +56,7 @@ unoptimized, unmaintained)
     [`headers`](https://httpd.apache.org/docs/current/mod/mod_headers.html) and
     [`rewrite`](https://httpd.apache.org/docs/current/mod/mod_rewrite.html)
 - Apache `DocumentRoot` changed to: `/var/www/html/www` (configurable by ENV)
-- PHP image comes with [Composer 2.2+](https://getcomposer.org/) and [Git 2.30+](https://git-scm.com/) to 
+- PHP image comes with [Composer 2.3+](https://getcomposer.org/) and [Git 2.30+](https://git-scm.com/) to 
     use it in guest shell  
 - MySQL properly configured to use `utf8mb4` as a default charset, an optional support of Windows Host is also available
 - timezones are correctly supported
@@ -111,12 +111,14 @@ All PHP images have alternative variants with XDebug extension preinstalled, use
 - `jakubboucek/lamp-devstack-php:8.1-debug`
 - `jakubboucek/lamp-devstack-php:8.1.10-debug`
 - `jakubboucek/lamp-devstack-php:7.3-legacy-debug`
+(PHP 8.2 doesn't support Xdebug yet)
 
 All PHP images also have alternative CLI variants, use `-cli` tag suffix, example:
 - `jakubboucek/lamp-devstack-php:cli`
 - `jakubboucek/lamp-devstack-php:8-cli`
 - `jakubboucek/lamp-devstack-php:8.1-cli`
 - `jakubboucek/lamp-devstack-php:8.1.10-cli`
+- `jakubboucek/lamp-devstack-php:8.2-rc-cli`
 - `jakubboucek/lamp-devstack-php:7.3-legacy-cli`
 
 
