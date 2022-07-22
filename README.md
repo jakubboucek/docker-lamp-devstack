@@ -26,7 +26,7 @@ Images for local development in [LAMP devstack](https://en.wikipedia.org/wiki/LA
 
 ## Main features
 - architecture: `linux/amd64`
-- with current **PHP** versions: 8.1, 8.0, 7.4 and Alpha1 pre-release of 8.2
+- with current **PHP** versions: 8.1, 8.0, 7.4 and pre-release of 8.2
 - with unsupported **PHP** versions also available: 7.3, 7.2, 7.1, 7.0, 5.6, 5.5 and 5.4 (with limited stability,
 unoptimized, unmaintained)
 - current versions of **MariaDB** 10.3, 10.4, 10.5, 10.6, 10.7, 10.8 and RC pre-release of 10.9
