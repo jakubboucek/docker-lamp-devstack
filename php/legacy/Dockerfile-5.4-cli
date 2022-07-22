@@ -26,9 +26,11 @@ RUN set -eux; \
         libjpeg62-turbo-dev \
         libkrb5-dev \
         libmcrypt-dev \
+        libmemcached-dev \
         libpng-dev \
         libxslt-dev \
         libzip-dev \
+        libz-dev \
         nano \
         openssl \
         tzdata \
@@ -73,6 +75,13 @@ ENV PHP_MAX_EXECUTION_TIME 30
 ENV PHP_MEMORY_LIMIT 2G
 ENV PHP_SESSION_SAVE_PATH ""
 COPY core.ini /usr/local/etc/php/conf.d/core.ini
+
+# Install Mecached extension
+RUN set -eux; \
+    pecl install memcached-2.2.0; \
+    pecl clear-cache; \
+    docker-php-ext-enable memcached; \
+    rm -rf /tmp/* /var/tmp/*;
 
 # Setup Devstack (install Composer)
 RUN set -eux; \

@@ -27,11 +27,13 @@ RUN set -eux; \
         libicu-dev \
         libjpeg62-turbo-dev \
         libkrb5-dev \
+        libmemcached-dev \
         libpng-dev \
         libsodium-dev \
         libwebp-dev \
         libxslt-dev \
         libzip-dev \
+        libz-dev \
         nano \
         openssl \
         tzdata \
@@ -89,6 +91,13 @@ COPY opcache.ini /usr/local/etc/php/conf.d/opcache.ini
 
 # Move Apache Document root to sub-directory `www` (PHP frameworks convention)
 ENV APACHE_DOCUMENT_ROOT /var/www/html/www
+
+# Install Mecached extension
+RUN set -eux; \
+    pecl install memcached; \
+    pecl clear-cache; \
+    docker-php-ext-enable memcached; \
+    rm -rf /tmp/* /var/tmp/*;
 
 # Setup Devstack (install Composer, setup DocumentRoot)
 RUN set -eux; \
