@@ -1,7 +1,7 @@
 FROM php:8.2-rc-cli-bullseye
 
 LABEL maintainer="Jakub Bouček <pan@jakubboucek.cz>"
-LABEL org.label-schema.name="PHP 8.2 (Alpha 1, CLI)"
+LABEL org.label-schema.name="PHP 8.2 (Prerelease, CLI)"
 LABEL org.label-schema.vcs-url="https://github.com/jakubboucek/docker-lamp-devstack"
 
 # Workdir during installation
