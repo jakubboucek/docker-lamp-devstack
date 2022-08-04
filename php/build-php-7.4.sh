@@ -25,6 +25,7 @@ if [ "${NO_TEST:-0}" -ne "1" ]; then
     docker run --rm jakubboucek/lamp-devstack-php:7.4 php --version
     docker run --rm jakubboucek/lamp-devstack-php:7.4-debug php --version
     docker run --rm jakubboucek/lamp-devstack-php:7.4 php -r "echo implode(', ', get_loaded_extensions()) . PHP_EOL;"
+    docker run --rm jakubboucek/lamp-devstack-php:7.4-debug php -r "echo implode(', ', get_loaded_extensions()) . PHP_EOL;"
     docker run --rm jakubboucek/lamp-devstack-php:7.4 php -r "var_export(gd_info()) . PHP_EOL;"
 fi
 
