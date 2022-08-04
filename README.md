@@ -196,6 +196,8 @@ image content, using environment variables. It can be defined in `docker run` co
 
 Configurable directives:
  
+- `PHP_ERROR_LOG` – change the [`error_log` directive](https://www.php.net/manual/en/errorfunc.configuration.php#ini.error-log) (default value: *empty*)
+- `PHP_LOG_ERRORS` – change the [`log_errors` directive](https://www.php.net/manual/en/errorfunc.configuration.php#ini.log-errors) (default value: `0`)
 - `PHP_MAX_EXECUTION_TIME` – change the [`max_execution_time` directive](https://www.php.net/manual/en/info.configuration.php#ini.max-execution-time) (default value: `30`)
 - `PHP_MEMORY_LIMIT` – change the [`memory_limit` directive](https://www.php.net/manual/en/ini.core.php#ini.memory-limit) (default value: `2G`)
 - `PHP_SESSION_SAVE_PATH` – change the [`session.save_path` directive](https://www.php.net/manual/en/session.configuration.php#ini.session.save-path) (default value: *empty*)
@@ -255,6 +257,8 @@ environment:
 
 The `TZ` environment variable is recognized by Linux tools as well. By creating the variable you modify the default
 timezone for the whole Linux operating system, PHP, and also MySQL.
+
+At PHP since version 8.2 is `TZ` variable set to `'UTC'` by default (otherwise is empty). 
 
 ### Temporary, upload and session storage directory
 
