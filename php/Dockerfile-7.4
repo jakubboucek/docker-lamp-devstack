@@ -74,6 +74,8 @@ RUN set -eux; \
     rm -rf /var/lib/apt/lists/* /var/lib/log/* /tmp/* /var/tmp/*;
 
 # Configure Apache & PHP
+ENV PHP_ERROR_LOG ""
+ENV PHP_LOG_ERRORS 0
 ENV PHP_MAX_EXECUTION_TIME 30
 ENV PHP_MEMORY_LIMIT 2G
 ENV PHP_SESSION_SAVE_PATH ""
