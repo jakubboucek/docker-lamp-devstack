@@ -26,11 +26,13 @@ RUN set -eux; \
         libicu-dev \
         libjpeg62-turbo-dev \
         libkrb5-dev \
+        libmemcached-dev \
         libpng-dev \
         libsodium-dev \
         libwebp-dev \
         libxslt-dev \
         libzip-dev \
+        zlib1g-dev \
         nano \
         openssl \
         tzdata \
@@ -80,6 +82,13 @@ ENV PHP_OPCACHE_MEMORY_CONSUPTION 128
 ENV PHP_OPCACHE_REVALIDATE_FREQ 2
 ENV PHP_OPCACHE_VALIDATE_TIMESTAMPS 1
 COPY opcache.ini /usr/local/etc/php/conf.d/opcache.ini
+
+# Install Mecached extension
+RUN set -eux; \
+    pecl install memcached; \
+    pecl clear-cache; \
+    docker-php-ext-enable memcached; \
+    rm -rf /tmp/* /var/tmp/*;
 
 # Setup Devstack (install Composer)
 RUN set -eux; \

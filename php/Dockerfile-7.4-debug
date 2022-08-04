@@ -11,5 +11,6 @@ ARG DEBIAN_FRONTEND=noninteractive
 # Install Xdebug
 RUN set -eux; \
     pecl install xdebug; \
+    pecl clear-cache; \
     docker-php-ext-enable xdebug; \
     rm -rf /var/tmp/* /tmp/*;

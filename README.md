@@ -42,6 +42,7 @@ unoptimized, unmaintained)
     [`gmp`](https://www.php.net/manual/en/book.gmp.php),
     [`imap`](https://www.php.net/manual/en/book.imap.php),
     [`intl`](https://www.php.net/manual/en/book.intl.php),
+    [`memcached`](https://www.php.net/manual/en/book.memcached.php),
     [`mysqli`](https://www.php.net/manual/en/book.mysqli.php),
     [`pdo_mysql`](https://www.php.net/manual/en/book.pdo.php),
     [`opcache`](https://www.php.net/manual/en/book.opcache.php),
