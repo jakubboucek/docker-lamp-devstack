@@ -89,9 +89,6 @@ ENV PHP_OPCACHE_REVALIDATE_FREQ 2
 ENV PHP_OPCACHE_VALIDATE_TIMESTAMPS 1
 COPY opcache.ini /usr/local/etc/php/conf.d/opcache.ini
 
-# Move Apache Document root to sub-directory `www` (PHP frameworks convention)
-ENV APACHE_DOCUMENT_ROOT /var/www/html/www
-
 # Install Mecached extension
 RUN set -eux; \
     pecl install memcached-2.2.0; \
@@ -99,13 +96,21 @@ RUN set -eux; \
     docker-php-ext-enable memcached; \
     rm -rf /tmp/* /var/tmp/*;
 
-# Setup Devstack (install Composer, setup DocumentRoot)
+# Move Apache Document root to sub-directory `www` (PHP frameworks convention)
+ENV APACHE_DOCUMENT_ROOT /var/www/html/www
+
+# Configure Apache listening port
+ENV PORT 80
+
+# Setup Devstack (install Composer, setup DocumentRoot and Port)
 RUN set -eux; \
     curl -sS https://getcomposer.org/installer -o /tmp/composer-setup.php; \
     php /tmp/composer-setup.php --1 --install-dir=/usr/local/bin --filename=composer; \
     COMPOSER_BIN_DIR=$(composer global config bin-dir --absolute) 2>/dev/null; \
     echo "export PATH=${COMPOSER_BIN_DIR}:\${PATH}" >> ~/.bashrc; \
     sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf; \
+    sed -ri -e 's!:80>!:${PORT}>!g' /etc/apache2/sites-available/*.conf; \
+    sed -ri -e 's!Listen 80!Listen ${PORT}!g' /etc/apache2/ports.conf; \
     rm -rf /tmp/*;
 
 # Workdir after installation

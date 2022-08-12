@@ -12,6 +12,7 @@ Images for local development in [LAMP devstack](https://en.wikipedia.org/wiki/LA
     + [Document Root](#document-root)
     + [Timezone](#timezone)
     + [Temporary, upload and session storage directory](#temporary-upload-and-session-storage-directory)
+    + [Apache – listening port](#apache--listening-port)
     + [Other PHP configurations](#other-php-configurations)
 * [Advanced usage](#advanced-usage)
     + [Xdebug](#xdebug)
@@ -285,6 +286,32 @@ impact on performance.
 
 The `TEMPDIR` environment variable is also recognized by Linux tools. By setting that variable you modify the default
 temporary directory for the whole Linux operating system, PHP, and also MySQL.
+
+### Apache – listening port
+
+Apache is by default configured to listening on TCP port 80. You can use the `PORT` environment variable to modify
+port number where is apache listening to HTTP Requests.
+
+Note: This variable is affect Apache runtime only. When you change port value, don't forget manually publish that port
+to host, when you want to access it from here or expose port to use at network.
+
+You can specify it directly with `docker run`:
+
+```shell
+docker run -it --rm -e PORT=8080 -p 8080:8080 jakubboucek/lamp-devstack-php
+```
+
+Or in the `docker-compose.yml` file:
+
+```yaml
+ports:
+  - "8080:8080"
+environment:
+  PORT: 8080
+```
+
+The `PORT` environment variable is also used by most known services
+(e.g. [Google Cloud Run](https://cloud.google.com/run/docs/container-contract#port)).
 
 ### Other PHP configurations
 
