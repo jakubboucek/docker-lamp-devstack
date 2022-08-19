@@ -12,11 +12,10 @@ WORKDIR /tmp
 
 # Install Xdebug (master-dev version)
 RUN set -eux; \
-    # Rebuided package with fixed Xdebug bug #851 (https://github.com/xdebug/xdebug/pull/851)
-    curl https://jakubboucek.s3.amazonaws.com/static/temp-1y/xdebug-3.2.0alpha1.tgz -L -o xdebug-3.2.0alpha1.tgz; \
-    tar -xzf xdebug-3.2.0alpha1.tgz; \
-    rm xdebug-3.2.0alpha1.tgz; \
-    cd xdebug-3.2.0alpha1; \
+    curl https://xdebug.org/files/xdebug-3.2.0alpha2.tgz -L -o xdebug-3.2.0alpha2.tgz; \
+    tar -xzf xdebug-3.2.0alpha2.tgz; \
+    rm xdebug-3.2.0alpha2.tgz; \
+    cd xdebug-3.2.0alpha2; \
     phpize; \
     ./configure --enable-xdebug; \
     make -j$(nproc); \
