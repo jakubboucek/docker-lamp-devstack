@@ -73,6 +73,9 @@ RUN set -eux; \
     rm -rf /var/lib/apt/lists/* /var/lib/log/* /tmp/* /var/tmp/*;
 
 # Configure Apache & PHP
+ENV PHP_ERROR_REPORTING ""
+ENV PHP_DISPLAY_ERRORS 1
+ENV PHP_DISPLAY_STARTUP_ERRORS 0
 ENV PHP_ERROR_LOG ""
 ENV PHP_LOG_ERRORS 0
 ENV PHP_MAX_EXECUTION_TIME 30

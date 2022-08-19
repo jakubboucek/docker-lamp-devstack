@@ -196,7 +196,10 @@ image content, using environment variables. It can be defined in `docker run` co
 `docker-compose.yml` file.
 
 Configurable directives:
- 
+
+- `PHP_ERROR_REPORTING` - change the [`error_reporting` directive](https://www.php.net/manual/en/errorfunc.configuration.php#ini.error-reporting) (default value: *empty*)
+- `PHP_DISPLAY_ERRORS` - change the [`display_errors` directive](https://www.php.net/manual/en/errorfunc.configuration.php#ini.display-errors) (default value: `1`)
+- `PHP_DISPLAY_STARTUP_ERRORS` - change the [`display_startup_errors` directive](https://www.php.net/manual/en/errorfunc.configuration.php#ini.display-startup-errors) (default value: `1`, on PHP 7: `0`)
 - `PHP_ERROR_LOG` – change the [`error_log` directive](https://www.php.net/manual/en/errorfunc.configuration.php#ini.error-log) (default value: *empty*)
 - `PHP_LOG_ERRORS` – change the [`log_errors` directive](https://www.php.net/manual/en/errorfunc.configuration.php#ini.log-errors) (default value: `0`)
 - `PHP_MAX_EXECUTION_TIME` – change the [`max_execution_time` directive](https://www.php.net/manual/en/info.configuration.php#ini.max-execution-time) (default value: `30`)
