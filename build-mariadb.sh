@@ -138,8 +138,6 @@ fi
 
 if [ "${NO_BUILD}" -ne "1" ]; then
     docker build --progress plain -f mysql/Dockerfile-10.8 -t jakubboucek/lamp-devstack-mysql:10.8 mysql/
-    docker tag jakubboucek/lamp-devstack-mysql:10.8 jakubboucek/lamp-devstack-mysql:latest
-    docker tag jakubboucek/lamp-devstack-mysql:10.8 jakubboucek/lamp-devstack-mysql:10
     docker tag jakubboucek/lamp-devstack-mysql:10.8 jakubboucek/lamp-devstack-mysql:10.8.${MARIADB_RELEASE}
 fi
 
@@ -150,8 +148,6 @@ fi
 if [ "${NO_PUSH}" -ne "1" ]; then
     docker push jakubboucek/lamp-devstack-mysql:10.8.${MARIADB_RELEASE}
     docker push jakubboucek/lamp-devstack-mysql:10.8
-    docker push jakubboucek/lamp-devstack-mysql:10
-    docker push jakubboucek/lamp-devstack-mysql:latest
 fi
 
 
@@ -165,6 +161,8 @@ fi
 
 if [ "${NO_BUILD}" -ne "1" ]; then
     docker build --progress plain -f mysql/Dockerfile-10.9 -t jakubboucek/lamp-devstack-mysql:10.9 mysql/
+    docker tag jakubboucek/lamp-devstack-mysql:10.9 jakubboucek/lamp-devstack-mysql:latest
+    docker tag jakubboucek/lamp-devstack-mysql:10.9 jakubboucek/lamp-devstack-mysql:10
     docker tag jakubboucek/lamp-devstack-mysql:10.9 jakubboucek/lamp-devstack-mysql:10.9.${MARIADB_RELEASE}
 fi
 
@@ -175,6 +173,8 @@ fi
 if [ "${NO_PUSH}" -ne "1" ]; then
     docker push jakubboucek/lamp-devstack-mysql:10.9.${MARIADB_RELEASE}
     docker push jakubboucek/lamp-devstack-mysql:10.9
+    docker push jakubboucek/lamp-devstack-mysql:10
+    docker push jakubboucek/lamp-devstack-mysql:latest
 fi
 
 
