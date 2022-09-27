@@ -198,7 +198,7 @@ image content, using environment variables. It can be defined in `docker run` co
 
 Configurable directives:
 
-- `PHP_ERROR_REPORTING` - change the [`error_reporting` directive](https://www.php.net/manual/en/errorfunc.configuration.php#ini.error-reporting) (default value: *empty*)
+- `PHP_ERROR_REPORTING` - change the [`error_reporting` directive](https://www.php.net/manual/en/errorfunc.configuration.php#ini.error-reporting) (default value: `32767`, means `E_ALL`)
 - `PHP_DISPLAY_ERRORS` - change the [`display_errors` directive](https://www.php.net/manual/en/errorfunc.configuration.php#ini.display-errors) (default value: `1`)
 - `PHP_DISPLAY_STARTUP_ERRORS` - change the [`display_startup_errors` directive](https://www.php.net/manual/en/errorfunc.configuration.php#ini.display-startup-errors) (default value: `1`, on PHP 7: `0`)
 - `PHP_ERROR_LOG` – change the [`error_log` directive](https://www.php.net/manual/en/errorfunc.configuration.php#ini.error-log) (default value: *empty*)
