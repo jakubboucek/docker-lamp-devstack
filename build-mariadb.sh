@@ -10,7 +10,7 @@ NO_TEST=${NO_TEST:-0}
 NO_PUSH=${NO_PUSH:-0}
 
 ### MariaDB - 10.3
-MARIADB_RELEASE=36
+MARIADB_RELEASE=37
 if [ "${NO_PULL}" -ne "1" ]; then
     docker pull mariadb:10.3.${MARIADB_RELEASE}
     docker tag mariadb:10.3.${MARIADB_RELEASE} mariadb:10.3
@@ -33,7 +33,7 @@ fi
 
 
 ### MariaDB - 10.4
-MARIADB_RELEASE=26
+MARIADB_RELEASE=27
 if [ "${NO_PULL}" -ne "1" ]; then
     docker pull mariadb:10.4.${MARIADB_RELEASE}
     docker tag mariadb:10.4.${MARIADB_RELEASE} mariadb:10.4
@@ -56,7 +56,7 @@ fi
 
 
 ### MariaDB - 10.5
-MARIADB_RELEASE=17
+MARIADB_RELEASE=18
 if [ "${NO_PULL}" -ne "1" ]; then
     docker pull mariadb:10.5.${MARIADB_RELEASE}
     docker tag mariadb:10.5.${MARIADB_RELEASE} mariadb:10.5
@@ -79,7 +79,7 @@ fi
 
 
 ### MariaDB - 10.6
-MARIADB_RELEASE=10
+MARIADB_RELEASE=11
 if [ "${NO_PULL}" -ne "1" ]; then
     docker pull mariadb:10.6.${MARIADB_RELEASE}
     docker tag mariadb:10.6.${MARIADB_RELEASE} mariadb:10.6
@@ -106,7 +106,7 @@ fi
 
 
 ### MariaDB - 10.7
-MARIADB_RELEASE=6
+MARIADB_RELEASE=7
 if [ "${NO_PULL}" -ne "1" ]; then
     docker pull mariadb:10.7.${MARIADB_RELEASE}
     docker tag mariadb:10.7.${MARIADB_RELEASE} mariadb:10.7
@@ -129,7 +129,7 @@ fi
 
 
 ### MariaDB - 10.8
-MARIADB_RELEASE=5
+MARIADB_RELEASE=6
 if [ "${NO_PULL}" -ne "1" ]; then
     docker pull mariadb:10.8.${MARIADB_RELEASE}
     docker tag mariadb:10.8.${MARIADB_RELEASE} mariadb:10.8
@@ -152,7 +152,7 @@ fi
 
 
 ### MariaDB - 10.9
-MARIADB_RELEASE=3
+MARIADB_RELEASE=4
 if [ "${NO_PULL}" -ne "1" ]; then
     docker pull mariadb:10.9.${MARIADB_RELEASE}
     docker tag mariadb:10.9.${MARIADB_RELEASE} mariadb:10.9
