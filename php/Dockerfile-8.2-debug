@@ -12,10 +12,10 @@ WORKDIR /tmp
 
 # Install Xdebug (master-dev version)
 RUN set -eux; \
-    curl https://xdebug.org/files/xdebug-3.2.0alpha2.tgz -L -o xdebug-3.2.0alpha2.tgz; \
-    tar -xzf xdebug-3.2.0alpha2.tgz; \
-    rm xdebug-3.2.0alpha2.tgz; \
-    cd xdebug-3.2.0alpha2; \
+    curl https://xdebug.org/files/xdebug-3.2.0RC2.tgz -L -o xdebug-3.2.0RC2.tgz; \
+    tar -xzf xdebug-3.2.0RC2.tgz; \
+    rm xdebug-3.2.0RC2.tgz; \
+    cd xdebug-3.2.0RC2; \
     phpize; \
     ./configure --enable-xdebug; \
     make -j$(nproc); \
