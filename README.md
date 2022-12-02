@@ -27,8 +27,8 @@ Images for local development in [LAMP devstack](https://en.wikipedia.org/wiki/LA
 
 ## Main features
 - architecture: `linux/amd64`
-- with current **PHP** versions: 8.1, 8.0, 7.4 and pre-release of 8.2
-- with unsupported **PHP** versions also available: 7.3, 7.2, 7.1, 7.0, 5.6, 5.5 and 5.4 (with limited stability,
+- with current **PHP** versions: 8.1, 8.0 and pre-release of 8.2
+- with unsupported **PHP** versions also available: 7.4, 7.3, 7.2, 7.1, 7.0, 5.6, 5.5 and 5.4 (with limited stability,
 unoptimized, unmaintained)
 - current versions of **MariaDB** 10.10, 10.9, 10.8, 10.7, 10.6, 10.5, 10.4, 10.3 and RC pre-release of 10.11
 - current version of **Apache** 2.4 (in non-CLI images)
@@ -99,6 +99,7 @@ Images are tagged by the cascaded SemVer:
 **Legacy PHP** images are tagged using different strategy, only latest revision for each minor version is available,
 use `-legacy` tag suffix:
 
+- `jakubboucek/lamp-devstack-php:7.4-legacy`
 - `jakubboucek/lamp-devstack-php:7.3-legacy`
 - `jakubboucek/lamp-devstack-php:7.2-legacy`
 - `jakubboucek/lamp-devstack-php:7.1-legacy`
@@ -113,7 +114,7 @@ All PHP images have alternative variants with XDebug extension preinstalled, use
 - `jakubboucek/lamp-devstack-php:8.1-debug`
 - `jakubboucek/lamp-devstack-php:8.1.10-debug`
 - `jakubboucek/lamp-devstack-php:8.2-rc-debug`
-- `jakubboucek/lamp-devstack-php:7.3-legacy-debug`
+- `jakubboucek/lamp-devstack-php:7.4-legacy-debug`
 
 All PHP images also have alternative CLI variants, use `-cli` tag suffix, example:
 - `jakubboucek/lamp-devstack-php:cli`
@@ -121,7 +122,7 @@ All PHP images also have alternative CLI variants, use `-cli` tag suffix, exampl
 - `jakubboucek/lamp-devstack-php:8.1-cli`
 - `jakubboucek/lamp-devstack-php:8.1.10-cli`
 - `jakubboucek/lamp-devstack-php:8.2-rc-cli`
-- `jakubboucek/lamp-devstack-php:7.3-legacy-cli`
+- `jakubboucek/lamp-devstack-php:7.4-legacy-cli`
 
 
 ### Using MySQL

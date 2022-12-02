@@ -1,4 +1,4 @@
-FROM jakubboucek/lamp-devstack-php:7.4
+FROM jakubboucek/lamp-devstack-php:7.4-legacy
 
 LABEL org.label-schema.name="PHP 7.4 (Apache module + Xdebug)"
 
