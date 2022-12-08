@@ -7,7 +7,7 @@ This note is not necessary for USE images, it's for BUILD him.
 Run [`build-php.sh`](build-php.sh) script to build all of PHP versions.
 
 To build only specific PHP version run only the target script on [`php` folder](php), for example:
-[`php/build-php-8.1.sh`](php/build-php-8.1.sh)
+[`php/build-php-8.2.sh`](php/build-php-8.2.sh)
 
 To build older PHP versions run [`php/legacy/build-php-legacy.sh`](php/legacy/build-php-legacy.sh).
 

@@ -27,7 +27,7 @@ Images for local development in [LAMP devstack](https://en.wikipedia.org/wiki/LA
 
 ## Main features
 - architecture: `linux/amd64`
-- with current **PHP** versions: 8.1, 8.0 and pre-release of 8.2
+- with current **PHP** versions: 8.2, 8.1 and 8.0,
 - with unsupported **PHP** versions also available: 7.4, 7.3, 7.2, 7.1, 7.0, 5.6, 5.5 and 5.4 (with limited stability,
 unoptimized, unmaintained)
 - current versions of **MariaDB** 10.10, 10.9, 10.8, 10.7, 10.6, 10.5, 10.4, 10.3 and RC pre-release of 10.11
@@ -38,7 +38,7 @@ unoptimized, unmaintained)
     [`bz2`](https://www.php.net/manual/en/book.bzip2.php),
     [`calendar`](https://www.php.net/manual/en/book.calendar.php),
     [`exif`](https://www.php.net/manual/en/book.exif.php),
-    [`gd`](https://www.php.net/manual/en/book.image.php) with PNG, WebP, AVIF (for PHP 8.1), FreeType fonts support
+    [`gd`](https://www.php.net/manual/en/book.image.php) with PNG, WebP, AVIF (for PHP 8.1+), FreeType fonts support
     [`gettext`](https://www.php.net/manual/en/book.gettext.php),
     [`gmp`](https://www.php.net/manual/en/book.gmp.php),
     [`imap`](https://www.php.net/manual/en/book.imap.php),
@@ -93,8 +93,8 @@ my_project/                 <-- project's root
 Images are tagged by the cascaded SemVer:
 - `jakubboucek/lamp-devstack-php:latest` – means `latest` available stable PHP image,
 - `jakubboucek/lamp-devstack-php:8` – represents the highest PHP image of `8` version, but lower than `9.0.0`,
-- `jakubboucek/lamp-devstack-php:8.1` – represents the highest PHP image of `8.1` version, but lower than `8.2.0`,
-- `jakubboucek/lamp-devstack-php:8.1.10` – represents most specific PHP image, directly version `8.1.10`.
+- `jakubboucek/lamp-devstack-php:8.2` – represents the highest PHP image of `8.2` version, but lower than `8.3.0`,
+- `jakubboucek/lamp-devstack-php:8.2.0` – represents most specific PHP image, directly version `8.2.0`.
 
 **Legacy PHP** images are tagged using different strategy, only latest revision for each minor version is available,
 use `-legacy` tag suffix:
@@ -111,17 +111,15 @@ use `-legacy` tag suffix:
 All PHP images have alternative variants with XDebug extension preinstalled, use `-debug` tag suffix, example:
 - `jakubboucek/lamp-devstack-php:debug`
 - `jakubboucek/lamp-devstack-php:8-debug`
-- `jakubboucek/lamp-devstack-php:8.1-debug`
-- `jakubboucek/lamp-devstack-php:8.1.10-debug`
-- `jakubboucek/lamp-devstack-php:8.2-rc-debug`
+- `jakubboucek/lamp-devstack-php:8.2-debug`
+- `jakubboucek/lamp-devstack-php:8.2.0-debug`
 - `jakubboucek/lamp-devstack-php:7.4-legacy-debug`
 
 All PHP images also have alternative CLI variants, use `-cli` tag suffix, example:
 - `jakubboucek/lamp-devstack-php:cli`
 - `jakubboucek/lamp-devstack-php:8-cli`
-- `jakubboucek/lamp-devstack-php:8.1-cli`
-- `jakubboucek/lamp-devstack-php:8.1.10-cli`
-- `jakubboucek/lamp-devstack-php:8.2-rc-cli`
+- `jakubboucek/lamp-devstack-php:8.2-cli`
+- `jakubboucek/lamp-devstack-php:8.2.0-cli`
 - `jakubboucek/lamp-devstack-php:7.4-legacy-cli`
 
 
