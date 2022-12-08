@@ -371,7 +371,7 @@ environment:
     #                                                ^^^^^^^^^^^^^^^^^^^^^^^
 ```
 
-Starting with Xdebug 3.1, Profiler a Tracing outputs are compressed with GZip. You can turn off GZip compression through
+Starting with Xdebug 3.2, Profiler a Tracing outputs are compressed with GZip. You can turn off GZip compression through
 the `XDEBUG_CONFIG` environment variable with `use_compression` parameter and value `false`.
 
 In [`docker-compose.yml`](docker-compose-debug.yml) file modify `environment` section, for example:
