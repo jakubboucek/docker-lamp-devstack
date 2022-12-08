@@ -32,7 +32,7 @@ Images for local development in [LAMP devstack](https://en.wikipedia.org/wiki/LA
 unoptimized, unmaintained)
 - current versions of **MariaDB** 10.10, 10.9, 10.8, 10.7, 10.6, 10.5, 10.4, 10.3 and RC pre-release of 10.11
 - current version of **Apache** 2.4 (in non-CLI images)
-- current version of **Xdebug** 3.1 (in debug images)
+- current version of **Xdebug** 3.2 (in debug images)
 - extra PHP extensions:
     [`bmath`](https://www.php.net/manual/en/book.bc.php),
     [`bz2`](https://www.php.net/manual/en/book.bzip2.php),

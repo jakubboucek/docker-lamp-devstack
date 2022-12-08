@@ -8,19 +8,9 @@ COPY xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini
 # Prevent interactive block
 ARG DEBIAN_FRONTEND=noninteractive
 
-WORKDIR /tmp
-
-# Install Xdebug (master-dev version)
+# Install Xdebug
 RUN set -eux; \
-    curl https://xdebug.org/files/xdebug-3.2.0RC2.tgz -L -o xdebug-3.2.0RC2.tgz; \
-    tar -xzf xdebug-3.2.0RC2.tgz; \
-    rm xdebug-3.2.0RC2.tgz; \
-    cd xdebug-3.2.0RC2; \
-    phpize; \
-    ./configure --enable-xdebug; \
-    make -j$(nproc); \
-    make install; \
+    pecl install xdebug; \
+    pecl clear-cache; \
     docker-php-ext-enable xdebug; \
-    rm -rf /var/tmp/* /tmp/* /tmp/pear/temp/*;
-
-WORKDIR /var/www/html
+    rm -rf /var/tmp/* /tmp/*;
