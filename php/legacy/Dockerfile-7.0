@@ -109,7 +109,7 @@ ENV PORT 80
 # Setup Devstack (install Composer, setup DocumentRoot and Port)
 RUN set -eux; \
     curl -sS https://getcomposer.org/installer -o /tmp/composer-setup.php; \
-    php /tmp/composer-setup.php --1 --install-dir=/usr/local/bin --filename=composer; \
+    php /tmp/composer-setup.php --install-dir=/usr/local/bin --filename=composer; \
     COMPOSER_BIN_DIR=$(composer global config bin-dir --absolute) 2>/dev/null; \
     echo "export PATH=${COMPOSER_BIN_DIR}:\${PATH}" >> ~/.bashrc; \
     sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf; \
