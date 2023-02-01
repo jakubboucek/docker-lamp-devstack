@@ -58,7 +58,7 @@ unoptimized, unmaintained)
     [`headers`](https://httpd.apache.org/docs/current/mod/mod_headers.html) and
     [`rewrite`](https://httpd.apache.org/docs/current/mod/mod_rewrite.html)
 - Apache `DocumentRoot` changed to: `/var/www/html/www` (configurable by [ENV](#document-root))
-- PHP image comes with [Composer 2.4+](https://getcomposer.org/) and [Git 2.30+](https://git-scm.com/) to 
+- PHP image comes with [Composer 2.5+](https://getcomposer.org/) and [Git 2.30+](https://git-scm.com/) to 
     use it in guest shell  
 - MySQL properly configured to use `utf8mb4` as a default charset, an optional support of Windows Host is also available
 - timezones are correctly supported
