@@ -68,7 +68,7 @@ RUN set -eux; \
     apt-get clean -y && \
     apt-get autoclean -y && \
     apt-get autoremove -y && \
-    rm -rf /var/lib/apt/lists/* /var/lib/log/* /tmp/* /var/tmp/*;
+    rm -rf /var/cache/* /var/lib/apt/lists/* /var/lib/log/* /tmp/* /var/tmp/*;
 
 # Configure Apache & PHP
 # 22519 = E_ALL & ~E_NOTICE & ~E_STRICT & ~E_DEPRECATED
