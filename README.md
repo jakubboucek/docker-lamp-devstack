@@ -134,8 +134,8 @@ Available MySQL images:
 - 10.6: `jakubboucek/lamp-devstack-mysql:10.6`
 - 10.7: `jakubboucek/lamp-devstack-mysql:10.7`
 - 10.8: `jakubboucek/lamp-devstack-mysql:10.8`
-- 10.9: `jakubboucek/lamp-devstack-mysql:latest`
-- 10.10: `jakubboucek/lamp-devstack-mysql:10.10`
+- 10.9: `jakubboucek/lamp-devstack-mysql:10.9`
+- 10.10: `jakubboucek/lamp-devstack-mysql:latest`
 - 10.11: `jakubboucek/lamp-devstack-mysql:10.11-rc`
 
 LTS (long-term support) MySQL images (currently 10.6):
