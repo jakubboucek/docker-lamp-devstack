@@ -1,4 +1,4 @@
-FROM jakubboucek/lamp-devstack-php:5.4-legacy
+FROM jakubboucek/lamp-devstack-php:5.4-legacy-fixed
 
 LABEL org.label-schema.name="PHP 5.4 (Apache module + Xdebug)"
 

@@ -1,0 +1,11 @@
+FROM jakubboucek/lamp-devstack-php:5.4-legacy
+
+# Fix add missing ENV variable
+ENV APACHE_LOG_DIR /var/log/apache2
+
+# Enable VirtualHost to apply right DocumentRoot & fix invalid log files
+RUN set -eux; \
+    ln -sfT /dev/stderr "$APACHE_LOG_DIR/error.log"; \
+    ln -sfT /dev/stdout "$APACHE_LOG_DIR/access.log"; \
+    ln -sfT /dev/stdout "$APACHE_LOG_DIR/other_vhosts_access.log"; \
+    a2ensite 000-default;
