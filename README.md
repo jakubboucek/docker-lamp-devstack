@@ -106,7 +106,9 @@ use `-legacy` tag suffix:
 - `jakubboucek/lamp-devstack-php:7.0-legacy`
 - `jakubboucek/lamp-devstack-php:5.6-legacy`
 - `jakubboucek/lamp-devstack-php:5.5-legacy`
-- `jakubboucek/lamp-devstack-php:5.4-legacy`
+- `jakubboucek/lamp-devstack-php:5.4-legacy-fixed`
+
+> Note: Version 5.4 is using `-fixed` suffix because is unable to rebuild them from scratch. 
 
 All PHP images have alternative variants with XDebug extension preinstalled, use `-debug` tag suffix, example:
 - `jakubboucek/lamp-devstack-php:debug`
