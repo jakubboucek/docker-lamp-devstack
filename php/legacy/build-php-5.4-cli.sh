@@ -13,7 +13,7 @@ fi
 
 if [ "${NO_BUILD:-0}" -ne "1" ]; then
     # Origin image uses outdated schema1 manifest format - use DOCKER_BUILDKIT=0
-    DOCKER_BUILDKIT=0 docker build --progress plain -f ./Dockerfile-5.4-cli -t jakubboucek/lamp-devstack-php:5.4-legacy-cli ../
+    DOCKER_BUILDKIT=0 docker build -f ./Dockerfile-5.4-cli -t jakubboucek/lamp-devstack-php:5.4-legacy-cli ../
 fi
 
 if [ "${NO_TEST:-0}" -ne "1" ]; then
