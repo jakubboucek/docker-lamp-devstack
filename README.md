@@ -27,7 +27,8 @@ Images for local development in [LAMP devstack](https://en.wikipedia.org/wiki/LA
 
 ## Main features
 - architecture: `linux/amd64`
-- with current **PHP** versions: 8.2, 8.1 and 8.0,
+- with current **PHP** versions: 8.2, 8.1, 8.0 and RC pre-release of 8.3
+
 - with unsupported **PHP** versions also available: 7.4, 7.3, 7.2, 7.1, 7.0, 5.6, 5.5 and 5.4 (with limited stability,
 unoptimized, unmaintained)
 - current versions of **MariaDB** 10.10, 10.9, 10.8, 10.7, 10.6, 10.5, 10.4, 10.3 and RC pre-release of 10.11
@@ -117,12 +118,23 @@ All PHP images have alternative variants with XDebug extension preinstalled, use
 - `jakubboucek/lamp-devstack-php:8.2.0-debug`
 - `jakubboucek/lamp-devstack-php:7.4-legacy-debug`
 
+>  Note: (Pre-release of PHP 8.3 doesn't support Xdebug yet)
+
 All PHP images also have alternative CLI variants, use `-cli` tag suffix, example:
 - `jakubboucek/lamp-devstack-php:cli`
 - `jakubboucek/lamp-devstack-php:8-cli`
 - `jakubboucek/lamp-devstack-php:8.2-cli`
 - `jakubboucek/lamp-devstack-php:8.2.0-cli`
+- `jakubboucek/lamp-devstack-php:8.3.0-rc-cli`
 - `jakubboucek/lamp-devstack-php:7.4-legacy-cli`
+
+The RC pre-release of PHP 8.3 images have the `-rc` suffix, example:
+- `jakubboucek/lamp-devstack-php:8.3-rc`
+- `jakubboucek/lamp-devstack-php:8.3-0-rc`
+- `jakubboucek/lamp-devstack-php:8.3-0-rc-alpha1`
+- `jakubboucek/lamp-devstack-php:8.3-rc-cli`
+- `jakubboucek/lamp-devstack-php:8.3-0-rc-cli`
+- `jakubboucek/lamp-devstack-php:8.3-0-rc-alpha1-cli`
 
 
 ### Using MySQL

@@ -1,0 +1,127 @@
+FROM php:8.3-rc-apache-bullseye
+
+LABEL maintainer="Jakub Bouček <pan@jakubboucek.cz>"
+LABEL org.label-schema.name="PHP 8.3 (Pre-release, Apache module)"
+LABEL org.label-schema.vcs-url="https://github.com/jakubboucek/docker-lamp-devstack"
+
+# Workdir during installation
+WORKDIR /tmp
+
+# Use local mirrors to install Debian updates
+COPY sources.list-bullseye /etc/apt/sources.list
+
+# Prevent interactive block
+ARG DEBIAN_FRONTEND=noninteractive
+
+# OS binaries install && update critical binaries
+RUN set -eux; \
+    apt-get update; \
+    apt-get install --no-install-recommends -y \
+        ca-certificates \
+        git \
+        libavif-dev \
+        libbz2-dev \
+        libc-client-dev \
+        libfreetype6-dev \
+        libgmp-dev \
+        libicu-dev \
+        libjpeg62-turbo-dev \
+        libkrb5-dev \
+        libmemcached-dev \
+        libpng-dev \
+        libsodium-dev \
+        libwebp-dev \
+        libxslt-dev \
+        libzip-dev \
+        zlib1g-dev \
+        nano \
+        openssl \
+        tzdata \
+        unzip \
+        zip; \
+    docker-php-ext-configure \
+        gd --with-avif --with-freetype --with-jpeg --with-webp; \
+    docker-php-ext-configure \
+        imap --with-kerberos --with-imap-ssl; \
+    docker-php-ext-install -j$(nproc) \
+        bcmath \
+        bz2 \
+        calendar \
+        exif \
+        gd \
+        gettext \
+        gmp \
+        imap \
+        intl \
+        mysqli \
+        opcache \
+        pcntl \
+        pdo_mysql \
+        soap \
+        sockets \
+        sodium \
+        sysvmsg \
+        sysvsem \
+        sysvshm \
+        xsl \
+        zip; \
+    a2enmod \
+        expires \
+        headers \
+        rewrite; \
+    apt-get clean -y && \
+    apt-get autoclean -y && \
+    apt-get autoremove -y && \
+    rm -rf /var/cache/* /var/lib/apt/lists/* /var/lib/log/* /tmp/* /var/tmp/*;
+
+# Configure Apache & PHP
+# 32767 = E_ALL
+ENV PHP_ERROR_REPORTING 32767
+ENV PHP_DISPLAY_ERRORS 1
+ENV PHP_DISPLAY_STARTUP_ERRORS 1
+ENV PHP_ERROR_LOG ""
+ENV PHP_LOG_ERRORS 0
+ENV PHP_MAX_EXECUTION_TIME 30
+ENV PHP_MEMORY_LIMIT 2G
+ENV PHP_SESSION_SAVE_PATH ""
+ENV TZ UTC
+COPY core.ini /usr/local/etc/php/conf.d/core.ini
+COPY opcache-7.4.ini /usr/local/etc/php/conf.d/opcache-7.4.ini
+
+# Configure OPcache
+ENV PHP_OPCACHE_BLACKLIST_FILENAME ""
+ENV PHP_OPCACHE_ENABLE 1
+ENV PHP_OPCACHE_ENABLE_CLI 0
+ENV PHP_OPCACHE_MEMORY_CONSUPTION 128
+ENV PHP_OPCACHE_PRELOAD ""
+ENV PHP_OPCACHE_PRELOAD_USER ""
+ENV PHP_OPCACHE_REVALIDATE_FREQ 2
+ENV PHP_OPCACHE_VALIDATE_TIMESTAMPS 1
+COPY opcache.ini /usr/local/etc/php/conf.d/opcache.ini
+
+# Install Mecached extension
+RUN set -eux; \
+    pecl install memcached; \
+    pecl clear-cache; \
+    docker-php-ext-enable memcached; \
+    rm -rf /tmp/* /var/tmp/*;
+
+# Move Apache Document root to sub-directory `www` (PHP frameworks convention)
+ENV APACHE_DOCUMENT_ROOT /var/www/html/www
+
+# Configure Apache listening port
+ENV PORT 80
+
+# Setup Devstack (install Composer, setup DocumentRoot and Port)
+RUN set -eux; \
+    curl -sS https://getcomposer.org/installer -o /tmp/composer-setup.php; \
+    php /tmp/composer-setup.php --install-dir=/usr/local/bin --filename=composer; \
+    COMPOSER_BIN_DIR=$(composer global config bin-dir --absolute) 2>/dev/null; \
+    echo "export PATH=${COMPOSER_BIN_DIR}:\${PATH}" >> ~/.bashrc; \
+    sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf; \
+    sed -ri -e 's!:80>!:${PORT}>!g' /etc/apache2/sites-available/*.conf; \
+    sed -ri -e 's!Listen 80!Listen ${PORT}!g' /etc/apache2/ports.conf; \
+    rm -rf /tmp/*;
+
+# Workdir after installation
+WORKDIR /var/www/html
