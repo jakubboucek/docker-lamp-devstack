@@ -1,4 +1,4 @@
-FROM php:8.3-rc-apache-bullseye
+FROM php:8.3-rc-apache-bookworm
 
 LABEL maintainer="Jakub Bouček <pan@jakubboucek.cz>"
 LABEL org.label-schema.name="PHP 8.3 (Pre-release, Apache module)"
@@ -8,7 +8,7 @@ LABEL org.label-schema.vcs-url="https://github.com/jakubboucek/docker-lamp-devst
 WORKDIR /tmp
 
 # Use local mirrors to install Debian updates
-COPY sources.list-bullseye /etc/apt/sources.list
+COPY sources.list-bookworm /etc/apt/sources.list
 
 # Prevent interactive block
 ARG DEBIAN_FRONTEND=noninteractive
