@@ -7,8 +7,8 @@ cd "$(dirname $0)";
 
 ### PHP 8.3-rc
 if [ "${NO_PULL:-0}" -ne "1" ]; then
-    docker pull php:8.3-rc-cli-bullseye
-    docker run --rm php:8.3-rc-cli-bullseye php --version
+    docker pull php:8.3-rc-cli-bookworm
+    docker run --rm php:8.3-rc-cli-bookworm php --version
 fi
 
 if [ "${NO_BUILD:-0}" -ne "1" ]; then
