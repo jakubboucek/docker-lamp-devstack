@@ -84,7 +84,6 @@ ENV PHP_MAX_EXECUTION_TIME 30
 ENV PHP_MEMORY_LIMIT 2G
 ENV PHP_SESSION_SAVE_PATH ""
 COPY core.ini /usr/local/etc/php/conf.d/core.ini
-COPY opcache-7.4.ini /usr/local/etc/php/conf.d/opcache-7.4.ini
 
 # Configure OPcache
 ENV PHP_OPCACHE_BLACKLIST_FILENAME ""
@@ -96,6 +95,7 @@ ENV PHP_OPCACHE_PRELOAD_USER ""
 ENV PHP_OPCACHE_REVALIDATE_FREQ 2
 ENV PHP_OPCACHE_VALIDATE_TIMESTAMPS 1
 COPY opcache.ini /usr/local/etc/php/conf.d/opcache.ini
+COPY opcache-7.4.ini /usr/local/etc/php/conf.d/opcache-7.4.ini
 
 # Install Mecached extension
 RUN set -eux; \
