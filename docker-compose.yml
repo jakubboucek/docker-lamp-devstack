@@ -3,6 +3,7 @@ services:
     web:
         image: jakubboucek/lamp-devstack-php
         environment:
+            # APACHE_DOCUMENT_ROOT: "/var/www/html/www"
             APP_DEBUG: 1
             TZ: Europe/Prague
         ports:
