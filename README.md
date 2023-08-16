@@ -116,9 +116,10 @@ All PHP images have alternative variants with XDebug extension preinstalled, use
 - `jakubboucek/lamp-devstack-php:8-debug`
 - `jakubboucek/lamp-devstack-php:8.2-debug`
 - `jakubboucek/lamp-devstack-php:8.2.0-debug`
+- `jakubboucek/lamp-devstack-php:8.3-rc-debug`
 - `jakubboucek/lamp-devstack-php:7.4-legacy-debug`
 
->  Note: (Pre-release of PHP 8.3 doesn't support Xdebug yet)
+>  Note: (Pre-release of PHP 8.3 contains unstable version of Xdebug)
 
 All PHP images also have alternative CLI variants, use `-cli` tag suffix, example:
 - `jakubboucek/lamp-devstack-php:cli`
@@ -131,10 +132,10 @@ All PHP images also have alternative CLI variants, use `-cli` tag suffix, exampl
 The RC pre-release of PHP 8.3 images have the `-rc` suffix, example:
 - `jakubboucek/lamp-devstack-php:8.3-rc`
 - `jakubboucek/lamp-devstack-php:8.3-0-rc`
-- `jakubboucek/lamp-devstack-php:8.3-0-rc-alpha1`
+- `jakubboucek/lamp-devstack-php:8.3-0-rc-beta2`
 - `jakubboucek/lamp-devstack-php:8.3-rc-cli`
 - `jakubboucek/lamp-devstack-php:8.3-0-rc-cli`
-- `jakubboucek/lamp-devstack-php:8.3-0-rc-alpha1-cli`
+- `jakubboucek/lamp-devstack-php:8.3-0-rc-beta2-cli`
 
 
 ### Using MySQL
@@ -146,8 +147,6 @@ Available MySQL images:
 - 10.4: `jakubboucek/lamp-devstack-mysql:10.4`
 - 10.5: `jakubboucek/lamp-devstack-mysql:10.5`
 - 10.6: `jakubboucek/lamp-devstack-mysql:10.6`
-- 10.7: `jakubboucek/lamp-devstack-mysql:10.7`
-- 10.8: `jakubboucek/lamp-devstack-mysql:10.8`
 - 10.9: `jakubboucek/lamp-devstack-mysql:10.9`
 - 10.10: `jakubboucek/lamp-devstack-mysql:10.10`
 - 10.11: `jakubboucek/lamp-devstack-mysql:10.11`
