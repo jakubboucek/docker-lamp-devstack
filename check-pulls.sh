@@ -16,8 +16,6 @@ docker pull mariadb:10.3
 docker pull mariadb:10.4
 docker pull mariadb:10.5
 docker pull mariadb:10.6
-docker pull mariadb:10.7
-docker pull mariadb:10.8
 docker pull mariadb:10.9
 docker pull mariadb:10.10
 docker pull mariadb:10.11
