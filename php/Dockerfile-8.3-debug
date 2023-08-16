@@ -1,0 +1,27 @@
+FROM jakubboucek/lamp-devstack-php:8.3-rc
+
+LABEL org.label-schema.name="PHP 8.3 (Pre-release, Apache module + Xdebug)"
+
+# Configure Xdebug
+COPY xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini
+
+# Prevent interactive block
+ARG DEBIAN_FRONTEND=noninteractive
+
+WORKDIR /tmp
+
+# Install Xdebug (master-dev version)
+RUN set -eux; \
+    curl https://api.github.com/repos/xdebug/xdebug/tarball/master -H "Accept: application/vnd.github+json" -L -o xdebug-master.tgz; \
+    tar -xzf xdebug-master.tgz; \
+    rm xdebug-master.tgz; \
+    cd xdebug-*; \
+    phpize; \
+    ./configure --enable-xdebug; \
+    make -j$(nproc); \
+    make install; \
+    docker-php-ext-enable xdebug; \
+    rm -rf /tmp/*;
+
+# Workdir after installation \
+WORKDIR /var/www/html
