@@ -33,7 +33,7 @@ unoptimized, unmaintained)
 - current versions of **MariaDB** 11.0, 10.11, 10.10, 10.9, 10.6, 10.5, 10.4, 10.3 and RC pre-release of 11.1
 - unsupported versions of **MariaDB** 10.8, 10.7 (unmaintained)
 - current version of **Apache** 2.4 (in non-CLI images)
-- current version of **Xdebug** 3.2 (in debug images)
+- current version of **Xdebug** 3.2 (in debug images) and develop version of 3.3 (in PHP 8.3 images)
 - extra PHP extensions:
     [`bmath`](https://www.php.net/manual/en/book.bc.php),
     [`bz2`](https://www.php.net/manual/en/book.bzip2.php),
@@ -59,7 +59,7 @@ unoptimized, unmaintained)
     [`headers`](https://httpd.apache.org/docs/current/mod/mod_headers.html) and
     [`rewrite`](https://httpd.apache.org/docs/current/mod/mod_rewrite.html)
 - Apache `DocumentRoot` changed to: `/var/www/html/www` (configurable by [ENV](#document-root))
-- PHP image comes with [Composer 2.5+](https://getcomposer.org/) and [Git 2.30+](https://git-scm.com/) to 
+- PHP image comes with [Composer 2.6+](https://getcomposer.org/) and [Git 2.39+](https://git-scm.com/) to 
     use it in guest shell  
 - MySQL properly configured to use `utf8mb4` as a default charset, an optional support of Windows Host is also available
 - timezones are correctly supported
