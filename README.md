@@ -30,7 +30,7 @@ Images for local development in [LAMP devstack](https://en.wikipedia.org/wiki/LA
 - current **PHP** versions: 8.2, 8.1, 8.0 and RC pre-release of 8.3
 - unsupported **PHP** versions also available: 7.4, 7.3, 7.2, 7.1, 7.0, 5.6, 5.5 and 5.4 (with limited stability,
 unoptimized, unmaintained)
-- current versions of **MariaDB** 11.0, 10.11, 10.10, 10.9, 10.6, 10.5, 10.4, 10.3 and RC pre-release of 11.1
+- current versions of **MariaDB** 11.1, 11.0, 10.11, 10.10, 10.9, 10.6, 10.5, 10.4, 10.3
 - unsupported versions of **MariaDB** 10.8, 10.7 (unmaintained)
 - current version of **Apache** 2.4 (in non-CLI images)
 - current version of **Xdebug** 3.2 (in debug images)
@@ -150,8 +150,8 @@ Available MySQL images:
 - 10.9: `jakubboucek/lamp-devstack-mysql:10.9`
 - 10.10: `jakubboucek/lamp-devstack-mysql:10.10`
 - 10.11: `jakubboucek/lamp-devstack-mysql:10.11`
-- 11.0: `jakubboucek/lamp-devstack-mysql:latest`
-- 11.1: `jakubboucek/lamp-devstack-mysql:11.1-rc`
+- 11.0: `jakubboucek/lamp-devstack-mysql:11.0`
+- 11.1: `jakubboucek/lamp-devstack-mysql:latest`
 
 LTS (long-term support) MySQL images (currently 10.11):
 
