@@ -29,6 +29,4 @@ if [ "${NO_PUSH:-0}" -ne "1" ]; then
     PHP_RELEASE=$(docker run --rm jakubboucek/lamp-devstack-php:8.2-cli php -r "echo PHP_RELEASE_VERSION;")
     docker push jakubboucek/lamp-devstack-php:8.2.${PHP_RELEASE}-cli
     docker push jakubboucek/lamp-devstack-php:8.2-cli
-    docker push jakubboucek/lamp-devstack-php:8-cli
-    docker push jakubboucek/lamp-devstack-php:cli
 fi

@@ -1,6 +1,6 @@
-FROM jakubboucek/lamp-devstack-php:8.3-rc
+FROM jakubboucek/lamp-devstack-php:8.3
 
-LABEL org.label-schema.name="PHP 8.3 (Pre-release, Apache module + Xdebug)"
+LABEL org.label-schema.name="PHP 8.3 (Apache module + Xdebug)"
 
 # Configure Xdebug
 COPY xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini
