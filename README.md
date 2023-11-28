@@ -33,7 +33,7 @@ unoptimized, unmaintained)
 - current versions of **MariaDB** 11.1, 11.0, 10.11, 10.10, 10.6, 10.5, 10.4, 10.3 and RC pre-release of 11.2
 - unsupported versions of **MariaDB** 10.9, 10.8 and 10.7 (unmaintained)
 - current version of **Apache** 2.4 (in non-CLI images)
-- current version of **Xdebug** 3.2 (in debug images) and develop version of 3.3 (in PHP 8.3 images)
+- current version of **Xdebug** 3.3
 - extra PHP extensions:
     [`bmath`](https://www.php.net/manual/en/book.bc.php),
     [`bz2`](https://www.php.net/manual/en/book.bzip2.php),
@@ -379,7 +379,7 @@ environment:
     #                                                ^^^^^^^^^^^^^^^^^^^^^^^
 ```
 
-Starting with Xdebug 3.2, Profiler a Tracing outputs are compressed with GZip. You can turn off GZip compression through
+Starting with Xdebug 3.3, Profiler a Tracing outputs are compressed with GZip. You can turn off GZip compression through
 the `XDEBUG_CONFIG` environment variable with `use_compression` parameter and value `false`.
 
 In [`docker-compose.yml`](docker-compose-debug.yml) file modify `environment` section, for example:
