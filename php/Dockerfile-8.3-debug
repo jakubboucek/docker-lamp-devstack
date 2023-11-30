@@ -10,12 +10,12 @@ ARG DEBIAN_FRONTEND=noninteractive
 
 WORKDIR /tmp
 
-# Install Xdebug (master-dev version)
+# Install Xdebug (Pre-release version)
 RUN set -eux; \
-    curl https://api.github.com/repos/xdebug/xdebug/tarball/master -H "Accept: application/vnd.github+json" -L -o xdebug-master.tgz; \
-    tar -xzf xdebug-master.tgz; \
-    rm xdebug-master.tgz; \
-    cd xdebug-*; \
+    curl https://xdebug.org/files/xdebug-3.3.0alpha2.tgz -o xdebug-3.3.0alpha2.tgz; \
+    tar -xzf xdebug-3.3.0alpha2.tgz; \
+    rm xdebug-3.3.0alpha2.tgz; \
+    cd xdebug-3.3.0alpha2; \
     phpize; \
     ./configure --enable-xdebug; \
     make -j$(nproc); \
