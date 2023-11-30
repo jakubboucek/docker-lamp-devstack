@@ -27,7 +27,7 @@ Images for local development in [LAMP devstack](https://en.wikipedia.org/wiki/LA
 
 ## Main features
 - architecture: `linux/amd64`
-- current **PHP** versions: 8.2, 8.1, 8.0 and RC pre-release of 8.3
+- current **PHP** versions: 8.3, 8.2, 8.1 and 8.0
 - unsupported **PHP** versions also available: 7.4, 7.3, 7.2, 7.1, 7.0, 5.6, 5.5 and 5.4 (with limited stability,
 unoptimized, unmaintained)
 - current versions of **MariaDB** 11.1, 11.0, 10.11, 10.10, 10.6, 10.5, 10.4, 10.3 and RC pre-release of 11.2
@@ -59,7 +59,7 @@ unoptimized, unmaintained)
     [`headers`](https://httpd.apache.org/docs/current/mod/mod_headers.html) and
     [`rewrite`](https://httpd.apache.org/docs/current/mod/mod_rewrite.html)
 - Apache `DocumentRoot` changed to: `/var/www/html/www` (configurable by [ENV](#document-root))
-- PHP image comes with [Composer 2.6+](https://getcomposer.org/) and [Git 2.39+](https://git-scm.com/) to 
+- PHP image comes with [Composer 2.6+](https://getcomposer.org/) and [Git 2.43+](https://git-scm.com/) to 
     use it in guest shell  
 - MySQL properly configured to use `utf8mb4` as a default charset, an optional support of Windows Host is also available
 - timezones are correctly supported
@@ -94,8 +94,8 @@ my_project/                 <-- project's root
 Images are tagged by the cascaded SemVer:
 - `jakubboucek/lamp-devstack-php:latest` – means `latest` available stable PHP image,
 - `jakubboucek/lamp-devstack-php:8` – represents the highest PHP image of `8` version, but lower than `9.0.0`,
-- `jakubboucek/lamp-devstack-php:8.2` – represents the highest PHP image of `8.2` version, but lower than `8.3.0`,
-- `jakubboucek/lamp-devstack-php:8.2.0` – represents most specific PHP image, directly version `8.2.0`.
+- `jakubboucek/lamp-devstack-php:8.3` – represents the highest PHP image of `8.3` version, but lower than `8.4.0`,
+- `jakubboucek/lamp-devstack-php:8.3.0` – represents most specific PHP image, directly version `8.3.0`.
 
 **Legacy PHP** images are tagged using different strategy, only latest revision for each minor version is available,
 use `-legacy` tag suffix:
@@ -114,9 +114,8 @@ use `-legacy` tag suffix:
 All PHP images have alternative variants with XDebug extension preinstalled, use `-debug` tag suffix, example:
 - `jakubboucek/lamp-devstack-php:debug`
 - `jakubboucek/lamp-devstack-php:8-debug`
-- `jakubboucek/lamp-devstack-php:8.2-debug`
-- `jakubboucek/lamp-devstack-php:8.2.0-debug`
-- `jakubboucek/lamp-devstack-php:8.3-rc-debug`
+- `jakubboucek/lamp-devstack-php:8.3-debug`
+- `jakubboucek/lamp-devstack-php:8.3.0-debug`
 - `jakubboucek/lamp-devstack-php:7.4-legacy-debug`
 
 >  Note: (Pre-release of PHP 8.3 contains unstable version of Xdebug)
@@ -124,18 +123,9 @@ All PHP images have alternative variants with XDebug extension preinstalled, use
 All PHP images also have alternative CLI variants, use `-cli` tag suffix, example:
 - `jakubboucek/lamp-devstack-php:cli`
 - `jakubboucek/lamp-devstack-php:8-cli`
-- `jakubboucek/lamp-devstack-php:8.2-cli`
-- `jakubboucek/lamp-devstack-php:8.2.0-cli`
-- `jakubboucek/lamp-devstack-php:8.3.0-rc-cli`
+- `jakubboucek/lamp-devstack-php:8.3-cli`
+- `jakubboucek/lamp-devstack-php:8.3.0-cli`
 - `jakubboucek/lamp-devstack-php:7.4-legacy-cli`
-
-The RC pre-release of PHP 8.3 images have the `-rc` suffix, example:
-- `jakubboucek/lamp-devstack-php:8.3-rc`
-- `jakubboucek/lamp-devstack-php:8.3-0-rc`
-- `jakubboucek/lamp-devstack-php:8.3-0-rc-beta2`
-- `jakubboucek/lamp-devstack-php:8.3-rc-cli`
-- `jakubboucek/lamp-devstack-php:8.3-0-rc-cli`
-- `jakubboucek/lamp-devstack-php:8.3-0-rc-beta2-cli`
 
 
 ### Using MySQL
