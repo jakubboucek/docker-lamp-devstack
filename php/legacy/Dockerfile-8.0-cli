@@ -1,7 +1,9 @@
-FROM php:8.0-cli-bullseye
+FROM php:8.0-cli
 
 LABEL maintainer="Jakub Bouček <pan@jakubboucek.cz>"
+LABEL desc="NOTE: Unmaintained version, don't use it with serious deployment!"
 LABEL org.label-schema.name="PHP 8.0 (CLI)"
+LABEL org.label-schema.description="NOTE: Unmaintained version, don't use it with serious deployment!"
 LABEL org.label-schema.vcs-url="https://github.com/jakubboucek/docker-lamp-devstack"
 
 # Workdir during installation

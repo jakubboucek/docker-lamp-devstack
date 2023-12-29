@@ -27,8 +27,8 @@ Images for local development in [LAMP devstack](https://en.wikipedia.org/wiki/LA
 
 ## Main features
 - architecture: `linux/amd64`
-- current **PHP** versions: 8.3, 8.2, 8.1 and 8.0
-- unsupported **PHP** versions also available: 7.4, 7.3, 7.2, 7.1, 7.0, 5.6, 5.5 and 5.4 (with limited stability,
+- current **PHP** versions: 8.3, 8.2 and 8.1
+- unsupported **PHP** versions also available: 8.0, 7.4, 7.3, 7.2, 7.1, 7.0, 5.6, 5.5 and 5.4 (with limited stability,
 unoptimized, unmaintained)
 - current versions of **MariaDB** 11.2, 11.1, 11.0, 10.11, 10.10, 10.6, 10.5, 10.4, 10.3 and RC pre-release of 11.3
 - unsupported versions of **MariaDB** 10.9, 10.8 and 10.7 (unmaintained)
@@ -100,6 +100,7 @@ Images are tagged by the cascaded SemVer:
 **Legacy PHP** images are tagged using different strategy, only latest revision for each minor version is available,
 use `-legacy` tag suffix:
 
+- `jakubboucek/lamp-devstack-php:8.0-legacy`
 - `jakubboucek/lamp-devstack-php:7.4-legacy`
 - `jakubboucek/lamp-devstack-php:7.3-legacy`
 - `jakubboucek/lamp-devstack-php:7.2-legacy`
