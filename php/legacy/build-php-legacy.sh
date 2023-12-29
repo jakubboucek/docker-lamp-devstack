@@ -21,3 +21,5 @@ cd "$(dirname $0)";
 ./build-php-7.3-cli.sh
 ./build-php-7.4.sh
 ./build-php-7.4-cli.sh
+./build-php-8.0.sh
+./build-php-8.0-cli.sh
