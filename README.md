@@ -141,16 +141,17 @@ Available MySQL images:
 - 10.11: `jakubboucek/lamp-devstack-mysql:10.11`
 - 11.0: `jakubboucek/lamp-devstack-mysql:11.0`
 - 11.1: `jakubboucek/lamp-devstack-mysql:11.1`
-- 11.2: `jakubboucek/lamp-devstack-mysql:latest`
+- 11.2: `jakubboucek/lamp-devstack-mysql:11.2`
+- 11.3: `jakubboucek/lamp-devstack-mysql:latest`
 
 LTS (long-term support) MySQL images (currently 10.11):
 
 - `jakubboucek/lamp-devstack-mysql:10-lts`
 - `jakubboucek/lamp-devstack-mysql:lts`
 
-The RC pre-release of MySQL 11.3 images have the `-rc` suffix, example:
-- `jakubboucek/lamp-devstack-mysql:11.3-rc`
-- `jakubboucek/lamp-devstack-mysql:11.3-1-rc`
+The RC pre-release of MySQL 11.4 images have the `-rc` suffix, example:
+- `jakubboucek/lamp-devstack-mysql:11.4-rc`
+- `jakubboucek/lamp-devstack-mysql:11.4-1-rc`
 
 Default credentials:
 - user: `root`
