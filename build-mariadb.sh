@@ -9,6 +9,8 @@ NO_BUILD=${NO_BUILD:-0}
 NO_TEST=${NO_TEST:-0}
 NO_PUSH=${NO_PUSH:-0}
 
+# Source: https://hub.docker.com/_/mariadb
+
 ### MariaDB - 10.4
 MARIADB_RELEASE=34
 if [ "${NO_PULL}" -ne "1" ]; then
