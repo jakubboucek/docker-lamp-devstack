@@ -15,11 +15,7 @@ if [ "${NO_BUILD:-0}" -ne "1" ]; then
     docker build --progress plain -f ./Dockerfile-8.2 -t jakubboucek/lamp-devstack-php:8.2 ./
     docker build --progress plain -f ./Dockerfile-8.2-debug -t jakubboucek/lamp-devstack-php:8.2-debug ./
     PHP_RELEASE=$(docker run --rm jakubboucek/lamp-devstack-php:8.2 php -r "echo PHP_RELEASE_VERSION;")
-    docker tag jakubboucek/lamp-devstack-php:8.2 jakubboucek/lamp-devstack-php:8
-    docker tag jakubboucek/lamp-devstack-php:8.2 jakubboucek/lamp-devstack-php:latest
     docker tag jakubboucek/lamp-devstack-php:8.2 jakubboucek/lamp-devstack-php:8.2.${PHP_RELEASE}
-    docker tag jakubboucek/lamp-devstack-php:8.2-debug jakubboucek/lamp-devstack-php:debug
-    docker tag jakubboucek/lamp-devstack-php:8.2-debug jakubboucek/lamp-devstack-php:8-debug
     docker tag jakubboucek/lamp-devstack-php:8.2-debug jakubboucek/lamp-devstack-php:8.2.${PHP_RELEASE}-debug
 fi
 
