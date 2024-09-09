@@ -10,11 +10,11 @@ docker pull php:8.2-apache-bookworm
 docker pull php:8.3-cli-bookworm
 docker pull php:8.3-apache-bookworm
 
-docker pull mariadb:10.4
 docker pull mariadb:10.5
 docker pull mariadb:10.6
 docker pull mariadb:10.11
 docker pull mariadb:11.1
 docker pull mariadb:11.2
 docker pull mariadb:11.4
-docker pull mariadb:11.5-rc
+docker pull mariadb:11.5
+docker pull mariadb:11.6-rc
