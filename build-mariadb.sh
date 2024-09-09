@@ -11,31 +11,8 @@ NO_PUSH=${NO_PUSH:-0}
 
 # Source: https://hub.docker.com/_/mariadb
 
-### MariaDB - 10.4
-MARIADB_RELEASE=34
-if [ "${NO_PULL}" -ne "1" ]; then
-    docker pull mariadb:10.4.${MARIADB_RELEASE}
-    docker tag mariadb:10.4.${MARIADB_RELEASE} mariadb:10.4
-    docker run --rm mariadb:10.4 mysql --version
-fi
-
-if [ "${NO_BUILD}" -ne "1" ]; then
-    docker build --progress plain -f mysql/Dockerfile-10.4 -t jakubboucek/lamp-devstack-mysql:10.4 mysql/
-    docker tag jakubboucek/lamp-devstack-mysql:10.4 jakubboucek/lamp-devstack-mysql:10.4.${MARIADB_RELEASE}
-fi
-
-if [ "${NO_TEST}" -ne "1" ]; then
-    docker run --rm jakubboucek/lamp-devstack-mysql:10.4 mysql --version
-fi
-
-if [ "${NO_PUSH}" -ne "1" ]; then
-    docker push jakubboucek/lamp-devstack-mysql:10.4.${MARIADB_RELEASE}
-    docker push jakubboucek/lamp-devstack-mysql:10.4
-fi
-
-
 ### MariaDB - 10.5
-MARIADB_RELEASE=25
+MARIADB_RELEASE=26
 if [ "${NO_PULL}" -ne "1" ]; then
     docker pull mariadb:10.5.${MARIADB_RELEASE}
     docker tag mariadb:10.5.${MARIADB_RELEASE} mariadb:10.5
@@ -58,7 +35,7 @@ fi
 
 
 ### MariaDB - 10.6
-MARIADB_RELEASE=18
+MARIADB_RELEASE=19
 if [ "${NO_PULL}" -ne "1" ]; then
     docker pull mariadb:10.6.${MARIADB_RELEASE}
     docker tag mariadb:10.6.${MARIADB_RELEASE} mariadb:10.6
@@ -80,7 +57,7 @@ if [ "${NO_PUSH}" -ne "1" ]; then
 fi
 
 ### MariaDB - 10.11
-MARIADB_RELEASE=8
+MARIADB_RELEASE=9
 if [ "${NO_PULL}" -ne "1" ]; then
     docker pull mariadb:10.11.${MARIADB_RELEASE}
     docker tag mariadb:10.11.${MARIADB_RELEASE} mariadb:10.11
@@ -105,7 +82,7 @@ fi
 
 
 ### MariaDB - 11.1
-MARIADB_RELEASE=5
+MARIADB_RELEASE=6
 if [ "${NO_PULL}" -ne "1" ]; then
     docker pull mariadb:11.1.${MARIADB_RELEASE}
     docker tag mariadb:11.1.${MARIADB_RELEASE} mariadb:11.1
@@ -128,7 +105,7 @@ fi
 
 
 ### MariaDB - 11.2
-MARIADB_RELEASE=4
+MARIADB_RELEASE=5
 if [ "${NO_PULL}" -ne "1" ]; then
     docker pull mariadb:11.2.${MARIADB_RELEASE}
     docker tag mariadb:11.2.${MARIADB_RELEASE} mariadb:11.2
@@ -151,7 +128,7 @@ fi
 
 
 ### MariaDB - 11.4
-MARIADB_RELEASE=2
+MARIADB_RELEASE=3
 if [ "${NO_PULL}" -ne "1" ]; then
     docker pull mariadb:11.4.${MARIADB_RELEASE}
     docker tag mariadb:11.4.${MARIADB_RELEASE} mariadb:11.4
@@ -161,9 +138,7 @@ fi
 if [ "${NO_BUILD}" -ne "1" ]; then
     docker build --progress plain -f mysql/Dockerfile-11.4 -t jakubboucek/lamp-devstack-mysql:11.4 mysql/
     docker tag jakubboucek/lamp-devstack-mysql:11.4 jakubboucek/lamp-devstack-mysql:11.4.${MARIADB_RELEASE}
-    docker tag jakubboucek/lamp-devstack-mysql:11.4 jakubboucek/lamp-devstack-mysql:11
     docker tag jakubboucek/lamp-devstack-mysql:11.4 jakubboucek/lamp-devstack-mysql:lts
-    docker tag jakubboucek/lamp-devstack-mysql:11.4 jakubboucek/lamp-devstack-mysql:latest
 fi
 
 if [ "${NO_TEST}" -ne "1" ]; then
@@ -173,30 +148,55 @@ fi
 if [ "${NO_PUSH}" -ne "1" ]; then
     docker push jakubboucek/lamp-devstack-mysql:11.4.${MARIADB_RELEASE}
     docker push jakubboucek/lamp-devstack-mysql:11.4
-    docker push jakubboucek/lamp-devstack-mysql:11
     docker push jakubboucek/lamp-devstack-mysql:lts
-    docker push jakubboucek/lamp-devstack-mysql:latest
 fi
 
 
 ### MariaDB - 11.5
-MARIADB_RELEASE=1
+MARIADB_RELEASE=2
 if [ "${NO_PULL}" -ne "1" ]; then
-    docker pull mariadb:11.5.${MARIADB_RELEASE}-rc
-    docker tag mariadb:11.5.${MARIADB_RELEASE}-rc mariadb:11.5-rc
-    docker run --rm mariadb:11.5-rc mariadb --version
+    docker pull mariadb:11.5.${MARIADB_RELEASE}
+    docker tag mariadb:11.5.${MARIADB_RELEASE} mariadb:11.5
+    docker run --rm mariadb:11.5 mariadb --version
 fi
 
 if [ "${NO_BUILD}" -ne "1" ]; then
-    docker build --progress plain -f mysql/Dockerfile-11.5 -t jakubboucek/lamp-devstack-mysql:11.5-rc mysql/
-    docker tag jakubboucek/lamp-devstack-mysql:11.5-rc jakubboucek/lamp-devstack-mysql:11.5.${MARIADB_RELEASE}-rc
+    docker build --progress plain -f mysql/Dockerfile-11.5 -t jakubboucek/lamp-devstack-mysql:11.5 mysql/
+    docker tag jakubboucek/lamp-devstack-mysql:11.5 jakubboucek/lamp-devstack-mysql:11.5.${MARIADB_RELEASE}
+    docker tag jakubboucek/lamp-devstack-mysql:11.5 jakubboucek/lamp-devstack-mysql:11
+    docker tag jakubboucek/lamp-devstack-mysql:11.5 jakubboucek/lamp-devstack-mysql:latest
 fi
 
 if [ "${NO_TEST}" -ne "1" ]; then
-    docker run --rm jakubboucek/lamp-devstack-mysql:11.5-rc mariadb --version
+    docker run --rm jakubboucek/lamp-devstack-mysql:11.5 mariadb --version
 fi
 
 if [ "${NO_PUSH}" -ne "1" ]; then
-    docker push jakubboucek/lamp-devstack-mysql:11.5.${MARIADB_RELEASE}-rc
-    docker push jakubboucek/lamp-devstack-mysql:11.5-rc
+    docker push jakubboucek/lamp-devstack-mysql:11.5.${MARIADB_RELEASE}
+    docker push jakubboucek/lamp-devstack-mysql:11.5
+    docker push jakubboucek/lamp-devstack-mysql:11
+    docker push jakubboucek/lamp-devstack-mysql:latest
+fi
+
+
+### MariaDB - 11.6
+MARIADB_RELEASE=1
+if [ "${NO_PULL}" -ne "1" ]; then
+    docker pull mariadb:11.6.${MARIADB_RELEASE}-rc
+    docker tag mariadb:11.6.${MARIADB_RELEASE}-rc mariadb:11.6-rc
+    docker run --rm mariadb:11.6-rc mariadb --version
+fi
+
+if [ "${NO_BUILD}" -ne "1" ]; then
+    docker build --progress plain -f mysql/Dockerfile-11.6 -t jakubboucek/lamp-devstack-mysql:11.6-rc mysql/
+    docker tag jakubboucek/lamp-devstack-mysql:11.6-rc jakubboucek/lamp-devstack-mysql:11.6.${MARIADB_RELEASE}-rc
+fi
+
+if [ "${NO_TEST}" -ne "1" ]; then
+    docker run --rm jakubboucek/lamp-devstack-mysql:11.6-rc mariadb --version
+fi
+
+if [ "${NO_PUSH}" -ne "1" ]; then
+    docker push jakubboucek/lamp-devstack-mysql:11.6.${MARIADB_RELEASE}-rc
+    docker push jakubboucek/lamp-devstack-mysql:11.6-rc
 fi

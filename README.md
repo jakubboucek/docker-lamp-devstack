@@ -30,8 +30,8 @@ Images for local development in [LAMP devstack](https://en.wikipedia.org/wiki/LA
 - current **PHP** versions: 8.3, 8.2 and 8.1
 - unsupported **PHP** versions also available: 8.0, 7.4, 7.3, 7.2, 7.1, 7.0, 5.6, 5.5 and 5.4 (with limited stability,
 unoptimized, unmaintained)
-- current versions of **MariaDB** 11.4, 11.2, 11.1, 11.0, 10.11, 10.6, 10.5, 10.4, and RC pre-release of 11.5
-- unsupported versions of **MariaDB** 11.3, 11.0, 10.10, 10.9, 10.8, 10.7 and 10.3  (unmaintained)
+- current versions of **MariaDB** 11.5, 11.4, 11.2, 11.1, 11.0, 10.11, 10.6, 10.5, and RC pre-release of 11.6
+- unsupported versions of **MariaDB** 11.3, 11.0, 10.10, 10.9, 10.8, 10.7, 10.4 and 10.3 (unmaintained)
 - current version of **Apache** 2.4 (in non-CLI images)
 - current version of **Xdebug** 3.3
 - extra PHP extensions:
@@ -134,21 +134,21 @@ MySQL server starts at the same time as the web server.
 
 Available MySQL images:
 
-- 10.4: `jakubboucek/lamp-devstack-mysql:10.4`
 - 10.5: `jakubboucek/lamp-devstack-mysql:10.5`
 - 10.6: `jakubboucek/lamp-devstack-mysql:10.6`
 - 10.11: `jakubboucek/lamp-devstack-mysql:10.11`
 - 11.1: `jakubboucek/lamp-devstack-mysql:11.1`
 - 11.2: `jakubboucek/lamp-devstack-mysql:11.2`
-- 11.4: `jakubboucek/lamp-devstack-mysql:latest`
+- 11.4: `jakubboucek/lamp-devstack-mysql:11.4`
+- 11.5: `jakubboucek/lamp-devstack-mysql:latest`
 
 LTS (long-term support) MySQL images (currently 11.4):
 
 - `jakubboucek/lamp-devstack-mysql:lts`
 
-The RC pre-release of MySQL 11.5 images have the `-rc` suffix, example:
-- `jakubboucek/lamp-devstack-mysql:11.4-rc`
-- `jakubboucek/lamp-devstack-mysql:11.5-1-rc`
+The RC pre-release of MySQL 11.6 images have the `-rc` suffix, example:
+- `jakubboucek/lamp-devstack-mysql:11.6-rc`
+- `jakubboucek/lamp-devstack-mysql:11.6-1-rc`
 
 Default credentials:
 - user: `root`

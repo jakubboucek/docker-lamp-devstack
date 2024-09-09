@@ -1,7 +1,7 @@
 FROM jakubboucek/lamp-devstack-php:5.4-legacy
 
 # Fix add missing ENV variable
-ENV APACHE_LOG_DIR /var/log/apache2
+ENV APACHE_LOG_DIR=/var/log/apache2
 
 # Enable VirtualHost to apply right DocumentRoot & fix invalid log files
 RUN set -eux; \
