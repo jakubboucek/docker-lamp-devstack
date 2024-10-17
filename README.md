@@ -27,7 +27,7 @@ Images for local development in [LAMP devstack](https://en.wikipedia.org/wiki/LA
 
 ## Main features
 - architecture: `linux/amd64`
-- current **PHP** versions: 8.3, 8.2 and 8.1
+- current **PHP** versions: 8.3, 8.2 and 8.1 and RC pre-release of 8.4
 - unsupported **PHP** versions also available: 8.0, 7.4, 7.3, 7.2, 7.1, 7.0, 5.6, 5.5 and 5.4 (with limited stability,
 unoptimized, unmaintained)
 - current versions of **MariaDB** 11.5, 11.4, 11.2, 11.1, 11.0, 10.11, 10.6, 10.5, and RC pre-release of 11.6
@@ -42,7 +42,7 @@ unoptimized, unmaintained)
     [`gd`](https://www.php.net/manual/en/book.image.php) with PNG, WebP, AVIF (for PHP 8.1+), FreeType fonts support
     [`gettext`](https://www.php.net/manual/en/book.gettext.php),
     [`gmp`](https://www.php.net/manual/en/book.gmp.php),
-    [`imap`](https://www.php.net/manual/en/book.imap.php),
+    [`imap`](https://www.php.net/manual/en/book.imap.php) (up to PHP 8.3),
     [`intl`](https://www.php.net/manual/en/book.intl.php),
     [`memcached`](https://www.php.net/manual/en/book.memcached.php),
     [`mysqli`](https://www.php.net/manual/en/book.mysqli.php),
@@ -117,9 +117,10 @@ All PHP images have alternative variants with XDebug extension preinstalled, use
 - `jakubboucek/lamp-devstack-php:8-debug`
 - `jakubboucek/lamp-devstack-php:8.3-debug`
 - `jakubboucek/lamp-devstack-php:8.3.0-debug`
+- `jakubboucek/lamp-devstack-php:8.4.0-rc-cli`
 - `jakubboucek/lamp-devstack-php:7.4-legacy-debug`
 
->  Note: (Pre-release of PHP 8.3 contains unstable version of Xdebug)
+>  Note: (Pre-release of PHP 8.4 doesn't support Xdebug yet)
 
 All PHP images also have alternative CLI variants, use `-cli` tag suffix, example:
 - `jakubboucek/lamp-devstack-php:cli`
@@ -128,6 +129,13 @@ All PHP images also have alternative CLI variants, use `-cli` tag suffix, exampl
 - `jakubboucek/lamp-devstack-php:8.3.0-cli`
 - `jakubboucek/lamp-devstack-php:7.4-legacy-cli`
 
+The RC pre-release of PHP 8.4 images have the `-rc` suffix, example:
+- `jakubboucek/lamp-devstack-php:8.4-rc`
+- `jakubboucek/lamp-devstack-php:8.4-0-rc`
+- `jakubboucek/lamp-devstack-php:8.4-0-rc-RC2`
+- `jakubboucek/lamp-devstack-php:8.4-rc-cli`
+- `jakubboucek/lamp-devstack-php:8.4-0-rc-cli`
+- `jakubboucek/lamp-devstack-php:8.4-0-rc-RC2-cli`
 
 ### Using MySQL
 MySQL server starts at the same time as the web server.
