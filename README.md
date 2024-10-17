@@ -120,7 +120,7 @@ All PHP images have alternative variants with XDebug extension preinstalled, use
 - `jakubboucek/lamp-devstack-php:8.4.0-rc-cli`
 - `jakubboucek/lamp-devstack-php:7.4-legacy-debug`
 
->  Note: (Pre-release of PHP 8.4 doesn't support Xdebug yet)
+>  Note: (Pre-release of PHP 8.4 contains unstable version of Xdebug)
 
 All PHP images also have alternative CLI variants, use `-cli` tag suffix, example:
 - `jakubboucek/lamp-devstack-php:cli`
