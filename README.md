@@ -224,6 +224,8 @@ Configurable directives:
 - `PHP_OPCACHE_BLACKLIST_FILENAME` – change the [`opcache.blacklist_filename` directive](https://www.php.net/manual/en/opcache.configuration.php#ini.opcache.blacklist-filename) (default value: *empty*)
 - `PHP_OPCACHE_ENABLE` – change the [`opcache.enable` directive](https://www.php.net/manual/en/opcache.configuration.php#ini.opcache.enable) (default value: `1`)
 - `PHP_OPCACHE_ENABLE_CLI` – change the [`opcache.enable_cli` directive](https://www.php.net/manual/en/opcache.configuration.php#ini.opcache.enable-cli) (default value: `0`)
+- `PHP_OPCACHE_JIT` – change the [`opcache.jit` directive](https://www.php.net/manual/en/opcache.configuration.php#ini.opcache.jit) (default value: `tracing`, on PHP 8.4 [changed](https://php.watch/versions/8.4/opcache-jit-ini-default-changes): `disable`)
+- `PHP_OPCACHE_JIT_BUFFER_SIZE` – change the [`opcache.jit_buffer_size` directive](https://www.php.net/manual/en/opcache.configuration.php#ini.opcache.jit-buffer-size) (default value: `0`, on PHP 8.4 [changed](https://php.watch/versions/8.4/opcache-jit-ini-default-changes): `64M`)
 - `PHP_OPCACHE_MEMORY_CONSUPTION` – change the [`opcache.memory_consumption` directive](https://www.php.net/manual/en/opcache.configuration.php#ini.opcache.memory-consumption) (default value: `128`)
 - `PHP_OPCACHE_PRELOAD` – change the [`opcache.preload` directive](https://www.php.net/manual/en/opcache.configuration.php#ini.opcache.preload) (default value: *empty*)
 - `PHP_OPCACHE_PRELOAD_USER` – change the [`opcache.preload_user` directive](https://www.php.net/manual/en/opcache.configuration.php#ini.opcache.preload-user) (default value: *empty*)
