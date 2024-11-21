@@ -81,29 +81,6 @@ if [ "${NO_PUSH}" -ne "1" ]; then
 fi
 
 
-### MariaDB - 11.1
-MARIADB_RELEASE=6
-if [ "${NO_PULL}" -ne "1" ]; then
-    docker pull mariadb:11.1.${MARIADB_RELEASE}
-    docker tag mariadb:11.1.${MARIADB_RELEASE} mariadb:11.1
-    docker run --rm mariadb:11.1 mariadb --version
-fi
-
-if [ "${NO_BUILD}" -ne "1" ]; then
-    docker build --progress plain -f mysql/Dockerfile-11.1 -t jakubboucek/lamp-devstack-mysql:11.1 mysql/
-    docker tag jakubboucek/lamp-devstack-mysql:11.1 jakubboucek/lamp-devstack-mysql:11.1.${MARIADB_RELEASE}
-fi
-
-if [ "${NO_TEST}" -ne "1" ]; then
-    docker run --rm jakubboucek/lamp-devstack-mysql:11.1 mariadb --version
-fi
-
-if [ "${NO_PUSH}" -ne "1" ]; then
-    docker push jakubboucek/lamp-devstack-mysql:11.1.${MARIADB_RELEASE}
-    docker push jakubboucek/lamp-devstack-mysql:11.1
-fi
-
-
 ### MariaDB - 11.2
 MARIADB_RELEASE=5
 if [ "${NO_PULL}" -ne "1" ]; then
