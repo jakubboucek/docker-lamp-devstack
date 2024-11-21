@@ -145,7 +145,6 @@ Available MySQL images:
 - 10.5: `jakubboucek/lamp-devstack-mysql:10.5`
 - 10.6: `jakubboucek/lamp-devstack-mysql:10.6`
 - 10.11: `jakubboucek/lamp-devstack-mysql:10.11`
-- 11.1: `jakubboucek/lamp-devstack-mysql:11.1`
 - 11.2: `jakubboucek/lamp-devstack-mysql:11.2`
 - 11.4: `jakubboucek/lamp-devstack-mysql:11.4`
 - 11.5: `jakubboucek/lamp-devstack-mysql:latest`
