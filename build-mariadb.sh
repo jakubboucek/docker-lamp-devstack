@@ -12,7 +12,7 @@ NO_PUSH=${NO_PUSH:-0}
 # Source: https://hub.docker.com/_/mariadb
 
 ### MariaDB - 10.5
-MARIADB_RELEASE=26
+MARIADB_RELEASE=27
 if [ "${NO_PULL}" -ne "1" ]; then
     docker pull mariadb:10.5.${MARIADB_RELEASE}
     docker tag mariadb:10.5.${MARIADB_RELEASE} mariadb:10.5
@@ -35,7 +35,7 @@ fi
 
 
 ### MariaDB - 10.6
-MARIADB_RELEASE=19
+MARIADB_RELEASE=20
 if [ "${NO_PULL}" -ne "1" ]; then
     docker pull mariadb:10.6.${MARIADB_RELEASE}
     docker tag mariadb:10.6.${MARIADB_RELEASE} mariadb:10.6
@@ -57,7 +57,7 @@ if [ "${NO_PUSH}" -ne "1" ]; then
 fi
 
 ### MariaDB - 10.11
-MARIADB_RELEASE=9
+MARIADB_RELEASE=10
 if [ "${NO_PULL}" -ne "1" ]; then
     docker pull mariadb:10.11.${MARIADB_RELEASE}
     docker tag mariadb:10.11.${MARIADB_RELEASE} mariadb:10.11
@@ -81,31 +81,8 @@ if [ "${NO_PUSH}" -ne "1" ]; then
 fi
 
 
-### MariaDB - 11.1
-MARIADB_RELEASE=6
-if [ "${NO_PULL}" -ne "1" ]; then
-    docker pull mariadb:11.1.${MARIADB_RELEASE}
-    docker tag mariadb:11.1.${MARIADB_RELEASE} mariadb:11.1
-    docker run --rm mariadb:11.1 mariadb --version
-fi
-
-if [ "${NO_BUILD}" -ne "1" ]; then
-    docker build --progress plain -f mysql/Dockerfile-11.1 -t jakubboucek/lamp-devstack-mysql:11.1 mysql/
-    docker tag jakubboucek/lamp-devstack-mysql:11.1 jakubboucek/lamp-devstack-mysql:11.1.${MARIADB_RELEASE}
-fi
-
-if [ "${NO_TEST}" -ne "1" ]; then
-    docker run --rm jakubboucek/lamp-devstack-mysql:11.1 mariadb --version
-fi
-
-if [ "${NO_PUSH}" -ne "1" ]; then
-    docker push jakubboucek/lamp-devstack-mysql:11.1.${MARIADB_RELEASE}
-    docker push jakubboucek/lamp-devstack-mysql:11.1
-fi
-
-
 ### MariaDB - 11.2
-MARIADB_RELEASE=5
+MARIADB_RELEASE=6
 if [ "${NO_PULL}" -ne "1" ]; then
     docker pull mariadb:11.2.${MARIADB_RELEASE}
     docker tag mariadb:11.2.${MARIADB_RELEASE} mariadb:11.2
@@ -128,7 +105,7 @@ fi
 
 
 ### MariaDB - 11.4
-MARIADB_RELEASE=3
+MARIADB_RELEASE=4
 if [ "${NO_PULL}" -ne "1" ]; then
     docker pull mariadb:11.4.${MARIADB_RELEASE}
     docker tag mariadb:11.4.${MARIADB_RELEASE} mariadb:11.4
