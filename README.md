@@ -130,7 +130,6 @@ All PHP images also have alternative CLI variants, use `-cli` tag suffix, exampl
 MySQL server starts at the same time as the web server.
 
 Available MySQL images:
-
 - 10.5: `jakubboucek/lamp-devstack-mysql:10.5`
 - 10.6: `jakubboucek/lamp-devstack-mysql:10.6`
 - 10.11: `jakubboucek/lamp-devstack-mysql:10.11`
@@ -138,7 +137,6 @@ Available MySQL images:
 - 11.7: `jakubboucek/lamp-devstack-mysql:latest`
 
 LTS (long-term support) MySQL images (currently 11.4):
-
 - `jakubboucek/lamp-devstack-mysql:lts`
 
 The RC pre-release of MySQL 11.8 images have the `-rc` suffix, example:
