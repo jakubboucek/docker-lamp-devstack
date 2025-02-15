@@ -14,8 +14,6 @@ fi
 if [ "${NO_BUILD:-0}" -ne "1" ]; then
     docker build --progress plain -f ./Dockerfile-7.4 -t jakubboucek/lamp-devstack-php:7.4-legacy ../
     docker build --progress plain -f ./Dockerfile-7.4-debug -t jakubboucek/lamp-devstack-php:7.4-legacy-debug ../
-    docker tag jakubboucek/lamp-devstack-php:7.4-legacy jakubboucek/lamp-devstack-php:7-legacy
-    docker tag jakubboucek/lamp-devstack-php:7.4-legacy-debug jakubboucek/lamp-devstack-php:7-legacy-debug
 fi
 
 if [ "${NO_TEST:-0}" -ne "1" ]; then
@@ -28,7 +26,5 @@ fi
 
 if [ "${NO_PUSH:-0}" -ne "1" ]; then
     docker push jakubboucek/lamp-devstack-php:7.4-legacy-debug
-    docker push jakubboucek/lamp-devstack-php:7-legacy-debug
     docker push jakubboucek/lamp-devstack-php:7.4-legacy
-    docker push jakubboucek/lamp-devstack-php:7-legacy
 fi

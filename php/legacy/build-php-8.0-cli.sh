@@ -13,7 +13,6 @@ fi
 
 if [ "${NO_BUILD:-0}" -ne "1" ]; then
     docker build --progress plain -f ./Dockerfile-8.0-cli -t jakubboucek/lamp-devstack-php:8.0-legacy-cli ../
-    docker tag jakubboucek/lamp-devstack-php:8.0-legacy-cli jakubboucek/lamp-devstack-php:8-legacy-cli
 fi
 
 if [ "${NO_TEST:-0}" -ne "1" ]; then
@@ -24,5 +23,4 @@ fi
 
 if [ "${NO_PUSH:-0}" -ne "1" ]; then
     docker push jakubboucek/lamp-devstack-php:8.0-legacy-cli
-    docker push jakubboucek/lamp-devstack-php:8-legacy-cli
 fi
