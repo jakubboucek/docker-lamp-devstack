@@ -1,6 +1,26 @@
 # LAMP devstack Docker images
 Images for local development in [LAMP devstack](https://en.wikipedia.org/wiki/LAMP_(software_bundle))
 
+### Why use prebuilt images instead of building your own?
+
+These images are designed for efficient local development of small to medium-sized PHP projects typically deployed
+on shared hosting environments. Key benefits of this approach include:
+
+- **Instant startup with no build step** – the images are publicly available and ready to use; simply launch them
+    using `docker compose`.
+- **Supports multiple projects with different PHP versions** – easily switch container versions without modifying
+    the base image.
+- **Resource reuse and disk space efficiency** – all projects share the same base image, minimizing storage footprint
+    and startup time.
+- **Optimized for common development needs** – the environments closely mirror typical shared hosting setups, without
+    unnecessary extras.
+- **Runtime customization without rebuilding** – key runtime parameters can be configured via environment variables
+    at container start time ([see below](#extended-configuration)), eliminating the need to build custom images
+    for minor environment tweaks.
+
+Instead of maintaining and rebuilding separate images for each project, you can rely on a consistent, maintained set
+of base images designed to cover most standard development workflows — with no setup overhead and minimal resource duplication.
+
 * [Built images](#built-images)
 * [Main features](#main-features)
 * [Basic usage](#basic-usage)
