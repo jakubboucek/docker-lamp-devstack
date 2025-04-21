@@ -26,6 +26,7 @@ of base images designed to cover most standard development workflows — with no
 * [Basic usage](#basic-usage)
     + [Version tags](#version-tags)
     + [Using MySQL](#using-mysql)
+    + [Connecting to MySQL](#connecting-to-mysql)
     + [Windows issue](#windows-issue)
 * [Extended configuration](#extended-configuration)
     + [PHP configuration](#php-configuration) 
@@ -163,20 +164,22 @@ The RC pre-release of MySQL 11.8 images have the `-rc` suffix, example:
 - `jakubboucek/lamp-devstack-mysql:11.8-rc`
 - `jakubboucek/lamp-devstack-mysql:11.8-1-rc`
 
+### Connecting to MySQL
+
+From **Host** (external connection), MySQL is accessible at:
+- host: `127.0.0.1`
+- port: `33060`
+
+From **Guest** (internal connection), MySQL is accessible at:
+- host: `mysqldb`
+- port: `3306`
+
 Default credentials:
 - user: `root`
 - password: `devstack`
 - database name: `default`
 
-From Host, MySQL is accessible using:
-- host: `127.0.0.1`
-- port: `33060`
-
-From docker guest, MySQL is accessible using:
-- host: `mysqldb`
-- port: `3306`
-
-If you are connecting to the MySQL server from a PHP application running inside Docker, use the docker guest access
+If you are connecting to the MySQL server from a PHP application running **inside** Docker, use the **Guest** access
 values, but when you're connecting from outside (for example, from your computer, using
 [HeidiSQL](https://www.heidisql.com/) or [Sequel](https://sequel-ace.com/)), use host access.
 
@@ -187,6 +190,8 @@ $pdo = new PDO('mysql:host=mysqldb;dbname=default;charset=utf8mb4', 'root', 'dev
 $mysqli = new mysqli('mysqldb', 'root', 'devstack', 'default');
 $mysqli->set_charset('utf8mb4');
 ```
+
+Images does not contains any MySQL editor/manager (PMA nor Adminer), so you need to use your own tool.
 
 ### Windows issue
 
