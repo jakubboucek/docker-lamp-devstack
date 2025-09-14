@@ -6,6 +6,7 @@ set -eux;
 cd "$(dirname $0)";
 
 ### PHP 8.5
+
 if [ "${NO_PULL:-0}" -ne "1" ]; then
     docker pull php:8.5-rc-cli-bookworm
     docker run --rm php:8.5-rc-cli-bookworm php --version
@@ -26,7 +27,7 @@ if [ "${NO_TEST:-0}" -ne "1" ]; then
 fi
 
 if [ "${NO_PUSH:-0}" -ne "1" ]; then
-    PHP_RELEASE=$(docker run --rm jakubboucek/lamp-devstack-php:8.5-cli php -r "echo PHP_RELEASE_VERSION;")
+    PHP_RELEASE=$(docker run --rm jakubboucek/lamp-devstack-php:8.5-rc-cli php -r "echo PHP_RELEASE_VERSION;")
     PHP_RELEASE_EXTRA=$(docker run --rm jakubboucek/lamp-devstack-php:8.5-rc-cli php -r "echo PHP_EXTRA_VERSION;")
     docker push jakubboucek/lamp-devstack-php:8.5.${PHP_RELEASE}-rc-${PHP_RELEASE_EXTRA}-cli
     docker push jakubboucek/lamp-devstack-php:8.5.${PHP_RELEASE}-rc-cli
