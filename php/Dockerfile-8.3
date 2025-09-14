@@ -13,12 +13,7 @@ COPY sources.list-bookworm /etc/apt/sources.list
 # Prevent interactive block
 ARG DEBIAN_FRONTEND=noninteractive
 
-# OS binaries install && update critical binaries
-RUN set -eux; \
-    apt-get update; \
-    apt-get install --no-install-recommends -y \
-        ca-certificates \
-        git \
+ARG EXTENSION_DEV_DEPS=" \
         libavif-dev \
         libbz2-dev \
         libc-client-dev \
@@ -34,6 +29,47 @@ RUN set -eux; \
         libxslt-dev \
         libzip-dev \
         zlib1g-dev \
+    "
+
+ARG EXTENSION_RUNTIME_DEPS="  \
+        libabsl20220623 \
+        libaom3 \
+        libavif15 \
+        libbrotli1 \
+        libc-client2007e \
+        libdav1d6 \
+        libfreetype6 \
+        libgav1-1 \
+        libgcrypt20 \
+        libgmp10 \
+        libgssapi-krb5-2 \
+        libhashkit2 \
+        libicu72 \
+        libjpeg62-turbo \
+        libk5crypto3 \
+        libkrb5-3 \
+        libkrb5support0 \
+        libmemcached11 \
+        libpng16-16 \
+        librav1e0 \
+        libsasl2-2 \
+        libsodium23 \
+        libssl3 \
+        libsvtav1enc1 \
+        libwebp7 \
+        libxml2 \
+        libxslt1.1 \
+        libyuv0 \
+        libzip4 \
+    "
+
+# OS binaries install && update critical binaries
+RUN set -eux; \
+    apt-get update; \
+    apt-get install --no-install-recommends -y \
+        ${EXTENSION_DEV_DEPS} \
+        ca-certificates \
+        git \
         nano \
         openssl \
         tzdata \
@@ -65,10 +101,15 @@ RUN set -eux; \
         sysvshm \
         xsl \
         zip; \
+    pecl install memcached; \
+    docker-php-ext-enable memcached; \
     a2enmod \
         expires \
         headers \
         rewrite; \
+    pecl clear-cache; \
+    apt-mark manual ${EXTENSION_RUNTIME_DEPS}; \
+    apt-get purge -y --auto-remove ${EXTENSION_DEV_DEPS}; \
     apt-get clean -y && \
     apt-get autoclean -y && \
     apt-get autoremove -y && \
@@ -101,13 +142,6 @@ ENV PHP_OPCACHE_VALIDATE_TIMESTAMPS=1
 COPY opcache.ini /usr/local/etc/php/conf.d/opcache.ini
 COPY opcache-7.4.ini /usr/local/etc/php/conf.d/opcache-7.4.ini
 COPY opcache-jit.ini /usr/local/etc/php/conf.d/opcache-jit.ini
-
-# Install Mecached extension
-RUN set -eux; \
-    pecl install memcached; \
-    pecl clear-cache; \
-    docker-php-ext-enable memcached; \
-    rm -rf /tmp/* /var/tmp/*;
 
 # Move Apache Document root to sub-directory `www` (PHP frameworks convention)
 ENV APACHE_DOCUMENT_ROOT=/var/www/html/www
