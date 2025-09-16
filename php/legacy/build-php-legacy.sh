@@ -14,10 +14,10 @@ cd "$(dirname $0)";
 # ./build-php-5.6-cli.sh
 # ./build-php-7.0.sh
 # ./build-php-7.0-cli.sh
-./build-php-7.1.sh
-./build-php-7.1-cli.sh
-./build-php-7.2.sh
-./build-php-7.2-cli.sh
+# ./build-php-7.1.sh
+# ./build-php-7.1-cli.sh
+# ./build-php-7.2.sh
+# ./build-php-7.2-cli.sh
 ./build-php-7.3.sh
 ./build-php-7.3-cli.sh
 ./build-php-7.4.sh
