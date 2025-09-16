@@ -86,7 +86,7 @@ ENV PHP_MEMORY_LIMIT=2G
 ENV PHP_SESSION_SAVE_PATH=""
 COPY core.ini /usr/local/etc/php/conf.d/core.ini
 
-# Install Mecached extension
+# Install Memcached extension
 RUN set -eux; \
     pecl install memcached-2.2.0; \
     pecl clear-cache; \

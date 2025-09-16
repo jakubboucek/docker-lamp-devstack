@@ -11,6 +11,8 @@ docker pull php:8.3-cli-bookworm
 docker pull php:8.3-apache-bookworm
 docker pull php:8.4-cli-bookworm
 docker pull php:8.4-apache-bookworm
+docker pull php:8.5-rc-cli-bookworm
+docker pull php:8.5-rc-apache-bookworm
 
 docker pull mariadb:10.5
 docker pull mariadb:10.6
