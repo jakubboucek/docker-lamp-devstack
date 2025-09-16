@@ -99,7 +99,7 @@ ENV PHP_OPCACHE_VALIDATE_TIMESTAMPS=1
 COPY opcache.ini /usr/local/etc/php/conf.d/opcache.ini
 COPY opcache-7.4.ini /usr/local/etc/php/conf.d/opcache-7.4.ini
 
-# Install Mecached extension
+# Install Memcached extension
 RUN set -eux; \
     pecl install memcached; \
     pecl clear-cache; \

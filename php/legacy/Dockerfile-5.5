@@ -94,7 +94,7 @@ ENV PHP_OPCACHE_REVALIDATE_FREQ=2
 ENV PHP_OPCACHE_VALIDATE_TIMESTAMPS=1
 COPY opcache.ini /usr/local/etc/php/conf.d/opcache.ini
 
-# Install Mecached extension
+# Install Memcached extension
 RUN set -eux; \
     pecl install memcached-2.2.0; \
     pecl clear-cache; \
