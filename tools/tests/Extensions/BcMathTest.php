@@ -14,9 +14,9 @@ if (!extension_loaded('bcmath')) {
 
 Assert::same('3', bcadd('1', '2'));
 
-$prev = bcscale(2);
+$originalScale = bcscale(2);
 try {
     Assert::same('0.50', bcdiv('1', '2'));
 } finally {
-    bcscale($prev);
+    bcscale($originalScale);
 }
