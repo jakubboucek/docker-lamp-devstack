@@ -36,7 +36,8 @@ $it = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($extDir, File
 $soFiles = [];
 foreach ($it as $f) {
     if ($f->isFile() && str_ends_with($f->getFilename(), '.so')) {
-        $soFiles[] = $f->getPathname();
+        $so = $f->getPathname();
+        $soFiles[basename($so, '.so')] = $so;
     }
 }
 
@@ -44,7 +45,7 @@ if (!$soFiles) {
     throw new RuntimeException("No .so files found in '{$extDir}'.");
 }
 
-echo "Found " . count($soFiles) . " extensions to process.\n\n";
+echo "Found " . count($soFiles) . " extensions to process: " . implode(', ', array_keys($soFiles)) . ".\n\n";
 echo "Querying dependencies:\n";
 echo "----------------------\n\n";
 
