@@ -1,1 +1,3 @@
 /docker
+/tools/composer.lock
+/tools/vendor
