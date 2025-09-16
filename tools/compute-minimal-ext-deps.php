@@ -45,7 +45,8 @@ if (!$soFiles) {
 }
 
 echo "Found " . count($soFiles) . " extensions to process.\n\n";
-echo "Querying dependencies:\n\n";
+echo "Querying dependencies:\n";
+echo "----------------------\n\n";
 
 sort($soFiles);
 
@@ -78,12 +79,11 @@ foreach ($soFiles as $so) {
         } else {
             $pkg = queryDpkgPackage($lib);
             $allLibs[$lib] = $pkg;
-            echo ($pkg ?? "(unknown)");
+            echo($pkg ?? "(unknown)");
         }
 
         echo "\n";
 
-        $pkg = queryDpkgPackage($lib);
         if ($pkg) {
             $pkgs[] = $pkg;
             $allPkgs[] = $pkg;
@@ -100,9 +100,10 @@ echo "\n  Note: Packages marked with * were cached from previous query.\n\n";
 $allPkgs = array_values(array_unique($allPkgs));
 sort($allPkgs);
 
-echo "Extension dependencies:\n\n";
+echo "Extension dependencies:\n";
+echo "-----------------------\n\n";
 
-foreach($map as $so => $pkgs) {
+foreach ($map as $so => $pkgs) {
     echo "  - " . basename($so, '.so') . ": ";
 
     if (empty($pkgs)) {
@@ -124,7 +125,7 @@ echo "--------------------------------------------------------------------------
 $filter = static fn(string $p) => !in_array($p, $ignorePkgs, true);
 $runtimePkgs = array_values(array_filter($allPkgs, $filter));
 
-if(!$runtimePkgs) {
+if (!$runtimePkgs) {
     throw new LogicException("No runtime packages detected.");
 }
 
@@ -132,6 +133,7 @@ $dlm = " \\\n    ";
 echo "ARG EXTENSION_RUNTIME_DEPS=\" {$dlm}    " . implode("$dlm    ", $runtimePkgs) . "{$dlm}\"\n\n";
 
 echo "------------------------------------------------------------------------------\n";
+
 class ShResponse
 {
     public readonly int $code;
@@ -151,7 +153,7 @@ class ShResponse
     }
 }
 
-class ShExeption extends RuntimeException
+class ShException extends RuntimeException
 {
     public readonly ShResponse $response;
 
@@ -179,7 +181,7 @@ function sh(string $cmd): ShResponse
     $response = new ShResponse($code, $out, $err);
 
     if (!$response->isOk()) {
-        throw new ShExeption($cmd, $response);
+        throw new ShException($cmd, $response);
     }
 
     return $response;
@@ -200,10 +202,6 @@ function parseLdd(string $ldd, array $ignoreLibNames): array
         } // "/lib64/ld-linux-x86-64.so.2 (0x...)"
         elseif (preg_match('/^(\/[^ ]+)\s+\(/', $line, $m)) {
             $path = $m[1];
-            $soname = basename($path);
-            if (in_array($soname, $ignoreLibNames, true)) {
-                continue;
-            }
         } else {
             continue;
         }
@@ -211,6 +209,12 @@ function parseLdd(string $ldd, array $ignoreLibNames): array
         if ($path[0] !== '/') {
             continue;
         }
+
+        $soname = basename($path);
+        if (in_array($soname, $ignoreLibNames, true)) {
+            continue;
+        }
+
         $real = realpath($path);
         $libs[$real ?: $path] = true;
     }

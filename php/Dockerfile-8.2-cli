@@ -62,6 +62,7 @@ ARG EXTENSION_RUNTIME_DEPS="  \
         libyuv0 \
         libzip4 \
     "
+
 # OS binaries install && update critical binaries
 RUN set -eux; \
     apt-get update; \
