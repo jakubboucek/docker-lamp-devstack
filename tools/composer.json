@@ -1,5 +1,14 @@
 {
-    "name": "root/tools",
+    "name": "jakubboucek/docker-lamp-devstack-tools",
+    "description": "Tools for Docker LAMP Devstack",
+    "authors": [
+        {
+            "name": "Jakub Bouček",
+            "email": "pan@jakubboucek.cz",
+            "role": "Developer",
+            "homepage": "https://www.jakub-boucek.cz/"
+        }
+    ],
     "license": "MIT",
     "type": "project",
     "require": {

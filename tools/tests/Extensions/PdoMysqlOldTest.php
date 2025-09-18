@@ -1,17 +1,15 @@
 <?php
 /** @noinspection PhpComposerExtensionStubsInspection */
-/** @noinspection PhpElementIsNotAvailableInCurrentPhpVersionInspection */
 
 declare(strict_types=1);
 
 use Tester\Assert;
 use Tester\Environment;
 
-
 require __DIR__ . '/../bootstrap.php';
 
-if(PHP_VERSION_ID < 80400) {
-    Environment::skip('Test is only for PHP 8.4 or higher');
+if(PHP_VERSION_ID >= 80500) {
+    Environment::skip('Test is only for PHP 8.4 or lower');
 }
 
 if (!extension_loaded('pdo_mysql')) {
@@ -21,8 +19,8 @@ if (!extension_loaded('pdo_mysql')) {
 $drivers = PDO::getAvailableDrivers();
 Assert::true(in_array('mysql', $drivers, true));
 
-Assert::type('int', Pdo\Mysql::ATTR_INIT_COMMAND);
-Assert::type('int', Pdo\Mysql::ATTR_USE_BUFFERED_QUERY);
+Assert::type('int', PDO::MYSQL_ATTR_INIT_COMMAND);
+Assert::type('int', PDO::MYSQL_ATTR_USE_BUFFERED_QUERY);
 
 $dsn = 'mysql:host=localhost;dbname=test';
 try {

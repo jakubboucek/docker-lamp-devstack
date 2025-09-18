@@ -21,5 +21,3 @@ curl_setopt($ch, CURLOPT_TIMEOUT, 5);
 $version = curl_version();
 Assert::type('array', $version);
 Assert::true(isset($version['version']));
-
-curl_close($ch);
