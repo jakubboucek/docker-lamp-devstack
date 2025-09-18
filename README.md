@@ -64,7 +64,6 @@ unoptimized, unmaintained)
     [`gd`](https://www.php.net/manual/en/book.image.php) with PNG, WebP, AVIF, FreeType fonts support
     [`gettext`](https://www.php.net/manual/en/book.gettext.php),
     [`gmp`](https://www.php.net/manual/en/book.gmp.php),
-    [`imap`](https://www.php.net/manual/en/book.imap.php) (up to PHP 8.3),
     [`intl`](https://www.php.net/manual/en/book.intl.php),
     [`memcached`](https://www.php.net/manual/en/book.memcached.php),
     [`mysqli`](https://www.php.net/manual/en/book.mysqli.php),
@@ -87,6 +86,14 @@ unoptimized, unmaintained)
 - timezones are correctly supported
 - optimized for small image size and short load times
 
+### Removed extensions
+
+Certain PHP extensions have been intentionally excluded from these images because they are deprecated and interfere with
+compatibility with important updates of other components.
+
+| Package | Available up to                                                                | Reason to remove         |
+|---------|--------------------------------------------------------------------------------|--------------------------|
+| `imap`  | `8.3.24`, `8.2.28`, and `8.1.32`, and remains in legacy images (8.0 and older) | incompatible w/Debian 13 |
 
 ## Basic usage
 Copy the [`docker-compose.yml`](docker-compose.yml) file
