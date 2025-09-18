@@ -1,4 +1,4 @@
-FROM php:8.3-apache-bookworm
+FROM php:8.3-apache-trixie
 
 LABEL maintainer="Jakub Bouček <pan@jakubboucek.cz>"
 LABEL org.label-schema.name="PHP 8.3 (Apache module)"
@@ -8,7 +8,7 @@ LABEL org.label-schema.vcs-url="https://github.com/jakubboucek/docker-lamp-devst
 WORKDIR /tmp
 
 # Use local mirrors to install Debian updates
-COPY sources.list-bookworm /etc/apt/sources.list
+COPY sources.list-trixie /etc/apt/sources.list
 
 # Prevent interactive block
 ARG DEBIAN_FRONTEND=noninteractive
@@ -16,12 +16,10 @@ ARG DEBIAN_FRONTEND=noninteractive
 ARG EXTENSION_DEV_DEPS=" \
         libavif-dev \
         libbz2-dev \
-        libc-client-dev \
         libfreetype6-dev \
         libgmp-dev \
         libicu-dev \
         libjpeg62-turbo-dev \
-        libkrb5-dev \
         libmemcached-dev \
         libpng-dev \
         libsodium-dev \
@@ -32,35 +30,36 @@ ARG EXTENSION_DEV_DEPS=" \
     "
 
 ARG EXTENSION_RUNTIME_DEPS="  \
-        libabsl20220623 \
+        libabsl20240722 \
         libaom3 \
-        libavif15 \
+        libavif16 \
         libbrotli1 \
-        libc-client2007e \
-        libdav1d6 \
+        libbz2-1.0 \
+        libdav1d7 \
         libfreetype6 \
         libgav1-1 \
         libgcrypt20 \
         libgmp10 \
-        libgssapi-krb5-2 \
-        libhashkit2 \
-        libicu72 \
+        libgpg-error0 \
+        libhashkit2t64 \
+        libicu76 \
         libjpeg62-turbo \
-        libk5crypto3 \
-        libkrb5-3 \
-        libkrb5support0 \
-        libmemcached11 \
-        libpng16-16 \
-        librav1e0 \
+        liblzma5 \
+        libmemcached11t64 \
+        libpng16-16t64 \
+        librav1e0.7 \
         libsasl2-2 \
+        libsharpyuv0 \
         libsodium23 \
-        libssl3 \
-        libsvtav1enc1 \
+        libssl3t64 \
+        libsvtav1enc2 \
         libwebp7 \
         libxml2 \
         libxslt1.1 \
         libyuv0 \
-        libzip4 \
+        libzip5 \
+        libzstd1 \
+        zlib1g \
     "
 
 # OS binaries install && update critical binaries
@@ -77,8 +76,6 @@ RUN set -eux; \
         zip; \
     docker-php-ext-configure \
         gd --with-avif --with-freetype --with-jpeg --with-webp; \
-    docker-php-ext-configure \
-        imap --with-kerberos --with-imap-ssl; \
     docker-php-ext-install -j$(nproc) \
         bcmath \
         bz2 \
@@ -87,7 +84,6 @@ RUN set -eux; \
         gd \
         gettext \
         gmp \
-        imap \
         intl \
         mysqli \
         opcache \
@@ -107,9 +103,9 @@ RUN set -eux; \
         expires \
         headers \
         rewrite; \
-    pecl clear-cache; \
     apt-mark manual ${EXTENSION_RUNTIME_DEPS}; \
     apt-get purge -y --auto-remove ${EXTENSION_DEV_DEPS}; \
+    pecl clear-cache; \
     apt-get clean -y && \
     apt-get autoclean -y && \
     apt-get autoremove -y && \
