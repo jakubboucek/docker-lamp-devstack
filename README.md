@@ -51,8 +51,9 @@ of base images designed to cover most standard development workflows — with no
 - current **PHP** versions: 8.4, 8.3, 8.2 and 8.1
 - unsupported **PHP** versions also available: 8.0, 7.4, 7.3, 7.2, 7.1, 7.0, 5.6, 5.5 and 5.4 (with limited stability,
 unoptimized, unmaintained)
-- current versions of **MariaDB** 11.7, 11.4, 10.11, 10.6, 10.5 and RC pre-release of 11.8
-- unsupported versions of **MariaDB** 11.6, 11.5, 11.3, 11.2, 11.1, 11.0, 10.10, 10.9, 10.8, 10.7, 10.4 and 10.3 (unmaintained)
+- current versions of **MariaDB** 11.8, 11.4, 10.11, 10.6  and RC pre-release of 12.0
+- unsupported versions of **MariaDB** 11.7, 11.6, 11.5, 11.3, 11.2, 11.1, 11.0, 10.10, 10.9, 10.8, 10.7, 10.5, 10.4
+  and 10.3 (unmaintained)
 - current version of **Apache** 2.4 (in non-CLI images)
 - current version of **Xdebug** 3.4 (in debug images)
 - extra PHP extensions:
