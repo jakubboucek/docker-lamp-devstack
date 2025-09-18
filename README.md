@@ -48,7 +48,7 @@ of base images designed to cover most standard development workflows — with no
 
 ## Main features
 - architecture: `linux/amd64`
-- current **PHP** versions: 8.4, 8.3, 8.2 and 8.1
+- current **PHP** versions: 8.4, 8.3, 8.2 and 8.1 and pre-release of 8.5
 - unsupported **PHP** versions also available: 8.0, 7.4, 7.3, 7.2, 7.1, 7.0, 5.6, 5.5 and 5.4 (with limited stability,
 unoptimized, unmaintained)
 - current versions of **MariaDB** 12.0, 11.8, 11.4, 10.11, 10.6  and RC pre-release of 12.1
@@ -61,7 +61,7 @@ unoptimized, unmaintained)
     [`bz2`](https://www.php.net/manual/en/book.bzip2.php),
     [`calendar`](https://www.php.net/manual/en/book.calendar.php),
     [`exif`](https://www.php.net/manual/en/book.exif.php),
-    [`gd`](https://www.php.net/manual/en/book.image.php) with PNG, WebP, AVIF (for PHP 8.1+), FreeType fonts support
+    [`gd`](https://www.php.net/manual/en/book.image.php) with PNG, WebP, AVIF, FreeType fonts support
     [`gettext`](https://www.php.net/manual/en/book.gettext.php),
     [`gmp`](https://www.php.net/manual/en/book.gmp.php),
     [`imap`](https://www.php.net/manual/en/book.imap.php) (up to PHP 8.3),
@@ -81,7 +81,7 @@ unoptimized, unmaintained)
     [`headers`](https://httpd.apache.org/docs/current/mod/mod_headers.html) and
     [`rewrite`](https://httpd.apache.org/docs/current/mod/mod_rewrite.html)
 - Apache `DocumentRoot` changed to: `/var/www/html/www` (configurable by [ENV](#document-root))
-- PHP image comes with [Composer 2.8+](https://getcomposer.org/) and [Git 2.39+](https://git-scm.com/) to 
+- PHP image comes with [Composer 2.8+](https://getcomposer.org/) and [Git 2.49+](https://git-scm.com/) to 
     use it in guest shell  
 - MySQL properly configured to use `utf8mb4` as a default charset, an optional support of Windows Host is also available
 - timezones are correctly supported
@@ -132,7 +132,7 @@ use `-legacy` tag suffix:
 - `jakubboucek/lamp-devstack-php:5.5-legacy`
 - `jakubboucek/lamp-devstack-php:5.4-legacy-fixed`
 
-> Note: Version 5.4 is using `-fixed` suffix because is unable to rebuild them from scratch. 
+> Note: Version 5.4 is using `-fixed` suffix because is unable to rebuild them from scratch.
 
 All PHP images have alternative variants with XDebug extension preinstalled, use `-debug` tag suffix, example:
 - `jakubboucek/lamp-devstack-php:debug`
@@ -147,6 +147,10 @@ All PHP images also have alternative CLI variants, use `-cli` tag suffix, exampl
 - `jakubboucek/lamp-devstack-php:8.4-cli`
 - `jakubboucek/lamp-devstack-php:8.4.0-cli`
 - `jakubboucek/lamp-devstack-php:7.4-legacy-cli`
+
+The pre-release of PHP 8.5 images have the `-rc` suffix, example:
+- `jakubboucek/lamp-devstack-php:8.5-rc`
+- `jakubboucek/lamp-devstack-php:8.5-rc-cli`
 
 ### Using MySQL
 MySQL server starts at the same time as the web server.
