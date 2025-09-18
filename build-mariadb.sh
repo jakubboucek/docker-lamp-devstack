@@ -12,7 +12,7 @@ NO_PUSH=${NO_PUSH:-0}
 # Source: https://hub.docker.com/_/mariadb
 
 ### MariaDB - 10.6
-MARIADB_RELEASE=22
+MARIADB_RELEASE=23
 if [ "${NO_PULL}" -ne "1" ]; then
     docker pull mariadb:10.6.${MARIADB_RELEASE}
     docker tag mariadb:10.6.${MARIADB_RELEASE} mariadb:10.6
@@ -34,7 +34,7 @@ if [ "${NO_PUSH}" -ne "1" ]; then
 fi
 
 ### MariaDB - 10.11
-MARIADB_RELEASE=13
+MARIADB_RELEASE=14
 if [ "${NO_PULL}" -ne "1" ]; then
     docker pull mariadb:10.11.${MARIADB_RELEASE}
     docker tag mariadb:10.11.${MARIADB_RELEASE} mariadb:10.11
@@ -58,7 +58,7 @@ if [ "${NO_PUSH}" -ne "1" ]; then
 fi
 
 ### MariaDB - 11.4
-MARIADB_RELEASE=7
+MARIADB_RELEASE=8
 if [ "${NO_PULL}" -ne "1" ]; then
     docker pull mariadb:11.4.${MARIADB_RELEASE}
     docker tag mariadb:11.4.${MARIADB_RELEASE} mariadb:11.4
@@ -83,7 +83,7 @@ fi
 
 
 ### MariaDB - 11.8
-MARIADB_RELEASE=2
+MARIADB_RELEASE=3
 if [ "${NO_PULL}" -ne "1" ]; then
     docker pull mariadb:11.8.${MARIADB_RELEASE}
     docker tag mariadb:11.8.${MARIADB_RELEASE} mariadb:11.8
@@ -108,23 +108,45 @@ fi
 
 
 ### MariaDB - 12.0
-MARIADB_RELEASE=1
+MARIADB_RELEASE=2
 if [ "${NO_PULL}" -ne "1" ]; then
-    docker pull mariadb:12.0.${MARIADB_RELEASE}-rc
-    docker tag mariadb:12.0.${MARIADB_RELEASE}-rc mariadb:12.0-rc
-    docker run --rm mariadb:12.0-rc mariadb --version
+    docker pull mariadb:12.0.${MARIADB_RELEASE}
+    docker tag mariadb:12.0.${MARIADB_RELEASE} mariadb:12.0
+    docker run --rm mariadb:12.0 mariadb --version
 fi
 
 if [ "${NO_BUILD}" -ne "1" ]; then
-    docker build --progress plain -f mysql/Dockerfile-12.0 -t jakubboucek/lamp-devstack-mysql:12.0-rc mysql/
-    docker tag jakubboucek/lamp-devstack-mysql:12.0-rc jakubboucek/lamp-devstack-mysql:12.0.${MARIADB_RELEASE}-rc
+    docker build --progress plain -f mysql/Dockerfile-12.0 -t jakubboucek/lamp-devstack-mysql:12.0 mysql/
+    docker tag jakubboucek/lamp-devstack-mysql:12.0 jakubboucek/lamp-devstack-mysql:12.0.${MARIADB_RELEASE}
 fi
 
 if [ "${NO_TEST}" -ne "1" ]; then
-    docker run --rm jakubboucek/lamp-devstack-mysql:12.0-rc mariadb --version
+    docker run --rm jakubboucek/lamp-devstack-mysql:12.0 mariadb --version
 fi
 
 if [ "${NO_PUSH}" -ne "1" ]; then
-    docker push jakubboucek/lamp-devstack-mysql:12.0.${MARIADB_RELEASE}-rc
-    docker push jakubboucek/lamp-devstack-mysql:12.0-rc
+    docker push jakubboucek/lamp-devstack-mysql:12.0.${MARIADB_RELEASE}
+    docker push jakubboucek/lamp-devstack-mysql:12.0
+fi
+
+### MariaDB - 12.1
+MARIADB_RELEASE=1
+if [ "${NO_PULL}" -ne "1" ]; then
+    docker pull mariadb:12.1.${MARIADB_RELEASE}-rc
+    docker tag mariadb:12.1.${MARIADB_RELEASE}-rc mariadb:12.1-rc
+    docker run --rm mariadb:12.1-rc mariadb --version
+fi
+
+if [ "${NO_BUILD}" -ne "1" ]; then
+    docker build --progress plain -f mysql/Dockerfile-12.1 -t jakubboucek/lamp-devstack-mysql:12.1-rc mysql/
+    docker tag jakubboucek/lamp-devstack-mysql:12.1-rc jakubboucek/lamp-devstack-mysql:12.1.${MARIADB_RELEASE}-rc
+fi
+
+if [ "${NO_TEST}" -ne "1" ]; then
+    docker run --rm jakubboucek/lamp-devstack-mysql:12.1-rc mariadb --version
+fi
+
+if [ "${NO_PUSH}" -ne "1" ]; then
+    docker push jakubboucek/lamp-devstack-mysql:12.1.${MARIADB_RELEASE}-rc
+    docker push jakubboucek/lamp-devstack-mysql:12.1-rc
 fi
