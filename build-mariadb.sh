@@ -43,8 +43,8 @@ fi
 
 if [ "${NO_BUILD}" -ne "1" ]; then
     docker build --progress plain -f mysql/Dockerfile-10.11 -t jakubboucek/lamp-devstack-mysql:10.11 mysql/
-    docker tag jakubboucek/lamp-devstack-mysql:10.11 jakubboucek/lamp-devstack-mysql:10
     docker tag jakubboucek/lamp-devstack-mysql:10.11 jakubboucek/lamp-devstack-mysql:10.11.${MARIADB_RELEASE}
+    docker tag jakubboucek/lamp-devstack-mysql:10.11 jakubboucek/lamp-devstack-mysql:10
 fi
 
 if [ "${NO_TEST}" -ne "1" ]; then
@@ -68,7 +68,6 @@ fi
 if [ "${NO_BUILD}" -ne "1" ]; then
     docker build --progress plain -f mysql/Dockerfile-11.4 -t jakubboucek/lamp-devstack-mysql:11.4 mysql/
     docker tag jakubboucek/lamp-devstack-mysql:11.4 jakubboucek/lamp-devstack-mysql:11.4.${MARIADB_RELEASE}
-    docker tag jakubboucek/lamp-devstack-mysql:11.4 jakubboucek/lamp-devstack-mysql:lts
 fi
 
 if [ "${NO_TEST}" -ne "1" ]; then
@@ -78,7 +77,6 @@ fi
 if [ "${NO_PUSH}" -ne "1" ]; then
     docker push jakubboucek/lamp-devstack-mysql:11.4.${MARIADB_RELEASE}
     docker push jakubboucek/lamp-devstack-mysql:11.4
-    docker push jakubboucek/lamp-devstack-mysql:lts
 fi
 
 
@@ -94,6 +92,7 @@ if [ "${NO_BUILD}" -ne "1" ]; then
     docker build --progress plain -f mysql/Dockerfile-11.8 -t jakubboucek/lamp-devstack-mysql:11.8 mysql/
     docker tag jakubboucek/lamp-devstack-mysql:11.8 jakubboucek/lamp-devstack-mysql:11.8.${MARIADB_RELEASE}
     docker tag jakubboucek/lamp-devstack-mysql:11.8 jakubboucek/lamp-devstack-mysql:11
+    docker tag jakubboucek/lamp-devstack-mysql:11.8 jakubboucek/lamp-devstack-mysql:lts
 fi
 
 if [ "${NO_TEST}" -ne "1" ]; then
@@ -104,6 +103,7 @@ if [ "${NO_PUSH}" -ne "1" ]; then
     docker push jakubboucek/lamp-devstack-mysql:11.8.${MARIADB_RELEASE}
     docker push jakubboucek/lamp-devstack-mysql:11.8
     docker push jakubboucek/lamp-devstack-mysql:11
+    docker push jakubboucek/lamp-devstack-mysql:lts
 fi
 
 
@@ -118,6 +118,8 @@ fi
 if [ "${NO_BUILD}" -ne "1" ]; then
     docker build --progress plain -f mysql/Dockerfile-12.0 -t jakubboucek/lamp-devstack-mysql:12.0 mysql/
     docker tag jakubboucek/lamp-devstack-mysql:12.0 jakubboucek/lamp-devstack-mysql:12.0.${MARIADB_RELEASE}
+    docker tag jakubboucek/lamp-devstack-mysql:12.0 jakubboucek/lamp-devstack-mysql:12
+    docker tag jakubboucek/lamp-devstack-mysql:12.0 jakubboucek/lamp-devstack-mysql:latest
 fi
 
 if [ "${NO_TEST}" -ne "1" ]; then
@@ -127,6 +129,8 @@ fi
 if [ "${NO_PUSH}" -ne "1" ]; then
     docker push jakubboucek/lamp-devstack-mysql:12.0.${MARIADB_RELEASE}
     docker push jakubboucek/lamp-devstack-mysql:12.0
+    docker push jakubboucek/lamp-devstack-mysql:12
+    docker push jakubboucek/lamp-devstack-mysql:latest
 fi
 
 ### MariaDB - 12.1
