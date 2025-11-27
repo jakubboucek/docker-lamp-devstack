@@ -48,9 +48,9 @@ of base images designed to cover most standard development workflows — with no
 
 ## Main features
 - architecture: `linux/amd64`
-- current **PHP** versions: 8.4, 8.3, 8.2 and 8.1 and pre-release of 8.5
+- current **PHP** versions: 8.5, 8.4, 8.3, 8.2 and 8.1
 - unsupported **PHP** versions also available: 8.0, 7.4, 7.3, 7.2, 7.1, 7.0, 5.6, 5.5 and 5.4 (with limited stability,
-unoptimized, unmaintained)
+    unoptimized, unmaintained)
 - current versions of **MariaDB** 12.0, 11.8, 11.4, 10.11, 10.6  and RC pre-release of 12.1
 - unsupported versions of **MariaDB** 11.7, 11.6, 11.5, 11.3, 11.2, 11.1, 11.0, 10.10, 10.9, 10.8, 10.7, 10.5, 10.4
   and 10.3 (unmaintained)
@@ -123,8 +123,8 @@ my_project/                 <-- project's root
 Images are tagged by the cascaded SemVer:
 - `jakubboucek/lamp-devstack-php:latest` – means `latest` available stable PHP image,
 - `jakubboucek/lamp-devstack-php:8` – represents the highest PHP image of `8` version, but lower than `9.0.0`,
-- `jakubboucek/lamp-devstack-php:8.4` – represents the highest PHP image of `8.4` version, but lower than `8.5.0`,
-- `jakubboucek/lamp-devstack-php:8.4.0` – represents most specific PHP image, directly version `8.4.0`.
+- `jakubboucek/lamp-devstack-php:8.5` – represents the highest PHP image of `8.5` version, but lower than `8.6.0`,
+- `jakubboucek/lamp-devstack-php:8.5.0` – represents most specific PHP image, directly version `8.5.0`.
 
 **Legacy PHP** images are tagged using different strategy, only latest revision for each minor version is available,
 use `-legacy` tag suffix:
@@ -141,25 +141,21 @@ use `-legacy` tag suffix:
 
 > Note: Version 5.4 is using `-fixed` suffix because is unable to rebuild them from scratch.
 
-> Note: (Pre-release of PHP 8.5 contains unstable version of Xdebug)
+> Note: (Image of PHP 8.5 contains unstable version of Xdebug)
 
 All PHP images have alternative variants with XDebug extension preinstalled, use `-debug` tag suffix, example:
 - `jakubboucek/lamp-devstack-php:debug`
 - `jakubboucek/lamp-devstack-php:8-debug`
-- `jakubboucek/lamp-devstack-php:8.4-debug`
-- `jakubboucek/lamp-devstack-php:8.4.0-debug`
+- `jakubboucek/lamp-devstack-php:8.5-debug`
+- `jakubboucek/lamp-devstack-php:8.5.0-debug`
 - `jakubboucek/lamp-devstack-php:7.4-legacy-debug`
 
 All PHP images also have alternative CLI variants, use `-cli` tag suffix, example:
 - `jakubboucek/lamp-devstack-php:cli`
 - `jakubboucek/lamp-devstack-php:8-cli`
-- `jakubboucek/lamp-devstack-php:8.4-cli`
-- `jakubboucek/lamp-devstack-php:8.4.0-cli`
+- `jakubboucek/lamp-devstack-php:8.5-cli`
+- `jakubboucek/lamp-devstack-php:8.5.0-cli`
 - `jakubboucek/lamp-devstack-php:7.4-legacy-cli`
-
-The pre-release of PHP 8.5 images have the `-rc` suffix, example:
-- `jakubboucek/lamp-devstack-php:8.5-rc`
-- `jakubboucek/lamp-devstack-php:8.5-rc-cli`
 
 ### Using MySQL
 MySQL server starts at the same time as the web server.
