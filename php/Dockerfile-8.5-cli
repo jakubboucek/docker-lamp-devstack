@@ -1,7 +1,7 @@
-FROM php:8.5-rc-cli-trixie
+FROM php:8.5-cli-trixie
 
 LABEL maintainer="Jakub Bouček <pan@jakubboucek.cz>"
-LABEL org.label-schema.name="PHP 8.5 (Pre-release, CLI)"
+LABEL org.label-schema.name="PHP 8.5 (CLI)"
 LABEL org.label-schema.vcs-url="https://github.com/jakubboucek/docker-lamp-devstack"
 
 # Workdir during installation
