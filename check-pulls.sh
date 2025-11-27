@@ -19,4 +19,5 @@ docker pull mariadb:10.11
 docker pull mariadb:11.4
 docker pull mariadb:11.8
 docker pull mariadb:12.0
-docker pull mariadb:12.1-rc
+docker pull mariadb:12.1
+docker pull mariadb:12.2-rc
