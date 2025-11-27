@@ -1,0 +1,27 @@
+FROM jakubboucek/lamp-devstack-php:8.5-rc
+
+LABEL org.label-schema.name="PHP 8.5 (Pre-release, Apache module + Xdebug)"
+
+# Configure Xdebug
+COPY xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini
+
+# Prevent interactive block
+ARG DEBIAN_FRONTEND=noninteractive
+
+WORKDIR /tmp
+
+# Install Xdebug (Pre-release version)
+RUN set -eux; \
+    curl https://xdebug.org/files/xdebug-3.5.0alpha3.tgz -o xdebug-3.5.0alpha3.tgz; \
+    tar -xzf xdebug-3.5.0alpha3.tgz; \
+    rm xdebug-3.5.0alpha3.tgz; \
+    cd xdebug-3.5.0alpha3; \
+    phpize; \
+    ./configure --enable-xdebug; \
+    make -j$(nproc); \
+    make install; \
+    docker-php-ext-enable xdebug; \
+    rm -rf /tmp/*;
+
+# Workdir after installation
+WORKDIR /var/www/html

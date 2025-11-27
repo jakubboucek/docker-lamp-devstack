@@ -141,6 +141,8 @@ use `-legacy` tag suffix:
 
 > Note: Version 5.4 is using `-fixed` suffix because is unable to rebuild them from scratch.
 
+> Note: (Pre-release of PHP 8.5 contains unstable version of Xdebug)
+
 All PHP images have alternative variants with XDebug extension preinstalled, use `-debug` tag suffix, example:
 - `jakubboucek/lamp-devstack-php:debug`
 - `jakubboucek/lamp-devstack-php:8-debug`
