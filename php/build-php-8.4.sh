@@ -8,6 +8,7 @@ cd "$(dirname $0)";
 ### PHP 8.4
 if [ "${NO_PULL:-0}" -ne "1" ]; then
     docker pull php:8.4-apache-trixie
+    docker pull ghcr.io/php/pie:bin
     docker run --rm php:8.4-apache-trixie php --version
 fi
 

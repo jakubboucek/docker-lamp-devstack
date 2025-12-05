@@ -13,6 +13,9 @@ COPY sources.list-trixie /etc/apt/sources.list
 # Prevent interactive block
 ARG DEBIAN_FRONTEND=noninteractive
 
+# Install PIE - The modern PHP Installer for Extensions
+COPY --from=ghcr.io/php/pie:bin /pie /usr/bin/pie
+
 ARG EXTENSION_DEV_DEPS=" \
         libavif-dev \
         libbz2-dev \

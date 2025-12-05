@@ -14,6 +14,8 @@ docker pull php:8.4-apache-trixie
 docker pull php:8.5-cli-trixie
 docker pull php:8.5-apache-trixie
 
+docker pull ghcr.io/php/pie:bin
+
 docker pull mariadb:10.6
 docker pull mariadb:10.11
 docker pull mariadb:11.4
