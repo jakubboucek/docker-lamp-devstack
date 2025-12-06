@@ -10,7 +10,7 @@ if [ "${NO_PULL:-0}" -ne "1" ]; then
     if [ "${NO_ASSETS:-0}" -ne "1" ]; then
         ../prepare-assets.sh
     fi
-    
+
     docker pull php:8.5-cli-trixie
     docker run --rm php:8.5-cli-trixie php --version
 fi

@@ -5,7 +5,7 @@ set -eux;
 
 cd "$(dirname $0)";
 
-./prepare-assets.sh
+[ "${NO_PULL:-0}" -ne 1 ] && [ "${NO_ASSETS:-0}" -ne 1 ] && ./prepare-assets.sh
 
 export NO_ASSETS=1
 
