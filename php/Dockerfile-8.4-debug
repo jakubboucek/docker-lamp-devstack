@@ -5,12 +5,13 @@ LABEL org.label-schema.name="PHP 8.4 (Apache module + Xdebug)"
 # Configure Xdebug
 COPY xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini
 
+# Setup PIE working directory
+ARG PIE_WORKING_DIRECTORY=/tmp/.pie
+
 # Prevent interactive block
 ARG DEBIAN_FRONTEND=noninteractive
 
 # Install Xdebug
 RUN set -eux; \
-    pecl install xdebug; \
-    pecl clear-cache; \
-    docker-php-ext-enable xdebug; \
+    pie install xdebug/xdebug; \
     rm -rf /var/tmp/* /tmp/*;

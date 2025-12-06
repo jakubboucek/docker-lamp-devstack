@@ -12,6 +12,7 @@ COPY sources.list-trixie /etc/apt/sources.list
 
 # Install PIE - The modern PHP Installer for Extensions
 COPY --from=ghcr.io/php/pie:bin /pie /usr/bin/pie
+ARG PIE_WORKING_DIRECTORY=/tmp/.pie
 
 # Prevent interactive block
 ARG DEBIAN_FRONTEND=noninteractive
@@ -101,11 +102,9 @@ RUN set -eux; \
         sysvshm \
         xsl \
         zip; \
-    pecl install memcached; \
-    docker-php-ext-enable memcached; \
+    pie install php-memcached/php-memcached; \
     apt-mark manual ${EXTENSION_RUNTIME_DEPS}; \
     apt-get purge -y --auto-remove ${EXTENSION_DEV_DEPS}; \
-    pecl clear-cache; \
     apt-get clean -y && \
     apt-get autoclean -y && \
     apt-get autoremove -y && \
