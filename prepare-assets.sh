@@ -7,7 +7,7 @@ cd "$(dirname $0)";
 
 mkdir -p php/build
 
-curl -L https://github.com/php/pie/releases/latest/download/pie.phar -o php/build/pie.phar
+curl -fL https://github.com/php/pie/releases/latest/download/pie.phar -o php/build/pie.phar
 
 # Check that PHP is available
 if ! command -v php >/dev/null 2>&1; then
