@@ -105,7 +105,7 @@ RUN set -eux; \
     apt-get clean -y && \
     apt-get autoclean -y && \
     apt-get autoremove -y && \
-    rm -rf /var/cache/* /var/lib/apt/lists/* /var/lib/log/* /tmp/* /var/tmp/*;
+    rm -rf /var/cache/* /var/lib/apt/lists/* /var/lib/log/* /tmp/* /var/tmp/* ~/.composer/cache/*;
 
 # Configure Apache & PHP
 # 32767 = E_ALL
@@ -141,7 +141,7 @@ RUN set -eux; \
     php /tmp/composer-setup.php --install-dir=/usr/local/bin --filename=composer; \
     COMPOSER_BIN_DIR=$(composer global config bin-dir --absolute) 2>/dev/null; \
     echo "export PATH=${COMPOSER_BIN_DIR}:\${PATH}" >> ~/.bashrc; \
-    rm -rf /tmp/* $(composer global config cache-dir --absolute)/*;
+    rm -rf /tmp/*;
 
 # Workdir after installation
 WORKDIR /

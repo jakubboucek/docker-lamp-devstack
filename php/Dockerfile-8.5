@@ -109,7 +109,7 @@ RUN set -eux; \
     apt-get clean -y && \
     apt-get autoclean -y && \
     apt-get autoremove -y && \
-    rm -rf /var/cache/* /var/lib/apt/lists/* /var/lib/log/* /tmp/* /var/tmp/*;
+    rm -rf /var/cache/* /var/lib/apt/lists/* /var/lib/log/* /tmp/* /var/tmp/* ~/.composer/cache/*;
 
 # Configure Apache & PHP
 # 32767 = E_ALL
@@ -154,7 +154,7 @@ RUN set -eux; \
     sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf; \
     sed -ri -e 's!:80>!:${PORT}>!g' /etc/apache2/sites-available/*.conf; \
     sed -ri -e 's!Listen 80!Listen ${PORT}!g' /etc/apache2/ports.conf; \
-    rm -rf /tmp/* $(composer global config cache-dir --absolute)/*;
+    rm -rf /tmp/*;
 
 # Workdir after installation
 WORKDIR /var/www/html
