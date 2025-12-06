@@ -10,6 +10,9 @@ WORKDIR /tmp
 # Use local mirrors to install Debian updates
 COPY sources.list-trixie /etc/apt/sources.list
 
+# Install PIE - The modern PHP Installer for Extensions
+COPY --from=ghcr.io/php/pie:bin /pie /usr/bin/pie
+
 # Prevent interactive block
 ARG DEBIAN_FRONTEND=noninteractive
 
