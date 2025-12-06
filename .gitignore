@@ -1,3 +1,4 @@
-/docker
+/.docker
+/php/build
 /tools/composer.lock
 /tools/vendor

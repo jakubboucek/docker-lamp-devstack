@@ -11,7 +11,7 @@ WORKDIR /tmp
 COPY sources.list-trixie /etc/apt/sources.list
 
 # Install PIE - The modern PHP Installer for Extensions
-COPY --from=ghcr.io/php/pie:bin /pie /usr/bin/pie
+COPY build/pie.phar /usr/bin/pie
 ARG PIE_WORKING_DIRECTORY=/tmp/.pie
 
 # Prevent interactive block
