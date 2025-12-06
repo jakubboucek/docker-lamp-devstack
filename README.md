@@ -55,7 +55,7 @@ of base images designed to cover most standard development workflows — with no
 - unsupported versions of **MariaDB** 12.0, 11.7, 11.6, 11.5, 11.3, 11.2, 11.1, 11.0, 10.10, 10.9, 10.8, 10.7, 10.5,
     10.4 and 10.3 (unmaintained)
 - current version of **Apache** 2.4 (in non-CLI images)
-- current version of **Xdebug** 3.4 (in debug images)
+- current version of **Xdebug** 3.5 (in debug images)
 - extra PHP extensions:
     [`bmath`](https://www.php.net/manual/en/book.bc.php),
     [`bz2`](https://www.php.net/manual/en/book.bzip2.php),
@@ -80,8 +80,8 @@ of base images designed to cover most standard development workflows — with no
     [`headers`](https://httpd.apache.org/docs/current/mod/mod_headers.html) and
     [`rewrite`](https://httpd.apache.org/docs/current/mod/mod_rewrite.html)
 - Apache `DocumentRoot` changed to: `/var/www/html/www` (configurable by [ENV](#document-root))
-- PHP image comes with [Composer 2.8+](https://getcomposer.org/) and [Git 2.49+](https://git-scm.com/) to 
-    use it in guest shell  
+- PHP image comes with [Composer 2.9+](https://getcomposer.org/), [PIE 1.3+](https://github.com/php/pie) 
+    and [Git 2.47+](https://git-scm.com/) to use it in guest shell
 - MySQL properly configured to use `utf8mb4` as a default charset, an optional support of Windows Host is also available
 - timezones are correctly supported
 - optimized for small image size and short load times
