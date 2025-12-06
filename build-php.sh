@@ -5,6 +5,10 @@ set -eux;
 
 cd "$(dirname $0)";
 
+[ "${NO_PULL:-0}" -ne 1 ] && [ "${NO_ASSETS:-0}" -ne 1 ] && ./prepare-assets.sh
+
+export NO_ASSETS=1
+
 ./php/build-php-8.1-cli.sh
 ./php/build-php-8.1.sh
 ./php/build-php-8.2-cli.sh

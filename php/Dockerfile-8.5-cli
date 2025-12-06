@@ -11,7 +11,8 @@ WORKDIR /tmp
 COPY sources.list-trixie /etc/apt/sources.list
 
 # Install PIE - The modern PHP Installer for Extensions
-COPY --from=ghcr.io/php/pie:bin /pie /usr/bin/pie
+COPY build/pie.phar /usr/bin/pie
+ARG PIE_WORKING_DIRECTORY=/tmp/.pie
 
 # Prevent interactive block
 ARG DEBIAN_FRONTEND=noninteractive
@@ -98,15 +99,13 @@ RUN set -eux; \
         sysvshm \
         xsl \
         zip; \
-    pecl install memcached; \
-    docker-php-ext-enable memcached; \
+    pie install php-memcached/php-memcached; \
     apt-mark manual ${EXTENSION_RUNTIME_DEPS}; \
     apt-get purge -y --auto-remove ${EXTENSION_DEV_DEPS}; \
-    pecl clear-cache; \
     apt-get clean -y && \
     apt-get autoclean -y && \
     apt-get autoremove -y && \
-    rm -rf /var/cache/* /var/lib/apt/lists/* /var/lib/log/* /tmp/* /var/tmp/*;
+    rm -rf /var/cache/* /var/lib/apt/lists/* /var/lib/log/* /tmp/* /var/tmp/* ~/.composer/cache/*;
 
 # Configure Apache & PHP
 # 32767 = E_ALL
