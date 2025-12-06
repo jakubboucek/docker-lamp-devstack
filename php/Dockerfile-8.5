@@ -13,6 +13,7 @@ COPY sources.list-trixie /etc/apt/sources.list
 # Prevent interactive block
 ARG DEBIAN_FRONTEND=noninteractive
 
+# List of development packages to be temporarily installed and removed after the extension is installed
 ARG EXTENSION_DEV_DEPS=" \
         libavif-dev \
         libbz2-dev \
@@ -20,10 +21,10 @@ ARG EXTENSION_DEV_DEPS=" \
         libgmp-dev \
         libicu-dev \
         libjpeg62-turbo-dev \
-      #  libmemcached-dev \
+        libmemcached-dev \
         libpng-dev \
         libsodium-dev \
-      #  libssl-dev \
+        libssl-dev \
         libwebp-dev \
         libxslt-dev \
         libzip-dev \
@@ -44,6 +45,7 @@ ARG EXTENSION_RUNTIME_DEPS="  \
         libicu76 \
         libjpeg62-turbo \
         liblzma5 \
+        libmemcached11t64 \
         libpng16-16t64 \
         librav1e0.7 \
         libsharpyuv0 \
@@ -93,15 +95,15 @@ RUN set -eux; \
         sysvshm \
         xsl \
         zip; \
-#    pecl install memcached; \
-#    docker-php-ext-enable memcached; \
+    pecl install memcached; \
+    docker-php-ext-enable memcached; \
     a2enmod \
         expires \
         headers \
         rewrite; \
     apt-mark manual ${EXTENSION_RUNTIME_DEPS}; \
     apt-get purge -y --auto-remove ${EXTENSION_DEV_DEPS}; \
-#    pecl clear-cache; \
+    pecl clear-cache; \
     apt-get clean -y && \
     apt-get autoclean -y && \
     apt-get autoremove -y && \

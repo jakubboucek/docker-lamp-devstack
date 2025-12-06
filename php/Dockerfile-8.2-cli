@@ -13,6 +13,7 @@ COPY sources.list-trixie /etc/apt/sources.list
 # Prevent interactive block
 ARG DEBIAN_FRONTEND=noninteractive
 
+# List of development packages to be temporarily installed and removed after the extension is installed
 ARG EXTENSION_DEV_DEPS=" \
         libavif-dev \
         libbz2-dev \
