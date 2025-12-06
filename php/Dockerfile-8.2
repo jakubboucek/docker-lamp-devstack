@@ -157,7 +157,7 @@ RUN set -eux; \
     sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf; \
     sed -ri -e 's!:80>!:${PORT}>!g' /etc/apache2/sites-available/*.conf; \
     sed -ri -e 's!Listen 80!Listen ${PORT}!g' /etc/apache2/ports.conf; \
-    rm -rf /tmp/*;
+    rm -rf /tmp/* $(composer global config cache-dir --absolute)/*;
 
 # Workdir after installation
 WORKDIR /var/www/html

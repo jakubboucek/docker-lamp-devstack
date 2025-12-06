@@ -143,7 +143,7 @@ RUN set -eux; \
     php /tmp/composer-setup.php --install-dir=/usr/local/bin --filename=composer; \
     COMPOSER_BIN_DIR=$(composer global config bin-dir --absolute) 2>/dev/null; \
     echo "export PATH=${COMPOSER_BIN_DIR}:\${PATH}" >> ~/.bashrc; \
-    rm -rf /tmp/*;
+    rm -rf /tmp/* $(composer global config cache-dir --absolute)/*;
 
 # Workdir after installation
 WORKDIR /
