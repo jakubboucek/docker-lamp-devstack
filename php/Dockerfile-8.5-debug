@@ -11,12 +11,7 @@ ARG PIE_WORKING_DIRECTORY=/tmp/.pie
 # Prevent interactive block
 ARG DEBIAN_FRONTEND=noninteractive
 
-WORKDIR /tmp
-
 # Install Xdebug
 RUN set -eux; \
     pie install xdebug/xdebug; \
     rm -rf /var/tmp/* /tmp/*;
-
-# Workdir after installation
-WORKDIR /var/www/html
