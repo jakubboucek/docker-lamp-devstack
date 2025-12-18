@@ -13,5 +13,9 @@ ARG DEBIAN_FRONTEND=noninteractive
 
 # Install Xdebug
 RUN set -eux; \
+    apt-get update; \
+    apt-get install --no-install-recommends -y zlib1g-dev; \
     pie install xdebug/xdebug; \
+    pie install noisebynorthwest/php-spx; \
+    apt-get remove --purge -y zlib1g-dev; \
     rm -rf /var/tmp/* /tmp/*;
