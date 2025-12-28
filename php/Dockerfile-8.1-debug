@@ -18,4 +18,7 @@ RUN set -eux; \
     pie install xdebug/xdebug; \
     pie install noisebynorthwest/php-spx; \
     apt-get remove --purge -y zlib1g-dev; \
-    rm -rf /var/tmp/* /tmp/*;
+    apt-get clean -y && \
+    apt-get autoclean -y && \
+    apt-get autoremove -y && \
+    rm -rf /var/cache/* /var/lib/apt/lists/* /var/lib/log/* /tmp/* /var/tmp/* ~/.composer/cache/*;
