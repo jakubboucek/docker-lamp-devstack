@@ -14,7 +14,7 @@ ARG PIE_WORKING_DIRECTORY=/tmp/.pie
 # Prevent interactive block
 ARG DEBIAN_FRONTEND=noninteractive
 
-# Install Xdebug
+# Install Xdebug and SPX
 RUN set -eux; \
     apt-get update; \
     apt-get install --no-install-recommends -y zlib1g-dev; \
