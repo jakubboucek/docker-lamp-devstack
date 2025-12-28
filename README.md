@@ -37,6 +37,7 @@ of base images designed to cover most standard development workflows — with no
     + [Other PHP configurations](#other-php-configurations)
 * [Advanced usage](#advanced-usage)
     + [Xdebug](#xdebug)
+    + [SPX Profiler](#spx-profiler)
     + [Debugging CLI with PhpStorm](#debugging-cli-with-phpstorm)
 * [Building notes](#building-notes)
 
@@ -56,6 +57,7 @@ of base images designed to cover most standard development workflows — with no
     10.4 and 10.3 (unmaintained)
 - current version of **Apache** 2.4 (in non-CLI images)
 - current version of **Xdebug** 3.5 (in debug images)
+- current version of [**SPX Profiler**](https://github.com/NoiseByNorthwest/php-spx) (in debug images)
 - extra PHP extensions:
     [`bmath`](https://www.php.net/manual/en/book.bc.php),
     [`bz2`](https://www.php.net/manual/en/book.bzip2.php),
@@ -416,6 +418,20 @@ environment:
     XDEBUG_CONFIG: "client_host=host.docker.internal use_compression=false"
     #                                                ^^^^^^^^^^^^^^^^^^^^^
 ```
+
+### SPX Profiler
+
+In Debug images is prepared also [SPX Profiler](https://github.com/NoiseByNorthwest/php-spx) extension. It is not
+enabled by default, you must enable it via `PHP_SPX_ENABLED` environment variable.
+
+In [`docker-compose.yml`](docker-compose-debug.yml) file, add `PHP_SPX_ENABLED` environment variable with value `1`:
+
+```yaml
+environment:
+    PHP_SPX_ENABLED: 1
+```
+
+Than is profiler available at URL: http://localhost:8080/?SPX_KEY=dev&SPX_UI_URI=/
 
 ### Debugging CLI with PhpStorm
 
