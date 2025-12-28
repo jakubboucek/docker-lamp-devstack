@@ -1,3 +1,6 @@
+# syntax=docker/dockerfile:1
+# check=skip=SecretsUsedInArgOrEnv
+
 FROM jakubboucek/lamp-devstack-php:8.3
 
 LABEL org.label-schema.name="PHP 8.3 (Apache module + Xdebug)"
@@ -22,3 +25,10 @@ RUN set -eux; \
     apt-get autoclean -y && \
     apt-get autoremove -y && \
     rm -rf /var/cache/* /var/lib/apt/lists/* /var/lib/log/* /tmp/* /var/tmp/* ~/.composer/cache/*;
+
+# Configure OPcache
+ENV PHP_SPX_ENABLED=0
+ENV PHP_SPX_HTTP_KEY="dev"
+ENV PHP_SPX_HTTP_IP_WHITELIST="*"
+
+COPY spx.ini /usr/local/etc/php/conf.d/spx.ini
