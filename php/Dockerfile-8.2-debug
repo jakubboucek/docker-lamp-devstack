@@ -1,3 +1,6 @@
+# syntax=docker/dockerfile:1
+# check=skip=SecretsUsedInArgOrEnv
+
 FROM jakubboucek/lamp-devstack-php:8.2
 
 LABEL org.label-schema.name="PHP 8.2 (Apache module + Xdebug)"
@@ -11,7 +14,21 @@ ARG PIE_WORKING_DIRECTORY=/tmp/.pie
 # Prevent interactive block
 ARG DEBIAN_FRONTEND=noninteractive
 
-# Install Xdebug
+# Install Xdebug and SPX
 RUN set -eux; \
+    apt-get update; \
+    apt-get install --no-install-recommends -y zlib1g-dev; \
     pie install xdebug/xdebug; \
-    rm -rf /var/tmp/* /tmp/*;
+    pie install noisebynorthwest/php-spx; \
+    apt-get remove --purge -y zlib1g-dev; \
+    apt-get clean -y && \
+    apt-get autoclean -y && \
+    apt-get autoremove -y && \
+    rm -rf /var/cache/* /var/lib/apt/lists/* /var/lib/log/* /tmp/* /var/tmp/* ~/.composer/cache/*;
+
+# Configure OPcache
+ENV PHP_SPX_ENABLED=0
+ENV PHP_SPX_HTTP_KEY="dev"
+ENV PHP_SPX_HTTP_IP_WHITELIST="*"
+
+COPY spx.ini /usr/local/etc/php/conf.d/spx.ini
