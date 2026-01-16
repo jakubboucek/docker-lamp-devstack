@@ -25,8 +25,8 @@ of base images designed to cover most standard development workflows — with no
 * [Main features](#main-features)
 * [Basic usage](#basic-usage)
     + [Version tags](#version-tags)
-    + [Using MySQL](#using-mysql)
-    + [Connecting to MySQL](#connecting-to-mysql)
+    + [Using MariaDB](#using-mariadb)
+    + [Connecting to MariaDB](#connecting-to-mariadb)
     + [Windows issue](#windows-issue)
 * [Extended configuration](#extended-configuration)
     + [PHP configuration](#php-configuration) 
@@ -45,7 +45,7 @@ of base images designed to cover most standard development workflows — with no
 ## Built images
 
 - PHP: [`jakubboucek/lamp-devstack-php`](https://hub.docker.com/r/jakubboucek/lamp-devstack-php)
-- MySQL: [`jakubboucek/lamp-devstack-mysql`](https://hub.docker.com/r/jakubboucek/lamp-devstack-mysql)
+- MariaDB: [`jakubboucek/lamp-devstack-mysql`](https://hub.docker.com/r/jakubboucek/lamp-devstack-mysql)
 
 ## Main features
 - architecture: `linux/amd64`
@@ -84,7 +84,7 @@ of base images designed to cover most standard development workflows — with no
 - Apache `DocumentRoot` changed to: `/var/www/html/www` (configurable by [ENV](#document-root))
 - PHP image comes with [Composer 2.9+](https://getcomposer.org/), [PIE 1.3+](https://github.com/php/pie) 
     and [Git 2.47+](https://git-scm.com/) to use it in guest shell
-- MySQL properly configured to use `utf8mb4` as a default charset, an optional support of Windows Host is also available
+- MariaDB properly configured to use `utf8mb4` as a default charset, an optional support of Windows Host is also available
 - timezones are correctly supported
 - optimized for small image size and short load times
 
@@ -157,30 +157,30 @@ All PHP images also have alternative CLI variants, use `-cli` tag suffix, exampl
 - `jakubboucek/lamp-devstack-php:8.5.0-cli`
 - `jakubboucek/lamp-devstack-php:7.4-legacy-cli`
 
-### Using MySQL
-MySQL server starts at the same time as the web server.
+### Using MariaDB
+MariaDB server starts at the same time as the web server.
 
-Available MySQL images:
+Available MariaDB images:
 - 10.6: `jakubboucek/lamp-devstack-mysql:10.6`
 - 10.11: `jakubboucek/lamp-devstack-mysql:10.11`
 - 11.4: `jakubboucek/lamp-devstack-mysql:11.4`
 - 11.8: `jakubboucek/lamp-devstack-mysql:11.8`
 - 12.1: `jakubboucek/lamp-devstack-mysql:latest`
 
-LTS (long-term support) MySQL images (currently 11.8):
+LTS (long-term support) MariaDB images (currently 11.8):
 - `jakubboucek/lamp-devstack-mysql:lts`
 
-The RC pre-release of MySQL 12.2 images have the `-rc` suffix, example:
+The RC pre-release of MariaDB 12.2 images have the `-rc` suffix, example:
 - `jakubboucek/lamp-devstack-mysql:12.2-rc`
 - `jakubboucek/lamp-devstack-mysql:12.2-1-rc`
 
-### Connecting to MySQL
+### Connecting to MariaDB
 
-From **Host** (external connection), MySQL is accessible at:
+From **Host** (external connection), MariaDB is accessible at:
 - host: `127.0.0.1`
 - port: `33060`
 
-From **Guest** (internal connection), MySQL is accessible at:
+From **Guest** (internal connection), MariaDB is accessible at:
 - host: `mysqldb`
 - port: `3306`
 
@@ -189,7 +189,7 @@ Default credentials:
 - password: `devstack`
 - database name: `default`
 
-If you are connecting to the MySQL server from a PHP application running **inside** Docker, use the **Guest** access
+If you are connecting to the MariaDB server from a PHP application running **inside** Docker, use the **Guest** access
 values, but when you're connecting from outside (for example, from your computer, using
 [HeidiSQL](https://www.heidisql.com/) or [Sequel](https://sequel-ace.com/)), use host access.
 
@@ -201,11 +201,11 @@ $mysqli = new mysqli('mysqldb', 'root', 'devstack', 'default');
 $mysqli->set_charset('utf8mb4');
 ```
 
-Images does not contains any MySQL editor/manager (PMA nor Adminer), so you need to use your own tool.
+Images does not contains any MariaDB editor/manager (PMA nor Adminer), so you need to use your own tool.
 
 ### Windows issue
 
-MySQL may crash when Host is running Windows:
+MariaDB may crash when Host is running Windows:
 
 ```
 The Auto-extending innodb_system data file './ibdata1' is of a different size 0 pages than specified in the .cnf file
@@ -213,7 +213,7 @@ The Auto-extending innodb_system data file './ibdata1' is of a different size 0 
 
 You can try to fix it by adding [`mysql-windows.cnf`](mysql/mysql-windows.cnf)
 ([download](https://downfile.github.io/download?url=https%3A//raw.githubusercontent.com/jakubboucek/docker-lamp-devstack/master/mysql/mysql-windows.cnf))
-and add it to the MySQL config directory `/etc/mysql/conf.d/` inside the Docker container.
+and add it to the MariaDB config directory `/etc/mysql/conf.d/` inside the Docker container.
 
 In `docker-compose.yml` file, just link this downloaded file to `volume` section:
 
@@ -301,7 +301,7 @@ environment:
 ```
 
 The `TZ` environment variable is recognized by Linux tools as well. By creating the variable you modify the default
-timezone for the whole Linux operating system, PHP, and also MySQL.
+timezone for the whole Linux operating system, PHP, and also MariaDB.
 
 At PHP since version 8.2 is `TZ` variable set to `'UTC'` by default (otherwise is empty). 
 
@@ -329,7 +329,7 @@ can lose data (e.g. sessions data). Moving the temporary directory to a volume s
 impact on performance.
 
 The `TEMPDIR` environment variable is also recognized by Linux tools. By setting that variable you modify the default
-temporary directory for the whole Linux operating system, PHP, and also MySQL.
+temporary directory for the whole Linux operating system, PHP, and also MariaDB.
 
 ### Apache – listening port
 
