@@ -49,9 +49,9 @@ of base images designed to cover most standard development workflows — with no
 
 ## Main features
 - architecture: `linux/amd64`
-- current **PHP** versions: 8.5, 8.4, 8.3, 8.2 and 8.1
-- unsupported **PHP** versions also available: 8.0, 7.4, 7.3, 7.2, 7.1, 7.0, 5.6, 5.5 and 5.4 (with limited stability,
-    unoptimized, unmaintained)
+- current **PHP** versions: 8.5, 8.4, 8.3 and 8.2
+- unsupported **PHP** versions also available: 8.1, 8.0, 7.4, 7.3, 7.2, 7.1, 7.0, 5.6, 5.5 and 5.4 (with limited
+    stability, unoptimized, unmaintained)
 - current versions of **MariaDB** 12.1, 11.8, 11.4, 10.11, 10.6  and RC pre-release of 12.2
 - unsupported versions of **MariaDB** 12.0, 11.7, 11.6, 11.5, 11.3, 11.2, 11.1, 11.0, 10.10, 10.9, 10.8, 10.7, 10.5,
     10.4 and 10.3 (unmaintained)
@@ -131,6 +131,7 @@ Images are tagged by the cascaded SemVer:
 **Legacy PHP** images are tagged using different strategy, only latest revision for each minor version is available,
 use `-legacy` tag suffix:
 
+- `jakubboucek/lamp-devstack-php:8.1-legacy`
 - `jakubboucek/lamp-devstack-php:8.0-legacy`
 - `jakubboucek/lamp-devstack-php:7.4-legacy`
 - `jakubboucek/lamp-devstack-php:7.3-legacy`
