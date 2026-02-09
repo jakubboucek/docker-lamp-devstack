@@ -7,6 +7,10 @@ cd "$(dirname $0)";
 
 ### PHP 8.1
 if [ "${NO_PULL:-0}" -ne "1" ]; then
+    if [ "${NO_ASSETS:-0}" -ne "1" ]; then
+        ../../prepare-assets.sh
+    fi
+
     docker pull php:8.1-apache
     docker run --rm php:8.1-apache php --version
 fi

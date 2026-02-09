@@ -5,6 +5,10 @@ set -eux;
 
 cd "$(dirname $0)";
 
+[ "${NO_PULL:-0}" -ne 1 ] && [ "${NO_ASSETS:-0}" -ne 1 ] && ../../prepare-assets.sh
+
+export NO_ASSETS=1
+
 # Disabled build is no more available to fetch because public Debian repositories shut down.
 # ./build-php-5.4.sh
 # ./build-php-5.4-cli.sh
