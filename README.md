@@ -49,7 +49,7 @@ of base images designed to cover most standard development workflows — with no
 
 ## Main features
 - architecture: `linux/amd64`
-- current **PHP** versions: 8.5, 8.4, 8.3 and 8.2
+- current **PHP** versions: 8.5, 8.4, 8.3 and 8.2 and pre-release of 8.6
 - unsupported **PHP** versions also available: 8.1, 8.0, 7.4, 7.3, 7.2, 7.1, 7.0, 5.6, 5.5 and 5.4 (with limited
     stability, unoptimized, unmaintained)
 - current versions of **MariaDB** 12.3, 11.8, 11.4, 10.11, 10.6  and RC pre-release of 13.0
@@ -157,6 +157,13 @@ All PHP images also have alternative CLI variants, use `-cli` tag suffix, exampl
 - `jakubboucek/lamp-devstack-php:8.5-cli`
 - `jakubboucek/lamp-devstack-php:8.5.0-cli`
 - `jakubboucek/lamp-devstack-php:7.4-legacy-cli`
+
+The pre-release of PHP 8.6 images have the `-rc` suffix, example:
+- `jakubboucek/lamp-devstack-php:8.6-rc`
+- `jakubboucek/lamp-devstack-php:8.6-rc-cli`
+
+> Note: The 8.6 pre-release images don't contain the `memcached` extension yet and have no `-debug` variant —
+> upstream support (PIE, Xdebug) for PHP 8.6 is not available yet.
 
 ### Using MariaDB
 MariaDB server starts at the same time as the web server.

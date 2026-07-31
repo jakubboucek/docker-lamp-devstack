@@ -11,6 +11,8 @@ docker pull php:8.4-cli-trixie
 docker pull php:8.4-apache-trixie
 docker pull php:8.5-cli-trixie
 docker pull php:8.5-apache-trixie
+docker pull php:8.6-rc-cli-trixie
+docker pull php:8.6-rc-apache-trixie
 
 docker pull ghcr.io/php/pie:bin
 
