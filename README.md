@@ -52,9 +52,9 @@ of base images designed to cover most standard development workflows — with no
 - current **PHP** versions: 8.5, 8.4, 8.3 and 8.2
 - unsupported **PHP** versions also available: 8.1, 8.0, 7.4, 7.3, 7.2, 7.1, 7.0, 5.6, 5.5 and 5.4 (with limited
     stability, unoptimized, unmaintained)
-- current versions of **MariaDB** 12.2, 11.8, 11.4, 10.11, 10.6  and RC pre-release of 12.3
-- unsupported versions of **MariaDB** 12.1, 12.0, 11.7, 11.6, 11.5, 11.3, 11.2, 11.1, 11.0, 10.10, 10.9, 10.8, 10.7, 10.5,
-    10.4 and 10.3 (unmaintained)
+- current versions of **MariaDB** 12.3, 11.8, 11.4, 10.11, 10.6  and RC pre-release of 13.0
+- unsupported versions of **MariaDB** 12.2, 12.1, 12.0, 11.7, 11.6, 11.5, 11.3, 11.2, 11.1, 11.0, 10.10, 10.9, 10.8, 10.7,
+    10.5, 10.4 and 10.3 (unmaintained)
 - current version of **Apache** 2.4 (in non-CLI images)
 - current version of **Xdebug** 3.5 (in debug images)
 - current version of [**SPX Profiler**](https://github.com/NoiseByNorthwest/php-spx) (in debug images)
@@ -166,14 +166,14 @@ Available MariaDB images:
 - 10.11: `jakubboucek/lamp-devstack-mysql:10.11`
 - 11.4: `jakubboucek/lamp-devstack-mysql:11.4`
 - 11.8: `jakubboucek/lamp-devstack-mysql:11.8`
-- 12.1: `jakubboucek/lamp-devstack-mysql:latest`
+- 12.3: `jakubboucek/lamp-devstack-mysql:latest`
 
-LTS (long-term support) MariaDB images (currently 11.8):
+LTS (long-term support) MariaDB images (currently 12.3):
 - `jakubboucek/lamp-devstack-mysql:lts`
 
-The RC pre-release of MariaDB 12.2 images have the `-rc` suffix, example:
-- `jakubboucek/lamp-devstack-mysql:12.2-rc`
-- `jakubboucek/lamp-devstack-mysql:12.2-1-rc`
+The RC pre-release of MariaDB 13.0 images have the `-rc` suffix, example:
+- `jakubboucek/lamp-devstack-mysql:13.0-rc`
+- `jakubboucek/lamp-devstack-mysql:13.0.1-rc`
 
 ### Connecting to MariaDB
 
