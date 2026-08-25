@@ -12,7 +12,7 @@ NO_PUSH=${NO_PUSH:-0}
 # Source: https://hub.docker.com/_/mariadb
 
 ### MariaDB - 10.6
-MARIADB_RELEASE=27
+MARIADB_RELEASE=28
 if [ "${NO_PULL}" -ne "1" ]; then
     docker pull mariadb:10.6.${MARIADB_RELEASE}
     docker tag mariadb:10.6.${MARIADB_RELEASE} mariadb:10.6
@@ -34,7 +34,7 @@ if [ "${NO_PUSH}" -ne "1" ]; then
 fi
 
 ### MariaDB - 10.11
-MARIADB_RELEASE=18
+MARIADB_RELEASE=19
 if [ "${NO_PULL}" -ne "1" ]; then
     docker pull mariadb:10.11.${MARIADB_RELEASE}
     docker tag mariadb:10.11.${MARIADB_RELEASE} mariadb:10.11
@@ -58,7 +58,7 @@ if [ "${NO_PUSH}" -ne "1" ]; then
 fi
 
 ### MariaDB - 11.4
-MARIADB_RELEASE=12
+MARIADB_RELEASE=13
 if [ "${NO_PULL}" -ne "1" ]; then
     docker pull mariadb:11.4.${MARIADB_RELEASE}
     docker tag mariadb:11.4.${MARIADB_RELEASE} mariadb:11.4
@@ -81,7 +81,7 @@ fi
 
 
 ### MariaDB - 11.8
-MARIADB_RELEASE=8
+MARIADB_RELEASE=9
 if [ "${NO_PULL}" -ne "1" ]; then
     docker pull mariadb:11.8.${MARIADB_RELEASE}
     docker tag mariadb:11.8.${MARIADB_RELEASE} mariadb:11.8
@@ -106,7 +106,7 @@ fi
 
 
 ### MariaDB - 12.3
-MARIADB_RELEASE=2
+MARIADB_RELEASE=3
 if [ "${NO_PULL}" -ne "1" ]; then
     docker pull mariadb:12.3.${MARIADB_RELEASE}
     docker tag mariadb:12.3.${MARIADB_RELEASE} mariadb:12.3
