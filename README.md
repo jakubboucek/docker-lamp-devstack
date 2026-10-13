@@ -162,8 +162,8 @@ The pre-release of PHP 8.6 images have the `-rc` suffix, example:
 - `jakubboucek/lamp-devstack-php:8.6-rc`
 - `jakubboucek/lamp-devstack-php:8.6-rc-cli`
 
-> Note: The 8.6 pre-release images don't contain the `memcached` extension yet and have no `-debug` variant —
-> upstream support (PIE, Xdebug) for PHP 8.6 is not available yet.
+> The 8.6 pre-release images include `memcached` from its development branch, installed with PIE 1.5 or newer.
+> A `-debug` variant is not available yet.
 
 ### Using MariaDB
 MariaDB server starts at the same time as the web server.

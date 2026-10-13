@@ -11,6 +11,16 @@ To build only specific PHP version run only the target script on [`php` folder](
 
 To build older PHP versions run [`php/legacy/build-php-legacy.sh`](php/legacy/build-php-legacy.sh).
 
+### PHP 8.6 RC
+
+PHP 8.6 requires PIE 1.5 or newer ([upstream support](https://github.com/php/pie/pull/667)).
+Run `./prepare-assets.sh` before rebuilding with `NO_PULL=1` if `php/build/pie.phar`
+was downloaded before that release. The normal build flow downloads the latest stable PIE.
+
+Memcached uses `dev-master` for the [PHP 8.6 API fixes](https://github.com/php-memcached-dev/php-memcached/pull/580).
+The stable 3.4.0 release does not compile on PHP 8.6. Return to stable package selection
+when a release containing those fixes is available.
+
 ## MariaDB
 Run [`build-mariadb.sh`](build-mariadb.sh) script to build all of MariaDB versions.
 

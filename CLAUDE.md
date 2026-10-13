@@ -13,7 +13,7 @@ The project is maintained primarily to serve the maintainer's own development wo
 All build scripts follow the same four-phase pattern (pull → build → test → push), each phase skippable via ENV flags: `NO_PULL=1`, `NO_BUILD=1`, `NO_TEST=1`, `NO_PUSH=1`, `NO_ASSETS=1`.
 
 ```bash
-./build-php.sh                # build all current PHP versions (8.2–8.5, apache + cli variants)
+./build-php.sh                # build all current PHP versions (8.2–8.5 + 8.6 RC, apache + cli variants)
 ./php/build-php-8.5.sh        # build a single PHP version (apache + debug variants)
 ./php/build-php-8.5-cli.sh    # build a single CLI variant
 ./php/legacy/build-php-legacy.sh  # legacy PHP versions (many disabled — Debian repos shut down)
@@ -27,7 +27,7 @@ Common examples: `NO_PUSH=1 ./build-php.sh` (local build only), `NO_PULL=1 NO_BU
 ## Tests
 
 ```bash
-./test-php.sh                 # run test suite inside every current PHP image (8.2–8.5, apache + cli)
+./test-php.sh                 # run test suite inside every current PHP image (8.2–8.5 + 8.6 RC, apache + cli)
 ```
 
 Tests live in `tools/tests/` (Nette Tester, one `*Test.php` per PHP extension in `tools/tests/Extensions/`). To run in a single image:
@@ -58,6 +58,7 @@ docker run --rm -it -v "$(pwd)":/app -w /app jakubboucek/lamp-devstack-php:8.5 c
   - PHP: the `-rc` suffix is hard-coded in the script, combined with the pre-release label (e.g. alpha/RC name) which can be read programmatically from the PHP binary itself.
   - MariaDB: RC builds have no additional sub-versions. Based on upstream's observed release mechanism, when a release channel goes stable the patch version is bumped to `2` and the `-rc` suffix is dropped.
   - During a PHP RC phase, components without upstream support for the new version (typically Xdebug → the `-debug` variant, PIE, individual extensions) are temporarily left out or commented in the Dockerfiles. They are re-enabled as soon as a *functional* upstream version exists — a working dev/beta/dev-master is enough, don't wait for a final release. Track the remaining work in a GitHub issue cross-linked with the version's PR.
+- PHP 8.6 RC requires PIE 1.5+; refresh `php/build/pie.phar` with `prepare-assets.sh` before a build using `NO_PULL=1` if the local asset is older. See [build-notes.md](build-notes.md#php-86-rc).
 - All images are `linux/amd64` only. Building for ARM would require hardware the maintainer doesn't have (and renting a VPS for it is not planned); this will change only if the maintainer's own environment moves to ARM.
 
 ## Defaults baked into images
