@@ -9,7 +9,11 @@ use Tester\Assert;
 require __DIR__ . '/bootstrap.php';
 require_once __DIR__ . '/../src/ExtensionInventory.php';
 
-$context = ExtensionInventory::context(getenv('DEVSTACK_IMAGE') ?: '', PHP_VERSION);
+$imageName = getenv('IMAGE_NAME');
+
+Assert::type('string', $imageName, 'Docker Image `name:tag` not provided');
+
+$context = ExtensionInventory::context(getenv('IMAGE_NAME') ?: '', PHP_VERSION);
 $inventory = new ExtensionInventory(Neon::decodeFile(__DIR__ . '/expected-extensions.neon'));
 $difference = $inventory->difference($context, get_loaded_extensions());
 Assert::true($difference === ['missing' => [], 'unexpected' => []],

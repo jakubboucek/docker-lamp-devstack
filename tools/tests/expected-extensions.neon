@@ -1,4 +1,15 @@
 # Format: ../../docs/extension-inventory.md
+
+# Exact-profile exceptions apply last. Missing mbstring is a build defect, not an exception.
+exceptions: []
+
+rules:
+	- when: ['>=8.5']
+	  add: [lexbor, uri]
+
+	- when: [+debug]
+	  add: [xdebug, spx]
+
 common:
 	- bcmath
 	- bz2
@@ -53,13 +64,3 @@ common:
 	- zend opcache
 	- zip
 	- zlib
-
-rules:
-	- when: ['>=8.5']
-	  add: [lexbor, uri]
-
-	- when: [+debug]
-	  add: [xdebug, spx]
-
-# Exact-profile exceptions apply last. Missing mbstring is a build defect, not an exception.
-exceptions: {}

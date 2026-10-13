@@ -49,7 +49,7 @@ final class ExtensionInventory
         $minor = $runtime[1] . '.' . $runtime[2];
         $rc = $runtime[3] !== '';
         if (!preg_match('~^[^\s@]+:([^/:]+)$~D', $image, $reference)) {
-            throw new InvalidArgumentException('DEVSTACK_IMAGE must contain the full image reference with a tag');
+            throw new InvalidArgumentException('IMAGE_NAME must contain the full image reference with a tag');
         }
         $tag = $reference[1];
         if (preg_match('~^(\d+)(?:\.(\d+)(?:\.\d+)?)?(?:(-rc)(?:-(?:alpha|beta|RC)\d+)?)?(?:-(debug|cli))?$~D', $tag, $parts)) {

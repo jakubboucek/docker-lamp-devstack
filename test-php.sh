@@ -8,7 +8,7 @@ TAGS=(
     8.6-rc 8.6-rc-cli 8.6-rc-debug
 )
 
-set -ux
+set -u
 
 if [ "$#" -gt 1 ] || { [ "$#" -eq 1 ] && [ -z "$1" ]; }; then
     echo "Usage: $0 [tag]" >&2
@@ -30,7 +30,7 @@ status=0
 for tag in "${TAGS[@]}"; do
     image="jakubboucek/lamp-devstack-php:$tag"
     if ! docker run --rm -v "$(pwd)":/app:ro -w /app \
-        -e "DEVSTACK_IMAGE=$image" \
+        -e "IMAGE_NAME=$image" \
         "$image" composer -d tools/ test; then
         status=1
     fi

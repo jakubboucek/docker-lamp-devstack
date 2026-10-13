@@ -44,7 +44,7 @@ checks. Build scripts run the same suite before pushing, unless `NO_TEST=1`.
 
 Tests live in `tools/tests/` (Nette Tester, one `*Test.php` per PHP extension in
 `tools/tests/Extensions/`). The script passes the full image reference through
-`DEVSTACK_IMAGE`, runs without an interactive terminal, and returns a nonzero status
+`IMAGE_NAME`, runs without an interactive terminal, and returns a nonzero status
 if any container fails while continuing through the remaining tags.
 
 `tools/compute-minimal-ext-deps.php` is a build helper: run inside an image to compute the minimal runtime package list (`apt-mark` command) that replaces `-dev` packages in Dockerfiles — use it when changing extension deps.
