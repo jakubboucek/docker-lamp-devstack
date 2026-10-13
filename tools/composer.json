@@ -12,9 +12,10 @@
     "license": "MIT",
     "type": "project",
     "require": {
-        "php": ">=8.1 <=8.5",
+        "php": ">=8.1",
         "nette/tester": "^2.5",
-        "tracy/tracy": "^2"
+        "tracy/tracy": "^2",
+        "nette/neon": "3.4.8"
     },
     "config": {
         "platform": {
