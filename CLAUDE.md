@@ -8,6 +8,14 @@ Source for the prebuilt Docker images `jakubboucek/lamp-devstack-php` and `jakub
 
 The project is maintained primarily to serve the maintainer's own development workflow and is published because others found it useful. Its feature set is intentionally opinionated: components and extensions are included only when the maintainer actually needs them, and deliberately omitted otherwise. Any apparent imbalance in the package scope is a design choice, not an oversight. Suggestions and critical feedback on the scope are welcome — but never add new components or extensions on your own initiative; always consult the maintainer first.
 
+## Documentation
+
+Keep tracked documentation focused on the current project and configuration formats.
+Store implementation plans, investigation notes and measurement snapshots in the
+ignored `docs/agent-proposal/` directory. Record one-off validation results in commit
+messages or PR descriptions. The extension inventory declaration format is described
+in [docs/extension-inventory.md](docs/extension-inventory.md).
+
 ## Build commands
 
 All build scripts follow the same four-phase pattern (pull → build → test → push), each phase skippable via ENV flags: `NO_PULL=1`, `NO_BUILD=1`, `NO_TEST=1`, `NO_PUSH=1`, `NO_ASSETS=1`.
@@ -27,14 +35,17 @@ Common examples: `NO_PUSH=1 ./build-php.sh` (local build only), `NO_PULL=1 NO_BU
 ## Tests
 
 ```bash
-./test-php.sh                 # run test suite inside every current PHP image (8.2–8.5 + 8.6 RC, apache + cli, plus 8.6 RC debug)
+./test-php.sh                 # test every tag listed at the top of the script (base, cli, debug)
+./test-php.sh 8.6-rc-debug    # test a single tag
 ```
 
-Tests live in `tools/tests/` (Nette Tester, one `*Test.php` per PHP extension in `tools/tests/Extensions/`). To run in a single image:
+Prepare dependencies with `composer -d tools install` before running tests or build
+checks. Build scripts run the same suite before pushing, unless `NO_TEST=1`.
 
-```bash
-docker run --rm -it -v "$(pwd)":/app -w /app jakubboucek/lamp-devstack-php:8.5 composer -d tools/ test
-```
+Tests live in `tools/tests/` (Nette Tester, one `*Test.php` per PHP extension in
+`tools/tests/Extensions/`). The script passes the full image reference through
+`DEVSTACK_IMAGE`, runs without an interactive terminal, and returns a nonzero status
+if any container fails while continuing through the remaining tags.
 
 `tools/compute-minimal-ext-deps.php` is a build helper: run inside an image to compute the minimal runtime package list (`apt-mark` command) that replaces `-dev` packages in Dockerfiles — use it when changing extension deps.
 

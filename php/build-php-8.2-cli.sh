@@ -23,6 +23,7 @@ if [ "${NO_BUILD:-0}" -ne "1" ]; then
 fi
 
 if [ "${NO_TEST:-0}" -ne "1" ]; then
+    ../test-php.sh 8.2-cli
     docker run --rm jakubboucek/lamp-devstack-php:8.2-cli php --version
     docker run --rm jakubboucek/lamp-devstack-php:8.2-cli php -r "echo implode(', ', get_loaded_extensions()) . PHP_EOL;"
     docker run --rm jakubboucek/lamp-devstack-php:8.2-cli php -r "var_export(gd_info()) . PHP_EOL;"
