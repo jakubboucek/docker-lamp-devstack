@@ -17,15 +17,23 @@ fi
 
 if [ "${NO_BUILD:-0}" -ne "1" ]; then
     docker build --progress plain -f ./Dockerfile-8.6 -t jakubboucek/lamp-devstack-php:8.6-rc ./
+    docker build --progress plain -f ./Dockerfile-8.6-debug -t jakubboucek/lamp-devstack-php:8.6-rc-debug ./
     PHP_RELEASE=$(docker run --rm jakubboucek/lamp-devstack-php:8.6-rc php -r "echo PHP_RELEASE_VERSION;")
     PHP_RELEASE_EXTRA=$(docker run --rm jakubboucek/lamp-devstack-php:8.6-rc php -r "echo PHP_EXTRA_VERSION;")
     docker tag jakubboucek/lamp-devstack-php:8.6-rc jakubboucek/lamp-devstack-php:8.6.${PHP_RELEASE}-rc
+    docker tag jakubboucek/lamp-devstack-php:8.6-rc-debug jakubboucek/lamp-devstack-php:8.6.${PHP_RELEASE}-rc-debug
     docker tag jakubboucek/lamp-devstack-php:8.6-rc jakubboucek/lamp-devstack-php:8.6.${PHP_RELEASE}-rc-${PHP_RELEASE_EXTRA}
+    docker tag jakubboucek/lamp-devstack-php:8.6-rc-debug jakubboucek/lamp-devstack-php:8.6.${PHP_RELEASE}-rc-${PHP_RELEASE_EXTRA}-debug
 fi
 
 if [ "${NO_TEST:-0}" -ne "1" ]; then
     docker run --rm jakubboucek/lamp-devstack-php:8.6-rc php --version
+    docker run --rm jakubboucek/lamp-devstack-php:8.6-rc-debug php --version
     docker run --rm jakubboucek/lamp-devstack-php:8.6-rc php -r "echo implode(', ', get_loaded_extensions()) . PHP_EOL;"
+    docker run --rm jakubboucek/lamp-devstack-php:8.6-rc-debug php -r "echo implode(', ', get_loaded_extensions()) . PHP_EOL;"
+    docker run --rm jakubboucek/lamp-devstack-php:8.6-rc-debug php --ri memcached
+    docker run --rm jakubboucek/lamp-devstack-php:8.6-rc-debug php --ri xdebug
+    docker run --rm jakubboucek/lamp-devstack-php:8.6-rc-debug php --ri spx
     docker run --rm jakubboucek/lamp-devstack-php:8.6-rc php -r "var_export(gd_info()) . PHP_EOL;"
 fi
 
@@ -33,6 +41,9 @@ if [ "${NO_PUSH:-0}" -ne "1" ]; then
     PHP_RELEASE=$(docker run --rm jakubboucek/lamp-devstack-php:8.6-rc php -r "echo PHP_RELEASE_VERSION;")
     PHP_RELEASE_EXTRA=$(docker run --rm jakubboucek/lamp-devstack-php:8.6-rc php -r "echo PHP_EXTRA_VERSION;")
     docker push jakubboucek/lamp-devstack-php:8.6.${PHP_RELEASE}-rc-${PHP_RELEASE_EXTRA}
+    docker push jakubboucek/lamp-devstack-php:8.6.${PHP_RELEASE}-rc-${PHP_RELEASE_EXTRA}-debug
     docker push jakubboucek/lamp-devstack-php:8.6.${PHP_RELEASE}-rc
+    docker push jakubboucek/lamp-devstack-php:8.6.${PHP_RELEASE}-rc-debug
     docker push jakubboucek/lamp-devstack-php:8.6-rc
+    docker push jakubboucek/lamp-devstack-php:8.6-rc-debug
 fi

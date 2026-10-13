@@ -56,7 +56,7 @@ of base images designed to cover most standard development workflows — with no
 - unsupported versions of **MariaDB** 12.2, 12.1, 12.0, 11.7, 11.6, 11.5, 11.3, 11.2, 11.1, 11.0, 10.10, 10.9, 10.8, 10.7,
     10.5, 10.4 and 10.3 (unmaintained)
 - current version of **Apache** 2.4 (in non-CLI images)
-- current version of **Xdebug** 3.5 (in debug images)
+- **Xdebug** 3.5 in stable debug images; 3.6 alpha in PHP 8.6 RC debug images
 - current version of [**SPX Profiler**](https://github.com/NoiseByNorthwest/php-spx) (in debug images)
 - extra PHP extensions:
     [`bmath`](https://www.php.net/manual/en/book.bc.php),
@@ -161,9 +161,10 @@ All PHP images also have alternative CLI variants, use `-cli` tag suffix, exampl
 The pre-release of PHP 8.6 images have the `-rc` suffix, example:
 - `jakubboucek/lamp-devstack-php:8.6-rc`
 - `jakubboucek/lamp-devstack-php:8.6-rc-cli`
+- `jakubboucek/lamp-devstack-php:8.6-rc-debug`
 
 > The 8.6 pre-release images include `memcached` from its development branch, installed with PIE 1.5 or newer.
-> A `-debug` variant is not available yet.
+> The `-debug` variant includes Xdebug 3.6 alpha and SPX from its `v0.5` development branch.
 
 ### Using MariaDB
 MariaDB server starts at the same time as the web server.

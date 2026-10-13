@@ -15,3 +15,4 @@ docker run --rm -it -v "$(pwd)":/app -w /app jakubboucek/lamp-devstack-php:8.5 c
 docker run --rm -it -v "$(pwd)":/app -w /app jakubboucek/lamp-devstack-php:8.5-cli composer -d tools/ test;
 docker run --rm -it -v "$(pwd)":/app -w /app jakubboucek/lamp-devstack-php:8.6-rc composer -d tools/ test;
 docker run --rm -it -v "$(pwd)":/app -w /app jakubboucek/lamp-devstack-php:8.6-rc-cli composer -d tools/ test;
+docker run --rm -it -v "$(pwd)":/app -w /app jakubboucek/lamp-devstack-php:8.6-rc-debug composer -d tools/ test;
