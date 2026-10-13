@@ -13,45 +13,12 @@ To build older PHP versions run [`php/legacy/build-php-legacy.sh`](php/legacy/bu
 
 ### PHP 8.6 RC
 
-PHP 8.6 requires PIE 1.5 or newer ([upstream support](https://github.com/php/pie/pull/667)).
-Run `./prepare-assets.sh` before rebuilding with `NO_PULL=1` if `php/build/pie.phar`
-was downloaded before that release. The normal build flow downloads the latest stable PIE.
-
-Memcached uses `dev-master` for the [PHP 8.6 API fixes](https://github.com/php-memcached-dev/php-memcached/pull/580).
-The stable 3.4.0 release does not compile on PHP 8.6. Return to stable package selection
-when a release containing those fixes is available.
-
-The debug variant uses `xdebug/xdebug:^3.6@alpha` and `noisebynorthwest/php-spx:0.5.x-dev`.
-Xdebug 3.6.0alpha1 supports PHP 8.6; SPX support is in the `v0.5` branch, not `master`.
-Stable SPX 0.4.22 and `dev-master` still declare PHP <8.6.
-
-The SPX build needs two compatibility flags on PHP 8.6 RC3 / Debian Trixie:
-`-Wno-error=old-style-declaration` keeps a ZTS TLS declaration warning non-fatal,
-and `-Dtypeof=__typeof__` allows the PHP headers' GNU type operator under SPX's strict
-C11 mode. `CI=true` disables SPX's `-march=native` so the image remains portable across
-amd64 CPUs. Revisit these workarounds when upstream fixes its build configuration.
-
-The 8.6 debug Dockerfile uses the bundled Dockerfile frontend (no external `syntax` directive).
-With Docker 29.8.2 / BuildKit 0.33.1 and the containerd image store, the external frontend
-resolved the published base instead of the freshly built local image. The bundled frontend
-used the local base correctly; the build smoke checks explicitly require memcached in the
-debug image to catch this regression.
-
-Upstream references: [Xdebug 3.6 alpha](https://xdebug.org/announcements/2026-09-08),
-[SPX PHP 8.6 metadata](https://github.com/NoiseByNorthwest/php-spx/pull/349).
-
-#### Required cleanup when PHP 8.6 becomes stable
-
-- Remove the temporary SPX `CFLAGS` override (`-Wno-error=old-style-declaration`
-  and `-Dtypeof=__typeof__`) and its explanatory comments. These are accepted only
-  for the RC phase, not as permanent build configuration.
-- Replace the memcached `dev-master`, Xdebug `^3.6@alpha`, and SPX `0.5.x-dev`
-  selectors with compatible stable releases, then update the RC-specific documentation.
-- Rebuild and verify the images without the workarounds. If upstream still requires
-  any exception, explicitly discuss it with the maintainer rather than silently
-  carrying it into the stable images.
-- Review `CI=true` separately: it prevents CPU-specific SPX builds and must not be
-  removed unless the resulting image remains portable across amd64 CPUs.
+PHP 8.6 builds require PIE 1.5 or newer. When reusing assets with `NO_PULL=1`,
+run `./prepare-assets.sh` first if the cached `php/build/pie.phar` is older.
+Build the Apache image before debug; the debug Dockerfile uses the bundled frontend
+and the locally built base. Package selectors and SPX compatibility flags are defined
+and explained in the Dockerfiles. The [stable-transition checklist](https://github.com/jakubboucek/docker-lamp-devstack/issues/100)
+is maintained in #100.
 
 ## MariaDB
 Run [`build-mariadb.sh`](build-mariadb.sh) script to build all of MariaDB versions.

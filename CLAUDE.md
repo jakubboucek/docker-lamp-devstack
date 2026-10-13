@@ -58,7 +58,7 @@ docker run --rm -it -v "$(pwd)":/app -w /app jakubboucek/lamp-devstack-php:8.5 c
   - PHP: the `-rc` suffix is hard-coded in the script, combined with the pre-release label (e.g. alpha/RC name) which can be read programmatically from the PHP binary itself.
   - MariaDB: RC builds have no additional sub-versions. Based on upstream's observed release mechanism, when a release channel goes stable the patch version is bumped to `2` and the `-rc` suffix is dropped.
   - During a PHP RC phase, components without upstream support for the new version (typically Xdebug → the `-debug` variant, PIE, individual extensions) are temporarily left out or commented in the Dockerfiles. They are re-enabled as soon as a *functional* upstream version exists — a working dev/beta/dev-master is enough, don't wait for a final release. Track the remaining work in a GitHub issue cross-linked with the version's PR.
-- For PHP 8.6 RC package requirements, development versions, and temporary SPX compiler workarounds, see [build-notes.md](build-notes.md#php-86-rc). Keep these exceptions limited to the 8.6 Dockerfiles and revisit them as upstream releases land.
+- For PHP 8.6 build prerequisites, see [build-notes.md](build-notes.md#php-86-rc); the RC-to-stable checklist is maintained in [#100](https://github.com/jakubboucek/docker-lamp-devstack/issues/100).
 - All images are `linux/amd64` only. Building for ARM would require hardware the maintainer doesn't have (and renting a VPS for it is not planned); this will change only if the maintainer's own environment moves to ARM.
 
 ## Defaults baked into images
