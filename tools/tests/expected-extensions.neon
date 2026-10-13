@@ -1,0 +1,66 @@
+# Format: ../../docs/extension-inventory.md
+
+# Exact-profile exceptions apply last. Missing mbstring is a build defect, not an exception.
+exceptions: []
+
+rules:
+	- when: ['>=8.5']
+	  add: [lexbor, uri]
+
+	- when: [+debug]
+	  add: [xdebug, spx]
+
+common:
+	- bcmath
+	- bz2
+	- calendar
+	- core
+	- ctype
+	- curl
+	- date
+	- dom
+	- exif
+	- fileinfo
+	- filter
+	- gd
+	- gettext
+	- gmp
+	- hash
+	- iconv
+	- intl
+	- json
+	- libxml
+	- mbstring
+	- memcached
+	- mysqli
+	- mysqlnd
+	- openssl
+	- pcntl
+	- pcre
+	- pdo
+	- pdo_mysql
+	- pdo_sqlite
+	- phar
+	- posix
+	- random
+	- readline
+	- reflection
+	- session
+	- simplexml
+	- soap
+	- sockets
+	- sodium
+	- spl
+	- sqlite3
+	- standard
+	- sysvmsg
+	- sysvsem
+	- sysvshm
+	- tokenizer
+	- xml
+	- xmlreader
+	- xmlwriter
+	- xsl
+	- zend opcache
+	- zip
+	- zlib

@@ -28,6 +28,8 @@ if [ "${NO_BUILD:-0}" -ne "1" ]; then
 fi
 
 if [ "${NO_TEST:-0}" -ne "1" ]; then
+    ../test-php.sh 8.5
+    ../test-php.sh 8.5-debug
     docker run --rm jakubboucek/lamp-devstack-php:8.5 php --version
     docker run --rm jakubboucek/lamp-devstack-php:8.5-debug php --version
     docker run --rm jakubboucek/lamp-devstack-php:8.5 php -r "echo implode(', ', get_loaded_extensions()) . PHP_EOL;"

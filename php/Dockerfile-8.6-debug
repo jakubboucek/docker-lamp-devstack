@@ -1,0 +1,37 @@
+# check=skip=SecretsUsedInArgOrEnv
+
+FROM jakubboucek/lamp-devstack-php:8.6-rc
+
+LABEL org.label-schema.name="PHP 8.6 (Pre-release, Apache module + Xdebug)"
+
+# Configure Xdebug
+COPY xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini
+
+# Setup PIE working directory
+ARG PIE_WORKING_DIRECTORY=/tmp/.pie
+
+# Prevent interactive block
+ARG DEBIAN_FRONTEND=noninteractive
+
+# PHP 8.6 support requires Xdebug 3.6 alpha and the SPX v0.5 development branch.
+# SPX v0.5 uses an old-style TLS declaration under ZTS; keep the GCC warning non-fatal.
+# PHP 8.6 headers use typeof; SPX forces strict C11, so use the equivalent GNU spelling.
+# CI=true keeps SPX portable by disabling its -march=native optimization.
+# Install Xdebug and SPX
+RUN set -eux; \
+    apt-get update; \
+    apt-get install --no-install-recommends -y zlib1g-dev; \
+    pie install xdebug/xdebug:^3.6@alpha; \
+    CFLAGS="${CFLAGS:-} -Wno-error=old-style-declaration -Dtypeof=__typeof__" CI=true pie install noisebynorthwest/php-spx:0.5.x-dev; \
+    apt-get remove --purge -y zlib1g-dev; \
+    apt-get clean -y && \
+    apt-get autoclean -y && \
+    apt-get autoremove -y && \
+    rm -rf /var/cache/* /var/lib/apt/lists/* /var/lib/log/* /tmp/* /var/tmp/* ~/.composer/cache/*;
+
+# Configure SPX
+ENV PHP_SPX_ENABLED=0
+ENV PHP_SPX_HTTP_KEY="dev"
+ENV PHP_SPX_HTTP_IP_WHITELIST="*"
+
+COPY spx.ini /usr/local/etc/php/conf.d/spx.ini

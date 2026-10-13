@@ -11,6 +11,15 @@ To build only specific PHP version run only the target script on [`php` folder](
 
 To build older PHP versions run [`php/legacy/build-php-legacy.sh`](php/legacy/build-php-legacy.sh).
 
+### PHP 8.6 RC
+
+PHP 8.6 builds require PIE 1.5 or newer. When reusing assets with `NO_PULL=1`,
+run `./prepare-assets.sh` first if the cached `php/build/pie.phar` is older.
+Build the Apache image before debug; the debug Dockerfile uses the bundled frontend
+and the locally built base. Package selectors and SPX compatibility flags are defined
+and explained in the Dockerfiles. The [stable-transition checklist](https://github.com/jakubboucek/docker-lamp-devstack/issues/100)
+is maintained in #100.
+
 ## MariaDB
 Run [`build-mariadb.sh`](build-mariadb.sh) script to build all of MariaDB versions.
 
