@@ -26,6 +26,7 @@ ARG EXTENSION_DEV_DEPS=" \
         libicu-dev \
         libjpeg62-turbo-dev \
 #       libmemcached-dev \
+        libonig-dev \
         libpng-dev \
         libsodium-dev \
         libssl-dev \
@@ -50,6 +51,7 @@ ARG EXTENSION_RUNTIME_DEPS="  \
         libjpeg62-turbo \
         liblzma5 \
 #       libmemcached11t64 \
+        libonig5 \
         libpng16-16t64 \
         librav1e0.7 \
         libsharpyuv0 \
@@ -90,6 +92,7 @@ RUN set -eux; \
         gettext \
         gmp \
         intl \
+        mbstring \
         mysqli \
         pcntl \
         pdo_mysql \
