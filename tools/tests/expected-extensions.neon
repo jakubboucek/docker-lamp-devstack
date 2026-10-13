@@ -1,7 +1,13 @@
-# DRAFT: not wired into builds. See build-notes.md for dependency blockers.
+# DRAFT: not wired into builds. Parser choice and validation evidence: build-notes.md.
 # Profiles describe image tags, not PHP_SAPI. base means neither debug nor cli.
-# mbstring exceptions record observations and require review before adoption.
+# mbstring is mandatory, including PHP 8.6 RC; current images need repair.
 profiles:
+	- '8.2'
+	- 8.2-cli
+	- 8.2-debug
+	- '8.3'
+	- 8.3-cli
+	- 8.3-debug
 	- '8.4'
 	- 8.4-cli
 	- 8.4-debug
@@ -74,17 +80,5 @@ rules:
 	- when: [+debug]
 	  add: [xdebug, spx]
 
-# Applied last, only to the exact named profile; never to future stable 8.6.
-exceptions:
-	8.6-rc:
-		remove: [mbstring]
-		reason: Observed missing in local PHP 8.6.0RC3; intent is not yet approved.
-		removeWhen: Resolve mbstring policy before enabling the inventory check; revisit at 8.6 stable.
-	8.6-rc-cli:
-		remove: [mbstring]
-		reason: Observed missing in local PHP 8.6.0RC3; intent is not yet approved.
-		removeWhen: Resolve mbstring policy before enabling the inventory check; revisit at 8.6 stable.
-	8.6-rc-debug:
-		remove: [mbstring]
-		reason: Observed missing in local PHP 8.6.0RC3; intent is not yet approved.
-		removeWhen: Resolve mbstring policy before enabling the inventory check; revisit at 8.6 stable.
+# Exact-profile exceptions apply last. Missing mbstring is a build defect, not an exception.
+exceptions: {}
