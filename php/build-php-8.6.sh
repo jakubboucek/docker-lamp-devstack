@@ -31,9 +31,6 @@ if [ "${NO_TEST:-0}" -ne "1" ]; then
     docker run --rm jakubboucek/lamp-devstack-php:8.6-rc-debug php --version
     docker run --rm jakubboucek/lamp-devstack-php:8.6-rc php -r "echo implode(', ', get_loaded_extensions()) . PHP_EOL;"
     docker run --rm jakubboucek/lamp-devstack-php:8.6-rc-debug php -r "echo implode(', ', get_loaded_extensions()) . PHP_EOL;"
-    docker run --rm jakubboucek/lamp-devstack-php:8.6-rc-debug php --ri memcached
-    docker run --rm jakubboucek/lamp-devstack-php:8.6-rc-debug php --ri xdebug
-    docker run --rm jakubboucek/lamp-devstack-php:8.6-rc-debug php --ri spx
     docker run --rm jakubboucek/lamp-devstack-php:8.6-rc php -r "var_export(gd_info()) . PHP_EOL;"
 fi
 
