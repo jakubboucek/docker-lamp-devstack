@@ -40,6 +40,19 @@ debug image to catch this regression.
 Upstream references: [Xdebug 3.6 alpha](https://xdebug.org/announcements/2026-09-08),
 [SPX PHP 8.6 metadata](https://github.com/NoiseByNorthwest/php-spx/pull/349).
 
+#### Required cleanup when PHP 8.6 becomes stable
+
+- Remove the temporary SPX `CFLAGS` override (`-Wno-error=old-style-declaration`
+  and `-Dtypeof=__typeof__`) and its explanatory comments. These are accepted only
+  for the RC phase, not as permanent build configuration.
+- Replace the memcached `dev-master`, Xdebug `^3.6@alpha`, and SPX `0.5.x-dev`
+  selectors with compatible stable releases, then update the RC-specific documentation.
+- Rebuild and verify the images without the workarounds. If upstream still requires
+  any exception, explicitly discuss it with the maintainer rather than silently
+  carrying it into the stable images.
+- Review `CI=true` separately: it prevents CPU-specific SPX builds and must not be
+  removed unless the resulting image remains portable across amd64 CPUs.
+
 ## MariaDB
 Run [`build-mariadb.sh`](build-mariadb.sh) script to build all of MariaDB versions.
 
