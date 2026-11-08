@@ -58,7 +58,7 @@ if any container fails while continuing through the remaining tags.
 ## Architecture
 
 - **`php/Dockerfile-<ver>`** — Apache image based on `php:<ver>-apache-trixie`. Installs extensions via `docker-php-ext-install` plus PIE (`pie install`) for PECL-style extensions (memcached). Dev packages (`EXTENSION_DEV_DEPS`) are installed, extensions compiled, then dev packages purged, keeping only `EXTENSION_RUNTIME_DEPS` (`apt-mark manual`) — this keeps images small. Installs Composer, moves DocumentRoot to `/var/www/html/www`, and makes Apache port configurable via `PORT`.
-- **`php/Dockerfile-<ver>-debug`** — layered ON TOP of the published `jakubboucek/lamp-devstack-php:<ver>` image (not the upstream base); adds Xdebug + SPX profiler via PIE.
+- **`php/Dockerfile-<ver>-debug`** — layered ON TOP of the locally built `jakubboucek/lamp-devstack-php:<ver>` image (not the upstream base), using the bundled Dockerfile frontend; adds Xdebug + SPX profiler via PIE.
 - **`php/Dockerfile-<ver>-cli`** — CLI variant from `php:<ver>-cli-trixie`.
 - **`php/legacy/`** — Dockerfiles for EOL PHP versions (5.4–8.1); mostly unmaintained, several no longer buildable.
 - **`mysql/Dockerfile-<ver>`** — thin layer over official `mariadb`, adds `mysql-unicode.cnf` (utf8mb4 default) and `mysql-max-packet.cnf`.
