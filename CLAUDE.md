@@ -30,6 +30,12 @@ All build scripts follow the same four-phase pattern (pull → build → test �
 ./check-pulls.sh              # pull all upstream base images to check for updates
 ```
 
+`php-source-versions.sh` prints source PHP image tags and their full runtime versions
+as a YAML mapping, using the `PHP_VERSION` constant in each local image.
+`check-pulls.sh` calls it after all pulls finish. `php-build-versions.sh` prints the
+same report for the resulting CLI, base and debug images. Both report scripts can
+be run independently; keep their image lists aligned with the build scripts.
+
 Common examples: `NO_PUSH=1 ./build-php.sh` (local build only), `NO_PULL=1 NO_BUILD=1 ./build-php.sh` (push pre-built images).
 
 ## Tests

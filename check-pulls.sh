@@ -22,3 +22,5 @@ docker pull mariadb:11.4
 docker pull mariadb:11.8
 docker pull mariadb:12.3
 docker pull mariadb:13.0-rc
+
+"$(dirname "$0")/php-source-versions.sh"
