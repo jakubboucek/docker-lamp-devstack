@@ -1,4 +1,3 @@
-# syntax=docker/dockerfile:1
 # check=skip=SecretsUsedInArgOrEnv
 
 FROM jakubboucek/lamp-devstack-php:8.5

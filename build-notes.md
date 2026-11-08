@@ -11,6 +11,13 @@ To build only specific PHP version run only the target script on [`php` folder](
 
 To build older PHP versions run [`php/legacy/build-php-legacy.sh`](php/legacy/build-php-legacy.sh).
 
+### Debug image base
+
+Current debug Dockerfiles use the bundled Dockerfile frontend (no `syntax`
+directive) so the build uses the freshly built local base image.
+Keep `# check=skip=SecretsUsedInArgOrEnv` as the first line to
+suppress the warning for the default development SPX key (`PHP_SPX_HTTP_KEY`).
+
 ### PHP 8.6 RC
 
 PHP 8.6 builds require PIE 1.5 or newer. When reusing assets with `NO_PULL=1`,
