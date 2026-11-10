@@ -30,6 +30,23 @@ is maintained in #100.
 ## MariaDB
 Run [`build-mariadb.sh`](build-mariadb.sh) script to build all of MariaDB versions.
 
+The script pulls configured minor/RC channels and reads the full release version
+from the resulting image's `org.opencontainers.image.version` label. It validates
+`major.minor.patch`, the expected series, and agreement with
+`mariadbd --no-defaults --version` before tagging or pushing. No database is started.
+Version identity validation also runs with `NO_TEST=1` when building or pushing;
+`NO_TEST` skips the separate version report.
+
+With `NO_BUILD=1`, versions come from the existing output images. Push-only runs
+refresh release and alias tags from those validated images before pushing.
+`NO_PULL=1` reuses local source images. With all four phases disabled, no Docker
+commands run.
+
+Major, `latest` and `lts` aliases remain explicit in the script. RC channels append
+`-rc` to the detected version (for example `13.0.1-rc`); neither the label nor the
+server version identifies release maturity. Switching a series to stable requires
+changing its configured channel and Dockerfile.
+
 ## Partion build
 
 All of scripts above supports ENV variables to do partial build only.
