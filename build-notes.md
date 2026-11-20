@@ -57,7 +57,7 @@ refresh release and alias tags from those validated images before pushing.
 commands run.
 
 Major, `latest` and `lts` aliases remain explicit in the script. RC channels append
-`-rc` to the detected version (for example `13.0.1-rc`); neither the label nor the
+`-rc` to the detected version (for example `13.1.1-rc`); neither the label nor the
 server version identifies release maturity. Switching a series to stable requires
 changing its configured channel and Dockerfile.
 
