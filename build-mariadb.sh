@@ -75,5 +75,6 @@ build_mariadb 10.6
 build_mariadb 10.11 10
 build_mariadb 11.4
 build_mariadb 11.8 11
-build_mariadb 12.3 12 latest lts
-build_mariadb 13.0-rc
+build_mariadb 12.3 12 lts
+build_mariadb 13.0 13 latest
+build_mariadb 13.1-rc
