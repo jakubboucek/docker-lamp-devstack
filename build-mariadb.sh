@@ -2,7 +2,7 @@
 
 set -eux
 
-cd "$(dirname $0)";
+cd "$(dirname "$0")"
 
 NO_PULL=${NO_PULL:-0}
 NO_BUILD=${NO_BUILD:-0}
@@ -11,146 +11,69 @@ NO_PUSH=${NO_PUSH:-0}
 
 # Source: https://hub.docker.com/_/mariadb
 
-### MariaDB - 10.6
-MARIADB_RELEASE=28
-if [ "${NO_PULL}" -ne "1" ]; then
-    docker pull mariadb:10.6.${MARIADB_RELEASE}
-    docker tag mariadb:10.6.${MARIADB_RELEASE} mariadb:10.6
-    docker run --rm mariadb:10.6 mysql --version
-fi
+build_mariadb() {
+    local channel=$1
+    shift
+    local series=${channel%-rc}
+    local suffix=${channel#"$series"}
+    local image="jakubboucek/lamp-devstack-mysql:${channel}"
+    local version server_output server_version tag
 
-if [ "${NO_BUILD}" -ne "1" ]; then
-    docker build --progress plain -f mysql/Dockerfile-10.6 -t jakubboucek/lamp-devstack-mysql:10.6 mysql/
-    docker tag jakubboucek/lamp-devstack-mysql:10.6 jakubboucek/lamp-devstack-mysql:10.6.${MARIADB_RELEASE}
-fi
+    if [ "$NO_PULL" -ne 1 ]; then
+        docker pull "mariadb:${channel}"
+    fi
 
-if [ "${NO_TEST}" -ne "1" ]; then
-    docker run --rm jakubboucek/lamp-devstack-mysql:10.6 mysql --version
-fi
+    if [ "$NO_BUILD" -ne 1 ]; then
+        docker build --progress plain -f "mysql/Dockerfile-${series}" -t "$image" mysql/
+    fi
 
-if [ "${NO_PUSH}" -ne "1" ]; then
-    docker push jakubboucek/lamp-devstack-mysql:10.6.${MARIADB_RELEASE}
-    docker push jakubboucek/lamp-devstack-mysql:10.6
-fi
+    # Tag and push existing output images even when NO_BUILD=1. Never derive
+    # their release tag from a potentially newer source image.
+    if [ "$NO_BUILD" -ne 1 ] || [ "$NO_TEST" -ne 1 ] || [ "$NO_PUSH" -ne 1 ]; then
+        version=$(docker image inspect "$image" \
+            --format '{{index .Config.Labels "org.opencontainers.image.version"}}')
+        if [[ ! "$version" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]] || [ "${version%.*}" != "$series" ]; then
+            printf 'Invalid MariaDB version label for %s: %s (expected %s.x)\n' "$image" "$version" "$series" >&2
+            return 1
+        fi
 
-### MariaDB - 10.11
-MARIADB_RELEASE=19
-if [ "${NO_PULL}" -ne "1" ]; then
-    docker pull mariadb:10.11.${MARIADB_RELEASE}
-    docker tag mariadb:10.11.${MARIADB_RELEASE} mariadb:10.11
-    docker run --rm mariadb:10.11 mysql --version
-fi
+        # This identity check is required for correct tags even with NO_TEST=1.
+        # Bypass initialization and configuration; no database server is started.
+        server_output=$(docker run --rm --pull=never --entrypoint mariadbd "$image" --no-defaults --version)
+        if [[ "$server_output" =~ [[:space:]]Ver[[:space:]]+([0-9]+\.[0-9]+\.[0-9]+)-MariaDB ]]; then
+            server_version=${BASH_REMATCH[1]}
+        else
+            printf 'Cannot parse MariaDB server version for %s: %s\n' "$image" "$server_output" >&2
+            return 1
+        fi
+        if [ "$server_version" != "$version" ]; then
+            printf 'MariaDB version mismatch for %s: label=%s server=%s\n' "$image" "$version" "$server_version" >&2
+            return 1
+        fi
 
-if [ "${NO_BUILD}" -ne "1" ]; then
-    docker build --progress plain -f mysql/Dockerfile-10.11 -t jakubboucek/lamp-devstack-mysql:10.11 mysql/
-    docker tag jakubboucek/lamp-devstack-mysql:10.11 jakubboucek/lamp-devstack-mysql:10.11.${MARIADB_RELEASE}
-    docker tag jakubboucek/lamp-devstack-mysql:10.11 jakubboucek/lamp-devstack-mysql:10
-fi
+        if [ "$NO_TEST" -ne 1 ]; then
+            printf '%s: %s\n' "$image" "$server_output"
+        fi
 
-if [ "${NO_TEST}" -ne "1" ]; then
-    docker run --rm jakubboucek/lamp-devstack-mysql:10.11 mysql --version
-fi
+        # RC status is configured by the channel, not exposed by the version label.
+        if [ "$NO_BUILD" -ne 1 ] || [ "$NO_PUSH" -ne 1 ]; then
+            for tag in "${version}${suffix}" "$@"; do
+                docker tag "$image" "jakubboucek/lamp-devstack-mysql:${tag}"
+            done
+        fi
 
-if [ "${NO_PUSH}" -ne "1" ]; then
-    docker push jakubboucek/lamp-devstack-mysql:10.11.${MARIADB_RELEASE}
-    docker push jakubboucek/lamp-devstack-mysql:10.11
-    docker push jakubboucek/lamp-devstack-mysql:10
-fi
+        if [ "$NO_PUSH" -ne 1 ]; then
+            for tag in "${version}${suffix}" "$channel" "$@"; do
+                docker push "jakubboucek/lamp-devstack-mysql:${tag}"
+            done
+        fi
+    fi
+}
 
-### MariaDB - 11.4
-MARIADB_RELEASE=13
-if [ "${NO_PULL}" -ne "1" ]; then
-    docker pull mariadb:11.4.${MARIADB_RELEASE}
-    docker tag mariadb:11.4.${MARIADB_RELEASE} mariadb:11.4
-    docker run --rm mariadb:11.4 mariadb --version
-fi
-
-if [ "${NO_BUILD}" -ne "1" ]; then
-    docker build --progress plain -f mysql/Dockerfile-11.4 -t jakubboucek/lamp-devstack-mysql:11.4 mysql/
-    docker tag jakubboucek/lamp-devstack-mysql:11.4 jakubboucek/lamp-devstack-mysql:11.4.${MARIADB_RELEASE}
-fi
-
-if [ "${NO_TEST}" -ne "1" ]; then
-    docker run --rm jakubboucek/lamp-devstack-mysql:11.4 mariadb --version
-fi
-
-if [ "${NO_PUSH}" -ne "1" ]; then
-    docker push jakubboucek/lamp-devstack-mysql:11.4.${MARIADB_RELEASE}
-    docker push jakubboucek/lamp-devstack-mysql:11.4
-fi
-
-
-### MariaDB - 11.8
-MARIADB_RELEASE=9
-if [ "${NO_PULL}" -ne "1" ]; then
-    docker pull mariadb:11.8.${MARIADB_RELEASE}
-    docker tag mariadb:11.8.${MARIADB_RELEASE} mariadb:11.8
-    docker run --rm mariadb:11.8 mariadb --version
-fi
-
-if [ "${NO_BUILD}" -ne "1" ]; then
-    docker build --progress plain -f mysql/Dockerfile-11.8 -t jakubboucek/lamp-devstack-mysql:11.8 mysql/
-    docker tag jakubboucek/lamp-devstack-mysql:11.8 jakubboucek/lamp-devstack-mysql:11.8.${MARIADB_RELEASE}
-    docker tag jakubboucek/lamp-devstack-mysql:11.8 jakubboucek/lamp-devstack-mysql:11
-fi
-
-if [ "${NO_TEST}" -ne "1" ]; then
-    docker run --rm jakubboucek/lamp-devstack-mysql:11.8 mariadb --version
-fi
-
-if [ "${NO_PUSH}" -ne "1" ]; then
-    docker push jakubboucek/lamp-devstack-mysql:11.8.${MARIADB_RELEASE}
-    docker push jakubboucek/lamp-devstack-mysql:11.8
-    docker push jakubboucek/lamp-devstack-mysql:11
-fi
-
-
-### MariaDB - 12.3
-MARIADB_RELEASE=3
-if [ "${NO_PULL}" -ne "1" ]; then
-    docker pull mariadb:12.3.${MARIADB_RELEASE}
-    docker tag mariadb:12.3.${MARIADB_RELEASE} mariadb:12.3
-    docker run --rm mariadb:12.3 mariadb --version
-fi
-
-if [ "${NO_BUILD}" -ne "1" ]; then
-    docker build --progress plain -f mysql/Dockerfile-12.3 -t jakubboucek/lamp-devstack-mysql:12.3 mysql/
-    docker tag jakubboucek/lamp-devstack-mysql:12.3 jakubboucek/lamp-devstack-mysql:12.3.${MARIADB_RELEASE}
-    docker tag jakubboucek/lamp-devstack-mysql:12.3 jakubboucek/lamp-devstack-mysql:12
-    docker tag jakubboucek/lamp-devstack-mysql:12.3 jakubboucek/lamp-devstack-mysql:latest
-    docker tag jakubboucek/lamp-devstack-mysql:12.3 jakubboucek/lamp-devstack-mysql:lts
-fi
-
-if [ "${NO_TEST}" -ne "1" ]; then
-    docker run --rm jakubboucek/lamp-devstack-mysql:12.3 mariadb --version
-fi
-
-if [ "${NO_PUSH}" -ne "1" ]; then
-    docker push jakubboucek/lamp-devstack-mysql:12.3.${MARIADB_RELEASE}
-    docker push jakubboucek/lamp-devstack-mysql:12.3
-    docker push jakubboucek/lamp-devstack-mysql:12
-    docker push jakubboucek/lamp-devstack-mysql:latest
-    docker push jakubboucek/lamp-devstack-mysql:lts
-fi
-
-### MariaDB - 13.0
-MARIADB_RELEASE=1
-if [ "${NO_PULL}" -ne "1" ]; then
-    docker pull mariadb:13.0.${MARIADB_RELEASE}-rc
-    docker tag mariadb:13.0.${MARIADB_RELEASE}-rc mariadb:13.0-rc
-    docker run --rm mariadb:13.0-rc mariadb --version
-fi
-
-if [ "${NO_BUILD}" -ne "1" ]; then
-    docker build --progress plain -f mysql/Dockerfile-13.0 -t jakubboucek/lamp-devstack-mysql:13.0-rc mysql/
-    docker tag jakubboucek/lamp-devstack-mysql:13.0-rc jakubboucek/lamp-devstack-mysql:13.0.${MARIADB_RELEASE}-rc
-fi
-
-if [ "${NO_TEST}" -ne "1" ]; then
-    docker run --rm jakubboucek/lamp-devstack-mysql:13.0-rc mariadb --version
-fi
-
-if [ "${NO_PUSH}" -ne "1" ]; then
-    docker push jakubboucek/lamp-devstack-mysql:13.0.${MARIADB_RELEASE}-rc
-    docker push jakubboucek/lamp-devstack-mysql:13.0-rc
-fi
+# Channels and publication aliases are explicit; patch versions come from images.
+build_mariadb 10.6
+build_mariadb 10.11 10
+build_mariadb 11.4
+build_mariadb 11.8 11
+build_mariadb 12.3 12 latest lts
+build_mariadb 13.0-rc
