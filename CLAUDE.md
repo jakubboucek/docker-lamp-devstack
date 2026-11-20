@@ -21,7 +21,7 @@ in [docs/extension-inventory.md](docs/extension-inventory.md).
 All build scripts follow the same four-phase pattern (pull → build → test → push), each phase skippable via ENV flags: `NO_PULL=1`, `NO_BUILD=1`, `NO_TEST=1`, `NO_PUSH=1`, `NO_ASSETS=1`.
 
 ```bash
-./build-php.sh                # build all current PHP versions (8.2–8.5 + 8.6 RC, apache + cli variants)
+./build-php.sh                # build all current PHP versions (8.2–8.6, apache + cli variants)
 ./php/build-php-8.5.sh        # build a single PHP version (apache + debug variants)
 ./php/build-php-8.5-cli.sh    # build a single CLI variant
 ./php/legacy/build-php-legacy.sh  # legacy PHP versions (many disabled — Debian repos shut down)
@@ -42,7 +42,7 @@ Common examples: `NO_PUSH=1 ./build-php.sh` (local build only), `NO_PULL=1 NO_BU
 
 ```bash
 ./test-php.sh                 # test every tag listed at the top of the script (base, cli, debug)
-./test-php.sh 8.6-rc-debug    # test a single tag
+./test-php.sh 8.6-debug        # test a single tag
 ```
 
 Prepare dependencies with `composer -d tools install` before running tests or build
@@ -66,7 +66,7 @@ if any container fails while continuing through the remaining tags.
 
 ## Versioning and release conventions
 
-- Image tags are cascaded SemVer (`latest` / `8` / `8.5` / `8.5.x`); the patch version is read at build time from the built image (`PHP_RELEASE_VERSION`). MariaDB full release versions are read from the resulting image’s `org.opencontainers.image.version` label and verified against `mariadbd --no-defaults --version` before tagging or pushing.
+- Image tags are cascaded SemVer (`latest` / `8` / `8.6` / `8.6.x`); the patch version is read at build time from the built image (`PHP_RELEASE_VERSION`). MariaDB full release versions are read from the resulting image’s `org.opencontainers.image.version` label and verified against `mariadbd --no-defaults --version` before tagging or pushing.
 - Tag suffixes: `-debug` (Xdebug + SPX), `-cli`, `-legacy` (EOL PHP), `-rc` (pre-releases), `lts` (current MariaDB LTS).
 - **Patch updates**: PHP and MariaDB build scripts derive patch tags from the resulting images. MariaDB pulls configured minor/RC channels; channels and major/`latest`/`lts` aliases remain explicit in `build-mariadb.sh`. See [build-notes.md](build-notes.md#mariadb) for version validation and partial builds.
 - **Release workflow**: every patch-level version bump is submitted as a PR and merged into `master` only after the images have been built and verified. Look at merged PRs in the git history for the established format.
@@ -75,7 +75,7 @@ if any container fails while continuing through the remaining tags.
   - PHP: the `-rc` suffix is hard-coded in the script, combined with the pre-release label (e.g. alpha/RC name) which can be read programmatically from the PHP binary itself.
   - MariaDB: the version label and server binary do not identify RC status. The configured `-rc` channel supplies the suffix for full release tags; switching a series to stable requires updating the channel and Dockerfile explicitly.
   - During a PHP RC phase, components without upstream support for the new version (typically Xdebug → the `-debug` variant, PIE, individual extensions) are temporarily left out or commented in the Dockerfiles. They are re-enabled as soon as a *functional* upstream version exists — a working dev/beta/dev-master is enough, don't wait for a final release. Track the remaining work in a GitHub issue cross-linked with the version's PR.
-- For PHP 8.6 build prerequisites, see [build-notes.md](build-notes.md#php-86-rc); the RC-to-stable checklist is maintained in [#100](https://github.com/jakubboucek/docker-lamp-devstack/issues/100).
+- For PHP 8.6 build prerequisites, see [build-notes.md](build-notes.md#php-86); the remaining stable-extension checklist is maintained in [#100](https://github.com/jakubboucek/docker-lamp-devstack/issues/100).
 - All images are `linux/amd64` only. Building for ARM would require hardware the maintainer doesn't have (and renting a VPS for it is not planned); this will change only if the maintainer's own environment moves to ARM.
 
 ## Defaults baked into images

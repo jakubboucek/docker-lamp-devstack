@@ -5,7 +5,7 @@ image profile. `tools/tests/ExtensionsTest.php` checks this declaration as part 
 Nette Tester. Current build scripts invoke the suite before publishing images.
 
 Prepare tooling with `composer -d tools install`, then use `./test-php.sh` or
-`./test-php.sh 8.6-rc-debug`. Dependencies are installed on the host and mounted
+`./test-php.sh 8.6-debug`. Dependencies are installed on the host and mounted
 read-only into containers; they are not added to published images. Composer resolves
 for PHP 8.1 via `config.platform.php`. NEON 3.4.8 is pinned: its declared upper bound
 is 8.5, but its runtime behavior has also been verified for this project on PHP 8.6.

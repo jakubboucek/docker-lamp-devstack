@@ -25,7 +25,7 @@ RUN set -eux; \
     apt-get autoremove -y && \
     rm -rf /var/cache/* /var/lib/apt/lists/* /var/lib/log/* /tmp/* /var/tmp/* ~/.composer/cache/*;
 
-# Configure OPcache
+# Configure SPX
 ENV PHP_SPX_ENABLED=0
 ENV PHP_SPX_HTTP_KEY="dev"
 ENV PHP_SPX_HTTP_IP_WHITELIST="*"

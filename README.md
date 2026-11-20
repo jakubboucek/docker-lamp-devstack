@@ -49,14 +49,14 @@ of base images designed to cover most standard development workflows — with no
 
 ## Main features
 - architecture: `linux/amd64`
-- current **PHP** versions: 8.5, 8.4, 8.3 and 8.2 and pre-release of 8.6
+- current **PHP** versions: 8.6, 8.5, 8.4, 8.3 and 8.2
 - unsupported **PHP** versions also available: 8.1, 8.0, 7.4, 7.3, 7.2, 7.1, 7.0, 5.6, 5.5 and 5.4 (with limited
     stability, unoptimized, unmaintained)
 - current versions of **MariaDB** 12.3, 11.8, 11.4, 10.11, 10.6  and RC pre-release of 13.0
 - unsupported versions of **MariaDB** 12.2, 12.1, 12.0, 11.7, 11.6, 11.5, 11.3, 11.2, 11.1, 11.0, 10.10, 10.9, 10.8, 10.7,
     10.5, 10.4 and 10.3 (unmaintained)
 - current version of **Apache** 2.4 (in non-CLI images)
-- **Xdebug** 3.5 in stable debug images; 3.6 alpha in PHP 8.6 RC debug images
+- **Xdebug** 3.5 in PHP 8.2–8.5 debug images; 3.6 alpha in PHP 8.6 debug images
 - current version of [**SPX Profiler**](https://github.com/NoiseByNorthwest/php-spx) (in debug images)
 - extra PHP extensions:
     [`bmath`](https://www.php.net/manual/en/book.bc.php),
@@ -158,13 +158,13 @@ All PHP images also have alternative CLI variants, use `-cli` tag suffix, exampl
 - `jakubboucek/lamp-devstack-php:8.5.0-cli`
 - `jakubboucek/lamp-devstack-php:7.4-legacy-cli`
 
-The pre-release of PHP 8.6 images have the `-rc` suffix, example:
-- `jakubboucek/lamp-devstack-php:8.6-rc`
-- `jakubboucek/lamp-devstack-php:8.6-rc-cli`
-- `jakubboucek/lamp-devstack-php:8.6-rc-debug`
+PHP 8.6 uses stable PHP base images and the tags `8.6`, `8.6-cli`, and `8.6-debug`.
+The generic aliases (`latest` / `8`, `cli` / `8-cli`, and `debug` / `8-debug`) select PHP 8.6.
 
-> The 8.6 pre-release images include `memcached` from its development branch, installed with PIE 1.5 or newer.
-> The `-debug` variant includes Xdebug 3.6 alpha and SPX from its `v0.5` development branch.
+> PHP 8.6 temporarily requires `memcached:dev-master`; its debug variant requires
+> Xdebug `^3.6@alpha` and SPX `0.5.x-dev`. Compatible stable extension releases are
+> not yet available. PIE itself is stable (1.5 or newer).
+> See [build prerequisites](build-notes.md#php-86) for the remaining compatibility exceptions.
 
 ### Using MariaDB
 MariaDB server starts at the same time as the web server.
