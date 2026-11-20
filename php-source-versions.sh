@@ -11,8 +11,8 @@ PHP_IMAGES=(
     8.4-apache-trixie
     8.5-cli-trixie
     8.5-apache-trixie
-    8.6-rc-cli-trixie
-    8.6-rc-apache-trixie
+    8.6-cli-trixie
+    8.6-apache-trixie
 )
 
 for image in "${PHP_IMAGES[@]}"; do

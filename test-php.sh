@@ -5,7 +5,7 @@ TAGS=(
     8.3 8.3-cli 8.3-debug
     8.4 8.4-cli 8.4-debug
     8.5 8.5-cli 8.5-debug
-    8.6-rc 8.6-rc-cli 8.6-rc-debug
+    8.6 8.6-cli 8.6-debug
 )
 
 set -u

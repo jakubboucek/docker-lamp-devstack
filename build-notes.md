@@ -18,14 +18,28 @@ directive) so the build uses the freshly built local base image.
 Keep `# check=skip=SecretsUsedInArgOrEnv` as the first line to
 suppress the warning for the default development SPX key (`PHP_SPX_HTTP_KEY`).
 
-### PHP 8.6 RC
+### PHP 8.6
 
 PHP 8.6 builds require PIE 1.5 or newer. When reusing assets with `NO_PULL=1`,
 run `./prepare-assets.sh` first if the cached `php/build/pie.phar` is older.
 Build the Apache image before debug; the debug Dockerfile uses the bundled frontend
-and the locally built base. Package selectors and SPX compatibility flags are defined
-and explained in the Dockerfiles. The [stable-transition checklist](https://github.com/jakubboucek/docker-lamp-devstack/issues/100)
+and the locally built base. PHP itself uses stable upstream tags; the generic image
+aliases belong to 8.6.
+
+Compatible stable extension releases are not yet available: memcached 3.4.0 lacks
+PHP 8.6 API fixes, Xdebug 3.5.3 requires PHP <8.6, and SPX 0.4.22 requires PHP <8.6.0.
+The Dockerfiles therefore retain `php-memcached/php-memcached:dev-master`,
+`xdebug/xdebug:^3.6@alpha`, and `noisebynorthwest/php-spx:0.5.x-dev` temporarily.
+SPX also retains its compiler compatibility flags; `CI=true` disables
+`-march=native` to preserve portability across amd64 CPUs.
+Replace these selectors with the same stable selection used by PHP 8.5 when
+compatible releases become available, and verify compilation before removing the
+SPX flags. The [remaining extension checklist](https://github.com/jakubboucek/docker-lamp-devstack/issues/100)
 is maintained in #100.
+
+Compared with PHP 8.5, the 8.6 base images also require explicit `mbstring`
+compilation and Oniguruma packages. GD additionally links to `libwebpdemux2`
+and `libwebpmux3`; retain both runtime packages when purging build dependencies.
 
 ## MariaDB
 Run [`build-mariadb.sh`](build-mariadb.sh) script to build all of MariaDB versions.

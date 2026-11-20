@@ -15,9 +15,9 @@ PHP_IMAGES=(
     8.5-cli
     8.5
     8.5-debug
-    8.6-rc-cli
-    8.6-rc
-    8.6-rc-debug
+    8.6-cli
+    8.6
+    8.6-debug
 )
 
 for image in "${PHP_IMAGES[@]}"; do
